@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   CalendarDays,
   Clock3,
+  Pin,
   Sparkles,
 } from "lucide-react";
 
@@ -22,6 +23,7 @@ import {
 } from "@/components/ui/card";
 
 import { getHashnodePosts, formatPostDate } from "@/lib/hashnode";
+import { blogConfig } from "@/data/blog-config";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -37,15 +39,33 @@ const playfair = Playfair_Display({
 const HASHNODE_PROFILE = "https://codermayank.hashnode.dev";
 
 export default async function BlogPage() {
-  // Fetch 6 latest posts; on error, fall back to empty array
+  // Fetch posts — enough to cover a pinned featured + grid
   let posts = [];
   try {
-    posts = await getHashnodePosts(6);
+    posts = await getHashnodePosts(10);
   } catch {
     posts = [];
   }
 
-  const [featured, ...rest] = posts;
+  // ── Pick featured post ───────────────────────────────────────────────────
+  // If blogConfig.featuredSlug is set, find that post and move it to front.
+  // Otherwise fall back to the latest post (index 0).
+  let featured = posts[0] ?? null;
+  let rest = posts.slice(1);
+
+  if (blogConfig.featuredSlug) {
+    const pinnedIndex = posts.findIndex(
+      (p) => p.slug === blogConfig.featuredSlug
+    );
+    if (pinnedIndex !== -1) {
+      featured = posts[pinnedIndex];
+      rest = posts.filter((_, i) => i !== pinnedIndex);
+    }
+  }
+
+  // Show at most 6 in the grid
+  const gridPosts = rest.slice(0, 6);
+  const isPinned = blogConfig.featuredSlug !== null && featured?.slug === blogConfig.featuredSlug;
 
   return (
     <main className="relative isolate min-h-screen overflow-x-clip bg-[linear-gradient(180deg,#fff8f1_0%,#ffffff_36%,#f8fafc_100%)] text-zinc-900">
@@ -81,7 +101,7 @@ export default async function BlogPage() {
               {featured ? (
                 <Link href={featured.url} target="_blank" rel="noopener noreferrer">
                   <Button className="h-10 bg-zinc-900 px-5 text-white hover:bg-zinc-700">
-                    Read the latest post
+                    {isPinned ? "Read featured post" : "Read the latest post"}
                     <ArrowRight className="size-4" />
                   </Button>
                 </Link>
@@ -147,10 +167,22 @@ export default async function BlogPage() {
                   )}
                 </CardContent>
                 <CardHeader className="pt-1">
-                  <CardDescription className="inline-flex items-center gap-2 text-zinc-500">
-                    <CalendarDays className="size-4" />
-                    {formatPostDate(featured.publishedAt)} · Featured Post
-                  </CardDescription>
+                  <div className="flex items-center justify-between px-6 pt-0 pb-1">
+                    <CardDescription className="inline-flex items-center gap-2 text-zinc-500">
+                      <CalendarDays className="size-4" />
+                      {formatPostDate(featured.publishedAt)}
+                    </CardDescription>
+                    {isPinned ? (
+                      <Badge className="bg-orange-100 text-orange-700 border-orange-300 gap-1 text-xs">
+                        <Pin className="size-3" />
+                        Pinned
+                      </Badge>
+                    ) : (
+                      <Badge variant="outline" className="border-zinc-300 text-zinc-500 text-xs">
+                        Latest
+                      </Badge>
+                    )}
+                  </div>
                   <CardTitle
                     className={`${playfair.className} text-2xl leading-tight text-zinc-900`}
                   >
@@ -175,7 +207,7 @@ export default async function BlogPage() {
       </section>
 
       {/* ── Latest Posts Grid ── */}
-      {rest.length > 0 && (
+      {gridPosts.length > 0 && (
         <section className="mx-auto w-full max-w-6xl px-6 py-8 md:py-12">
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -195,7 +227,7 @@ export default async function BlogPage() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-3">
-            {rest.map((post, index) => (
+            {gridPosts.map((post, index) => (
               <Link
                 key={post.slug}
                 href={post.url}
