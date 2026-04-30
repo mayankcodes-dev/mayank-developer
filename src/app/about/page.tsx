@@ -3,7 +3,7 @@ import SiteNav from "@/components/layout/site-nav";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Download, Github, Linkedin, Twitter } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -119,17 +119,17 @@ export default function About() {
             <div className="flex flex-wrap gap-3">
               <Button variant="outline" asChild>
                 <a href="https://github.com/coderMayank69" target="_blank" rel="noopener noreferrer">
-                  <Github className="size-4" /> GitHub
+                  <ExternalLink className="size-4" /> GitHub
                 </a>
               </Button>
               <Button variant="outline" asChild>
                 <a href="https://linkedin.com/in/codermayank69" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="size-4" /> LinkedIn
+                  <ExternalLink className="size-4" /> LinkedIn
                 </a>
               </Button>
               <Button variant="outline" asChild>
                 <a href="https://hashnode.com/@coderMayank" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="size-4" /> Hashnode
+                  <ExternalLink className="size-4" /> Hashnode
                 </a>
               </Button>
             </div>

@@ -22,8 +22,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { getHashnodePosts, formatPostDate } from "@/lib/hashnode";
+import { getHashnodePosts, formatPostDate, type HashnodePost } from "@/lib/hashnode";
 import { blogConfig } from "@/data/blog-config";
+
+
 
 export const metadata: Metadata = {
   title: "Blog",
