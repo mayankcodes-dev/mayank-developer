@@ -40,7 +40,7 @@ const HASHNODE_PROFILE = "https://codermayank.hashnode.dev";
 
 export default async function BlogPage() {
   // Fetch posts — enough to cover a pinned featured + grid
-  let posts = [];
+  let posts: HashnodePost[] = [];
   try {
     posts = await getHashnodePosts(10);
   } catch {
@@ -252,7 +252,7 @@ export default async function BlogPage() {
 
                   <CardHeader className="gap-2">
                     <div className="flex flex-wrap gap-1.5">
-                      {post.tags?.slice(0, 2).map((tag) => (
+                      {post.tags?.slice(0, 2).map((tag: { name: string }) => (
                         <Badge
                           key={tag.name}
                           variant="outline"

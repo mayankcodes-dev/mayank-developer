@@ -20,13 +20,13 @@ export default function PageLoader() {
   const [done, setDone] = useState<boolean>(false);
 
   useEffect(() => {
-    // Reveal terminal lines one by one
-    BOOT_LINES.forEach((line, i) => {
+    // Reveal terminal lines one by one — collect IDs for cleanup
+    const lineTimers = BOOT_LINES.map((line, i) =>
       setTimeout(() => {
         setVisibleLines(i + 1);
         setProgress(Math.round(((i + 1) / BOOT_LINES.length) * 100));
-      }, line.delay);
-    });
+      }, line.delay)
+    );
 
     // Start exit animation
     const exitTimer = setTimeout(() => setExiting(true), TOTAL_DURATION);
@@ -34,6 +34,7 @@ export default function PageLoader() {
     const doneTimer = setTimeout(() => setDone(true), TOTAL_DURATION + 450);
 
     return () => {
+      lineTimers.forEach(clearTimeout);
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
     };

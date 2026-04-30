@@ -3,13 +3,10 @@
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
-import { Hero, FeaturedProjects, Skills } from "@/components/sections";
-
-gsap.registerPlugin(ScrollToPlugin);
+import { FeaturedProjects, Skills } from "@/components/sections";
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -120,20 +117,30 @@ export default function Home() {
         <Skills />
       </section>
 
-      <main
+      <section
         id="contact"
-        className="flex h-screen w-full items-center justify-center bg-blue-800 px-6 text-white"
+        className="flex min-h-[60vh] w-full items-center justify-center bg-primary px-6 text-primary-foreground"
       >
         <div className="text-center">
-          <h2 className="text-4xl font-semibold md:text-6xl">Contact</h2>
-          <p className="mt-4 text-lg text-blue-100 md:text-xl">
-            Have a project in mind? Let's work together.
+          <h2 className="text-4xl font-semibold md:text-6xl">Let's Work Together</h2>
+          <p className="mt-4 text-lg opacity-80 md:text-xl">
+            Have a project in mind? I'd love to help you build it.
           </p>
-          <Button className="mt-8 bg-white text-blue-900 hover:bg-blue-100" onClick={() => scrollToSection("hero")}>
-            Back to Top
-          </Button>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button
+              className="bg-primary-foreground text-primary hover:opacity-90"
+              onClick={() => scrollToSection("hero")}
+            >
+              Back to Top
+            </Button>
+            <a href="/contact">
+              <Button variant="outline" className="border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
+                Send me a message
+              </Button>
+            </a>
+          </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
