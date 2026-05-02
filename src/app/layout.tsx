@@ -21,11 +21,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mayank | Full-Stack Developer",
+    default: "Mayank | Software Engineer",
     template: "%s | Mayank",
   },
   description:
-    "Mayank is a MERN full-stack developer from Lucknow who builds polished web products with Next.js, TypeScript, and modern tooling. Available for internships & freelance.",
+    "Mayank is a MERN software engineer from Lucknow who builds polished web products with Next.js, TypeScript, and modern tooling. Available for internships & freelance.",
   keywords: [
     "full-stack developer",
     "Next.js developer",

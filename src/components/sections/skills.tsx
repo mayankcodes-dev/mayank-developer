@@ -2,7 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { skills } from "@/data/skills";
+import { skillCategories } from "@/data/skills";
+
+// Map to old shape for this component
+const skills = skillCategories.map(c => ({ category: c.category, items: c.skills.map(s => s.name) }));
 
 /* ─── Animation variants ─────────────────────────────────────────── */
 const containerVariants: Variants = {
@@ -85,7 +88,7 @@ export function Skills() {
 
         {/* ── Skill categories ── */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map((group) => {
+          {skills.map((group: { category: string; items: string[] }) => {
             const colour = CATEGORY_COLOURS[group.category] ?? DEFAULT_COLOUR;
 
             return (
@@ -108,7 +111,7 @@ export function Skills() {
                   animate={isInView ? "visible" : "hidden"}
                   className="flex flex-wrap gap-2"
                 >
-                  {group.items.map((item) => (
+                  {group.items.map((item: string) => (
                     <motion.span
                       key={item}
                       variants={itemVariants}

@@ -338,3 +338,36 @@ html {
   pointer-events: none;
   z-index: 9998;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Mobile utilities
+   ───────────────────────────────────────────────────────────── */
+
+/* Hide scrollbar while keeping scroll functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Minimum tap target size for mobile (WCAG 2.2) */
+@media (pointer: coarse) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  /* Ensure navbar items have proper tap targets */
+  nav a, nav button {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+/* Prevent horizontal overflow on mobile */
+html, body { overflow-x: hidden; max-width: 100vw; }
+
+/* Improve readability on small screens */
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.75rem, 8vw, 3rem); line-height: 1.15; }
+  h2 { font-size: clamp(1.4rem, 6vw, 2rem); }
+}
+
+/* Safe area padding for notched phones */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
