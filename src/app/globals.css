@@ -18,10 +18,10 @@ body {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope), var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-manrope), var(--font-geist-sans);
-  --font-manrope: var(--font-manrope);
+  /* Geist as primary sans — no Google Fonts needed (self-hosted by Vercel) */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), "Courier New", monospace;
+  --font-heading: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -58,129 +58,131 @@ body {
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── ChaiCode orange as a named color token ── */
+  --color-chai-orange: #f97316;
+  --color-chai-orange-dim: oklch(0.65 0.20 40 / 20%);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   🌕  LIGHT THEME — "Warm Professional"
-   Inspired by: v0-invoice-copilot-zeta.vercel.app + mdsaban.com
-   Palette: Warm off-white base · Indigo accent · Slate text
+   🌕  LIGHT THEME — ChaiCode Inspired
+   Palette: Warm off-white · Orange primary · Deep gray text
    ═══════════════════════════════════════════════════════════════ */
 :root {
   /* Base surfaces */
-  --background: oklch(0.98 0.004 82);        /* Warm off-white #FAF9F7 */
-  --foreground: oklch(0.14 0.015 264);        /* Deep slate-black */
+  --background: oklch(0.99 0 0);             /* Near-white #FAFAFA */
+  --foreground: oklch(0.10 0 0);             /* Near-black */
 
   /* Card surface */
-  --card: oklch(1 0 0);                       /* Pure white */
-  --card-foreground: oklch(0.16 0.01 264);
+  --card: oklch(1 0 0);                      /* Pure white */
+  --card-foreground: oklch(0.12 0 0);
 
   /* Popover */
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.01 264);
+  --popover-foreground: oklch(0.12 0 0);
 
-  /* Primary — Indigo #6366F1 */
-  --primary: oklch(0.55 0.22 264);
-  --primary-foreground: oklch(1 0 0);         /* White text on indigo */
+  /* Primary — ChaiCode Orange #f97316 */
+  --primary: oklch(0.65 0.22 40);           /* #f97316 orange */
+  --primary-foreground: oklch(1 0 0);       /* White text on orange (light mode) */
 
-  /* Secondary — Very light indigo tint */
-  --secondary: oklch(0.95 0.015 264);
-  --secondary-foreground: oklch(0.4 0.18 264);
+  /* Secondary */
+  --secondary: oklch(0.95 0.01 60);         /* Very light orange wash */
+  --secondary-foreground: oklch(0.3 0.1 60);
 
   /* Muted */
-  --muted: oklch(0.96 0.005 80);
-  --muted-foreground: oklch(0.5 0.01 264);    /* Medium slate */
+  --muted: oklch(0.95 0 0);                 /* Light gray */
+  --muted-foreground: oklch(0.45 0 0);
 
-  /* Accent — soft indigo wash */
-  --accent: oklch(0.94 0.02 264);
-  --accent-foreground: oklch(0.5 0.2 264);
+  /* Accent — subtle orange wash */
+  --accent: oklch(0.96 0.02 60);
+  --accent-foreground: oklch(0.45 0.12 60);
 
   /* Destructive */
   --destructive: oklch(0.57 0.24 27);
 
   /* Border / Input / Ring */
-  --border: oklch(0.9 0.006 80);             /* Warm light border */
-  --input: oklch(0.9 0.006 80);
-  --ring: oklch(0.55 0.22 264);              /* Indigo focus ring */
+  --border: oklch(0.88 0 0);               /* Light gray border */
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.78 0.17 60);             /* Orange focus ring */
 
   /* Charts */
-  --chart-1: oklch(0.55 0.22 264);
-  --chart-2: oklch(0.65 0.18 220);
-  --chart-3: oklch(0.72 0.14 180);
-  --chart-4: oklch(0.75 0.12 140);
-  --chart-5: oklch(0.78 0.10 90);
+  --chart-1: oklch(0.78 0.17 60);          /* Orange */
+  --chart-2: oklch(0.65 0.18 264);         /* Indigo */
+  --chart-3: oklch(0.55 0.2 195);          /* Cyan */
+  --chart-4: oklch(0.65 0.18 140);         /* Green */
+  --chart-5: oklch(0.65 0.2 0);            /* Rose */
 
   /* Border radius */
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: oklch(0.97 0.004 80);
-  --sidebar-foreground: oklch(0.2 0.01 264);
-  --sidebar-primary: oklch(0.55 0.22 264);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.94 0.02 264);
-  --sidebar-accent-foreground: oklch(0.5 0.2 264);
-  --sidebar-border: oklch(0.9 0.006 80);
-  --sidebar-ring: oklch(0.55 0.22 264);
+  --sidebar: oklch(0.97 0 0);
+  --sidebar-foreground: oklch(0.2 0 0);
+  --sidebar-primary: oklch(0.78 0.17 60);
+  --sidebar-primary-foreground: oklch(0.08 0 0);
+  --sidebar-accent: oklch(0.95 0.02 60);
+  --sidebar-accent-foreground: oklch(0.4 0.1 60);
+  --sidebar-border: oklch(0.88 0 0);
+  --sidebar-ring: oklch(0.78 0.17 60);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   🌑  DARK THEME — "Dark Neon / Technical Blueprint"
-   Inspired by: synapse-code-auditor.vercel.app
-   Palette: Pure black base · Electric Lime accent · Subtle grays
+   🌑  DARK THEME — ChaiCode Exact
+   Palette: Pure Black #000 · Orange #FF9F0D accent · White text
    ═══════════════════════════════════════════════════════════════ */
 .dark {
   /* Base surfaces */
-  --background: oklch(0.03 0 0);             /* Near-pure black */
-  --foreground: oklch(0.96 0 0);             /* Near-white text */
+  --background: oklch(0.03 0 0);            /* Pure black #050505 */
+  --foreground: oklch(0.97 0 0);            /* White */
 
-  /* Card surface — slightly lifted from background */
-  --card: oklch(0.09 0 0);                   /* #171717 equivalent */
+  /* Card surface */
+  --card: oklch(0.08 0 0);                  /* #141414 */
   --card-foreground: oklch(0.94 0 0);
 
   /* Popover */
-  --popover: oklch(0.10 0 0);
+  --popover: oklch(0.09 0 0);
   --popover-foreground: oklch(0.94 0 0);
 
-  /* Primary — Electric Lime #D9FF00 */
-  --primary: oklch(0.93 0.22 122);           /* Electric lime */
-  --primary-foreground: oklch(0.04 0 0);     /* Black text on lime */
+  /* Primary — ChaiCode Orange #f97316 */
+  --primary: oklch(0.65 0.22 40);           /* #f97316 orange */
+  --primary-foreground: oklch(1 0 0);       /* White text on orange */
 
-  /* Secondary — dark gray layer */
-  --secondary: oklch(0.15 0 0);
+  /* Secondary */
+  --secondary: oklch(0.14 0 0);
   --secondary-foreground: oklch(0.85 0 0);
 
   /* Muted */
-  --muted: oklch(0.14 0 0);
-  --muted-foreground: oklch(0.55 0 0);       /* ~#888 */
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.55 0 0);
 
-  /* Accent — very subtle blue tint for depth */
-  --accent: oklch(0.18 0.04 264);
-  --accent-foreground: oklch(0.93 0.22 122); /* Lime on blue-tinted bg */
+  /* Accent */
+  --accent: oklch(0.14 0.03 60);            /* Very subtle orange tint */
+  --accent-foreground: oklch(0.78 0.17 60); /* Orange on dark */
 
   /* Destructive */
   --destructive: oklch(0.7 0.19 22);
 
   /* Border / Input / Ring */
-  --border: oklch(1 0 0 / 8%);              /* Barely visible white border */
+  --border: oklch(1 0 0 / 8%);             /* Barely visible white */
   --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.93 0.22 122);             /* Lime focus ring */
+  --ring: oklch(0.78 0.17 60);             /* Orange focus ring */
 
   /* Charts */
-  --chart-1: oklch(0.93 0.22 122);          /* Lime */
-  --chart-2: oklch(0.65 0.18 264);          /* Purple */
-  --chart-3: oklch(0.55 0.2 195);           /* Cyan */
-  --chart-4: oklch(0.7 0.18 40);            /* Amber */
-  --chart-5: oklch(0.75 0.16 0);            /* Rose */
+  --chart-1: oklch(0.78 0.17 60);          /* Orange */
+  --chart-2: oklch(0.65 0.18 264);         /* Purple */
+  --chart-3: oklch(0.55 0.2 195);          /* Cyan */
+  --chart-4: oklch(0.7 0.18 140);          /* Green */
+  --chart-5: oklch(0.75 0.16 0);           /* Rose */
 
   /* Sidebar */
-  --sidebar: oklch(0.07 0 0);
+  --sidebar: oklch(0.06 0 0);
   --sidebar-foreground: oklch(0.88 0 0);
-  --sidebar-primary: oklch(0.93 0.22 122);
-  --sidebar-primary-foreground: oklch(0.04 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.78 0.17 60);
+  --sidebar-primary-foreground: oklch(0.06 0 0);
+  --sidebar-accent: oklch(0.14 0 0);
   --sidebar-accent-foreground: oklch(0.88 0 0);
   --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.93 0.22 122);
+  --sidebar-ring: oklch(0.78 0.17 60);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -200,19 +202,14 @@ body {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   Dark theme — grid background pattern (technical blueprint look)
-   ───────────────────────────────────────────────────────────── */
+/* Dark body — subtle dot grid + orange + blue glow (ChaiCode exact) */
 .dark body {
   background-image:
-    linear-gradient(oklch(1 0 0 / 3%) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 3%) 1px, transparent 1px);
-  background-size: 40px 40px;
+    radial-gradient(circle at 1px 1px, oklch(1 0 0 / 8%) 1px, transparent 0);
+  background-size: 32px 32px;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   Dark theme — radial glow overlay (atmospheric depth)
-   ───────────────────────────────────────────────────────────── */
+/* Orange + Blue atmospheric glows (exactly like ChaiCode hero) */
 .dark body::before {
   content: "";
   position: fixed;
@@ -220,8 +217,19 @@ body {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.55 0.22 264 / 18%) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 90%, oklch(0.93 0.22 122 / 6%) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 20% 20%, oklch(0.65 0.22 40 / 15%) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, oklch(0.55 0.20 215 / 10%) 0%, transparent 60%);
+}
+
+/* Light body — subtle warm gradient */
+:root:not(.dark) body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.78 0.17 60 / 7%) 0%, transparent 70%);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -247,22 +255,32 @@ html {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   ChaiCode-style asymmetric button
-   Asymmetric corners: rounded top-left + bottom-right (chai orange feel)
-   Usage: className="btn-chai" or as Button className override
+   ChaiCode-style asymmetric buttons
+   Primary:   rounded top-right + bottom-left (white/orange)
+   Secondary: rounded top-left  + bottom-right (outlined)
    ───────────────────────────────────────────────────────────── */
+.btn-chai-primary {
+  border-radius: 0 0.5rem 0 0.5rem;         /* tr + bl — ChaiCode exact */
+  transition: border-radius 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-chai-primary:hover {
+  border-radius: 0.5rem 0 0.5rem 0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px oklch(0.65 0.22 40 / 40%);
+}
+
 .btn-chai {
-  border-radius: 0.75rem 0.25rem 0.75rem 0.25rem;
+  border-radius: 0 0.5rem 0 0.5rem;         /* tr + bl */
   transition: border-radius 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-chai:hover {
-  border-radius: 0.25rem 0.75rem 0.25rem 0.75rem;
+  border-radius: 0.5rem 0 0.5rem 0;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px oklch(0 0 0 / 20%);
+  box-shadow: 0 8px 24px oklch(0 0 0 / 22%);
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Magnetic button ripple for CTAs
+   Magnetic button ripple (mouse-following glow on hover)
    ───────────────────────────────────────────────────────────── */
 .btn-magnetic {
   position: relative;
@@ -272,10 +290,51 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), oklch(1 0 0 / 12%) 0%, transparent 70%);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), oklch(1 0 0 / 15%) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 .btn-magnetic:hover::after {
   opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Text selection color (ChaiCode uses custom selection)
+   ───────────────────────────────────────────────────────────── */
+::selection {
+  background-color: oklch(0.78 0.17 60 / 30%);
+  color: inherit;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Scrollbar styling (thin, orange thumb)
+   ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.17 60 / 50%);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.78 0.17 60 / 80%);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Viewport glow edges (top/bottom blue line — ChaiCode detail)
+   ───────────────────────────────────────────────────────────── */
+.dark body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.65 0.18 220 / 60%), transparent);
+  pointer-events: none;
+  z-index: 9998;
 }
