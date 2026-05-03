@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -90,9 +89,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* ── Right: theme + CTA ── */}
+          {/* ── Right: CTA ── */}
           <div className="hidden items-center gap-3 md:flex">
-            <ThemeToggle />
             <Link
               href="/contact"
               className="btn-chai btn-magnetic bg-primary px-5 py-2 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25"
@@ -101,9 +99,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ── Mobile: theme + hamburger ── */}
+          {/* ── Mobile: hamburger ── */}
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
             <button
               onClick={() => setMenuOpen((p) => !p)}
               aria-label="Toggle menu"

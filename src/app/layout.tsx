@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <PageLoader />
         <CustomCursor />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider defaultTheme="light" enableSystem={false} disableTransitionOnChange>{children}</ThemeProvider>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
@@ -101,139 +102,97 @@ export default function Home() {
     <div ref={rootRef} className="w-full bg-background text-foreground">
       <Navbar />
 
-      {/* ════════════════════════════════════════════════
-          HERO — ChaiCode style: left text, right terminal
-      ════════════════════════════════════════════════ */}
-      <main
-        id="hero"
-        className="relative mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-12 overflow-hidden px-6 py-14 md:px-10 lg:flex-row lg:py-20"
-      >
-        {/* LEFT */}
-        <div className="flex-1">
+      {/* ════ HERO — Editorial photo split ════ */}
+      <main id="hero" className="relative w-full overflow-hidden">
+        <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-none grid-cols-1 lg:grid-cols-2">
 
-          {/* "Open to work" pill — ChaiCode style */}
-          <div ref={subRef} className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-            <span className="size-2 animate-pulse rounded-full bg-primary" />
-            Open to Internships &amp; Freelance
-          </div>
-
-          {/* Hero heading */}
-          <h1 ref={titleRef} className="text-4xl font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-            Hi, I&apos;m{" "}
-            <span className="relative">
-              <span className="text-primary">Mayank</span>
-              <span
-                aria-hidden
-                className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary/40"
+          {/* LEFT — Full-height photo */}
+          <div ref={terminalRef} className="relative hidden lg:block">
+            <div className="sticky top-16 h-[calc(100vh-4rem)] w-full overflow-hidden">
+              <Image
+                src="/hero.webp"
+                alt="Mayank — Software Engineer"
+                fill
+                priority
+                className="object-cover object-top"
+                sizes="50vw"
               />
-            </span>
-            <br />
-            <span className="text-foreground/70">Software</span>{" "}
-            Engineer
-          </h1>
-
-          {/* Description */}
-          <p ref={descRef} className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            I build <strong className="text-foreground">production-grade web applications</strong> with
-            the MERN stack and Next.js. Based in Lucknow, India. Available for internships and freelance projects.
-          </p>
-
-          {/* CTAs */}
-          <div ref={ctaRef} className="mt-8 flex flex-wrap gap-3">
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <button
-                onClick={() => scrollTo("projects")}
-                className="btn-chai btn-magnetic inline-flex items-center gap-2 bg-primary px-6 py-3 font-bold text-primary-foreground shadow-lg shadow-primary/30"
-              >
-                View my work
-                <ArrowRight className="size-4" />
-              </button>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <a
-                href="https://drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-chai inline-flex items-center gap-2 border border-border/70 bg-card px-6 py-3 font-semibold text-foreground/80 hover:border-primary/50 hover:text-primary"
-              >
-                <Download className="size-4" />
-                Resume
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Social links */}
-          <div ref={socialRef} className="mt-8 flex items-center gap-2">
-            {SOCIALS.map(({ href, label, path }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                aria-label={label}
-                whileHover={{ scale: 1.15, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                className="grid size-10 place-items-center rounded-xl border border-border/60 bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden>
-                  <path d={path} />
-                </svg>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-
-        {/* RIGHT — Terminal card */}
-        <div ref={terminalRef} className="hidden w-full max-w-md flex-shrink-0 lg:block">
-          <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl shadow-black/40">
-            {/* Terminal title bar */}
-            <div className="flex items-center gap-2 border-b border-border/60 bg-muted/30 px-4 py-3">
-              <span className="size-3 rounded-full bg-red-500/80" />
-              <span className="size-3 rounded-full bg-yellow-400/80" />
-              <span className="size-3 rounded-full bg-green-500/80" />
-              <span className="ml-4 text-xs text-muted-foreground font-mono">mayank.ts</span>
+              {/* Fade into background on right edge */}
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-r from-transparent to-background" />
+              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
+              {/* Floating status badge */}
+              <div className="absolute bottom-10 left-8 flex items-center gap-2 rounded-full border border-primary/30 bg-white/90 px-4 py-2 text-sm font-semibold text-primary shadow-lg backdrop-blur-md">
+                <span className="size-2 animate-pulse rounded-full bg-primary" />
+                Open to Internships &amp; Freelance
+              </div>
             </div>
-            {/* Code content */}
-            <div className="p-6 font-mono text-sm leading-relaxed">
-              {CODE_LINES.map((line, i) => (
-                <div key={i}>
-                  <span className="mr-3 select-none text-muted-foreground/30">{(i + 1).toString().padStart(2, "0")}</span>
-                  <span className={line.col}>{line.text}</span>
-                </div>
+          </div>
+
+          {/* RIGHT — Text */}
+          <div className="flex flex-col justify-center px-6 py-20 md:px-16 lg:py-28">
+
+            {/* Mobile badge */}
+            <div ref={subRef} className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary lg:hidden">
+              <span className="size-2 animate-pulse rounded-full bg-primary" />
+              Open to Internships &amp; Freelance
+            </div>
+
+            {/* Giant editorial name */}
+            <h1 ref={titleRef} className="font-extrabold leading-[0.9] tracking-tighter text-foreground" style={{ fontSize: "clamp(3.2rem, 9vw, 6.5rem)" }}>
+              MAYANK
+              <br />
+              <span className="text-primary">SINGH</span>
+            </h1>
+
+            <p className="mt-5 text-base font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Software Engineer &nbsp;·&nbsp; MERN Stack
+            </p>
+
+            {/* Mobile photo */}
+            <div className="my-8 block aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-xl lg:hidden">
+              <Image src="/hero.webp" alt="Mayank" width={600} height={450} className="h-full w-full object-cover object-top" priority />
+            </div>
+
+            <p ref={descRef} className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
+              I build <strong className="font-semibold text-foreground">production-grade web apps</strong> with
+              React, Node.js &amp; MongoDB. Based in Lucknow, India.
+            </p>
+
+            <div ref={ctaRef} className="mt-10 flex flex-wrap gap-3">
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <button onClick={() => scrollTo("projects")} className="btn-chai btn-magnetic inline-flex items-center gap-2 bg-primary px-7 py-3.5 font-bold text-primary-foreground shadow-lg shadow-primary/25">
+                  View my work <ArrowRight className="size-4" />
+                </button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <a href="https://drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="btn-chai inline-flex items-center gap-2 border border-border bg-card px-7 py-3.5 font-semibold text-foreground/80 hover:border-primary/50 hover:text-primary">
+                  <Download className="size-4" /> Resume
+                </a>
+              </motion.div>
+            </div>
+
+            <div ref={socialRef} className="mt-8 flex flex-wrap items-center gap-2">
+              {SOCIALS.map(({ href, label, path }) => (
+                <motion.a key={label} href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer" aria-label={label} whileHover={{ scale: 1.15, y: -2 }} whileTap={{ scale: 0.9 }} className="grid size-10 place-items-center rounded-xl border border-border/60 bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden><path d={path} /></svg>
+                </motion.a>
               ))}
             </div>
-            {/* Bottom status bar */}
-            <div className="flex items-center justify-between border-t border-border/60 bg-muted/20 px-4 py-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <span className="size-1.5 animate-pulse rounded-full bg-green-400" />
-                Running on Next.js 16
-              </span>
-              <span className="text-primary">TypeScript ✓</span>
+
+            <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
+              {STATS.map(({ value, label }) => (
+                <div key={label} className="flex flex-col gap-0.5 border-l-2 border-primary/30 pl-3">
+                  <span className="text-2xl font-extrabold text-primary">{value}</span>
+                  <span className="text-xs text-muted-foreground">{label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </main>
 
-      {/* ════════════════════════════════════════════════
-          STATS BAR — ChaiCode style full-width strip
-      ════════════════════════════════════════════════ */}
-      <Section className="border-y border-border/60 bg-card/50">
-        <div className="mx-auto max-w-7xl px-6 py-8 md:px-10">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {STATS.map(({ value, label }, i) => (
-              <motion.div
-                key={label}
-                variants={fadeUp(i * 0.08)}
-                className="flex flex-col items-center gap-1 text-center"
-              >
-                <span className="text-3xl font-extrabold text-primary">{value}</span>
-                <span className="text-sm text-muted-foreground">{label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
+
+
 
 
       {/* ════════ SKILLS ════════ */}

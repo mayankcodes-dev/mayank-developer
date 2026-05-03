@@ -65,64 +65,64 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   🌕  LIGHT THEME — ChaiCode Inspired
-   Palette: Warm off-white · Orange primary · Deep gray text
+   🧡  LIGHT THEME — Premium warm white (mdsaban.com inspired)
+   Palette: Parchment white · Orange accent · Near-black text
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* Base surfaces */
-  --background: oklch(0.99 0 0);             /* Near-white #FAFAFA */
-  --foreground: oklch(0.10 0 0);             /* Near-black */
+  /* Base surfaces — warm parchment, not clinical white */
+  --background: oklch(0.985 0.003 75);      /* #f9f8f5 warm off-white */
+  --foreground: oklch(0.10 0.005 40);       /* #171310 near-black */
 
-  /* Card surface */
-  --card: oklch(1 0 0);                      /* Pure white */
-  --card-foreground: oklch(0.12 0 0);
+  /* Card surface — pure white for contrast */
+  --card: oklch(1 0 0);                     /* #ffffff */
+  --card-foreground: oklch(0.12 0.005 40);
 
   /* Popover */
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0 0);
+  --popover-foreground: oklch(0.12 0.005 40);
 
-  /* Primary — ChaiCode Orange #f97316 */
-  --primary: oklch(0.65 0.22 40);           /* #f97316 orange */
-  --primary-foreground: oklch(1 0 0);       /* White text on orange (light mode) */
+  /* Primary — Orange #f97316 */
+  --primary: oklch(0.65 0.22 40);
+  --primary-foreground: oklch(1 0 0);
 
   /* Secondary */
-  --secondary: oklch(0.95 0.01 60);         /* Very light orange wash */
-  --secondary-foreground: oklch(0.3 0.1 60);
+  --secondary: oklch(0.96 0.008 75);
+  --secondary-foreground: oklch(0.25 0.01 40);
 
   /* Muted */
-  --muted: oklch(0.95 0 0);                 /* Light gray */
-  --muted-foreground: oklch(0.45 0 0);
+  --muted: oklch(0.95 0.005 75);            /* warm gray */
+  --muted-foreground: oklch(0.48 0.01 40);
 
-  /* Accent — subtle orange wash */
-  --accent: oklch(0.96 0.02 60);
+  /* Accent */
+  --accent: oklch(0.97 0.012 60);
   --accent-foreground: oklch(0.45 0.12 60);
 
   /* Destructive */
   --destructive: oklch(0.57 0.24 27);
 
-  /* Border / Input / Ring */
-  --border: oklch(0.88 0 0);               /* Light gray border */
-  --input: oklch(0.88 0 0);
-  --ring: oklch(0.78 0.17 60);             /* Orange focus ring */
+  /* Border / Input / Ring — very soft */
+  --border: oklch(0.90 0.006 75);           /* warm light gray */
+  --input:  oklch(0.90 0.006 75);
+  --ring:   oklch(0.78 0.17 60);
 
   /* Charts */
-  --chart-1: oklch(0.78 0.17 60);          /* Orange */
-  --chart-2: oklch(0.65 0.18 264);         /* Indigo */
-  --chart-3: oklch(0.55 0.2 195);          /* Cyan */
-  --chart-4: oklch(0.65 0.18 140);         /* Green */
-  --chart-5: oklch(0.65 0.2 0);            /* Rose */
+  --chart-1: oklch(0.78 0.17 60);
+  --chart-2: oklch(0.65 0.18 264);
+  --chart-3: oklch(0.55 0.2  195);
+  --chart-4: oklch(0.65 0.18 140);
+  --chart-5: oklch(0.65 0.2  0);
 
-  /* Border radius */
-  --radius: 0.625rem;
+  /* Border radius — slightly more rounded = friendlier */
+  --radius: 0.75rem;
 
   /* Sidebar */
-  --sidebar: oklch(0.97 0 0);
-  --sidebar-foreground: oklch(0.2 0 0);
+  --sidebar: oklch(0.97 0.005 75);
+  --sidebar-foreground: oklch(0.2 0.005 40);
   --sidebar-primary: oklch(0.78 0.17 60);
   --sidebar-primary-foreground: oklch(0.08 0 0);
-  --sidebar-accent: oklch(0.95 0.02 60);
+  --sidebar-accent: oklch(0.95 0.012 60);
   --sidebar-accent-foreground: oklch(0.4 0.1 60);
-  --sidebar-border: oklch(0.88 0 0);
+  --sidebar-border: oklch(0.90 0.006 75);
   --sidebar-ring: oklch(0.78 0.17 60);
 }
 
@@ -221,15 +221,9 @@ body {
     radial-gradient(ellipse 60% 40% at 80% 80%, oklch(0.55 0.20 215 / 10%) 0%, transparent 60%);
 }
 
-/* Light body — subtle warm gradient */
-:root:not(.dark) body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.78 0.17 60 / 7%) 0%, transparent 70%);
+/* Light body — clean warm background, no pseudo overlay */
+body {
+  background-color: oklch(0.985 0.003 75);
 }
 
 /* ─────────────────────────────────────────────────────────────
