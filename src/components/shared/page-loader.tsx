@@ -34,7 +34,7 @@ const BOOT_LINES: BootLine[] = [
     content: <> GET /blog <span className="text-[#39d353]">200</span> in 1453ms <span className="text-neutral-500">(next.js: 509ms, application-code: 945ms)</span></>, 
     delay: 2800 
   },
-  { type: "cmd", text: "", delay: 3000 },
+  { type: "out", text: "", delay: 3000 },
 ];
 
 const TOTAL_DURATION = 3500; // ms before loader exits
@@ -122,7 +122,7 @@ export default function PageLoader() {
                     ) : (
                       <span className="whitespace-pre-wrap leading-relaxed">{line.text}</span>
                     )}
-                    {isLast && line.type === "cmd" && (
+                    {isLast && (
                       <span className="inline-block h-3.5 w-[7px] animate-[blink_0.9s_step-end_infinite] bg-white/80" />
                     )}
                   </div>
