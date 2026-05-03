@@ -25,13 +25,13 @@ const BOOT_LINES: BootLine[] = [
   { type: "out", text: "- Network:      http://10.249.250.82:3000", delay: 2700 },
   {
     type: "out",
-    content: <><span className="text-[#39d353]">✓</span> Ready in 3000ms</>,
+    content: <><span className="text-[#39d353]">✓</span> Ready in 3107ms</>,
     delay: 3000
   },
   { type: "out", text: "", delay: 3100 },
   {
     type: "out",
-    content: <> GET /blog <span className="text-[#39d353]">200</span> in 400ms <span className="text-neutral-500">(next.js: 120ms, application-code: 280ms)</span></>,
+    content: <> GET /blog <span className="text-[#39d353]">200</span> in 441ms <span className="text-neutral-500">(next.js: 120ms, application-code: 280ms)</span></>,
     delay: 3400
   },
   { type: "out", text: "", delay: 3600 },
