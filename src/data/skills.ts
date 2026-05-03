@@ -1,8 +1,8 @@
 export interface Skill {
   name: string;
   level: number; // 1-5
-  logo: string;  // devicon CDN URL
-  color: string; // brand hex
+  logo: string;
+  color: string;
 }
 
 export interface SkillCategory {
@@ -11,54 +11,97 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
-const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 export const skillCategories: SkillCategory[] = [
   {
     category: "Frontend",
     icon: "🎨",
     skills: [
-      { name: "React",        level: 5, logo: `${DEVICON}/react/react-original.svg`,          color: "#61DAFB" },
-      { name: "Next.js",      level: 5, logo: `${DEVICON}/nextjs/nextjs-original.svg`,        color: "#ffffff" },
-      { name: "TypeScript",   level: 4, logo: `${DEVICON}/typescript/typescript-original.svg`, color: "#3178C6" },
-      { name: "JavaScript",   level: 5, logo: `${DEVICON}/javascript/javascript-original.svg`, color: "#F7DF1E" },
-      { name: "Tailwind CSS", level: 5, logo: `${DEVICON}/tailwindcss/tailwindcss-original.svg`, color: "#06B6D4" },
-      { name: "HTML5",        level: 5, logo: `${DEVICON}/html5/html5-original.svg`,           color: "#E34F26" },
-      { name: "CSS3",         level: 5, logo: `${DEVICON}/css3/css3-original.svg`,             color: "#1572B6" },
-      { name: "GSAP",         level: 4, logo: `${DEVICON}/gsap/gsap-original.svg`,             color: "#88CE02" },
+      { name: "HTML5",       level: 5, logo: `${DI}/html5/html5-original.svg`,             color: "#E34F26" },
+      { name: "CSS3",        level: 5, logo: `${DI}/css3/css3-original.svg`,               color: "#1572B6" },
+      { name: "JavaScript",  level: 5, logo: `${DI}/javascript/javascript-original.svg`,   color: "#F7DF1E" },
+      { name: "TypeScript",  level: 4, logo: `${DI}/typescript/typescript-original.svg`,   color: "#3178C6" },
+      { name: "React",       level: 5, logo: `${DI}/react/react-original.svg`,             color: "#61DAFB" },
+      { name: "Next.js",     level: 5, logo: `${DI}/nextjs/nextjs-original.svg`,           color: "#ffffff" },
+      { name: "Tailwind CSS",level: 5, logo: `${DI}/tailwindcss/tailwindcss-original.svg`, color: "#06B6D4" },
+      { name: "Vite",        level: 4, logo: "https://vitejs.dev/logo.svg",                color: "#646CFF" },
+      { name: "Bootstrap",   level: 4, logo: `${DI}/bootstrap/bootstrap-original.svg`,     color: "#7952B3" },
+      { name: "MUI",         level: 3, logo: `${DI}/materialui/materialui-original.svg`,   color: "#007FFF" },
     ],
   },
   {
     category: "Backend",
     icon: "⚙️",
     skills: [
-      { name: "Node.js",    level: 4, logo: `${DEVICON}/nodejs/nodejs-original.svg`,    color: "#339933" },
-      { name: "Express.js", level: 4, logo: `${DEVICON}/express/express-original.svg`, color: "#ffffff" },
-      { name: "Python",     level: 3, logo: `${DEVICON}/python/python-original.svg`,   color: "#3776AB" },
-      { name: "FastAPI",    level: 3, logo: `${DEVICON}/fastapi/fastapi-original.svg`, color: "#009688" },
-      { name: "REST API",   level: 5, logo: `${DEVICON}/nodejs/nodejs-original.svg`,   color: "#339933" },
-      { name: "JWT",        level: 4, logo: `${DEVICON}/nodejs/nodejs-original.svg`,   color: "#f97316" },
+      { name: "Node.js",     level: 4, logo: `${DI}/nodejs/nodejs-original.svg`,         color: "#339933" },
+      { name: "Express.js",  level: 4, logo: `${DI}/express/express-original.svg`,       color: "#ffffff" },
+      { name: "REST APIs",   level: 5, logo: `${DI}/nodejs/nodejs-original.svg`,         color: "#339933" },
+      { name: "GraphQL",     level: 3, logo: `${DI}/graphql/graphql-plain.svg`,          color: "#E10098" },
+      { name: "FastAPI",     level: 3, logo: "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png", color: "#009688" },
+      { name: "Socket.IO",   level: 3, logo: "https://cdn.worldvectorlogo.com/logos/socket-io.svg",       color: "#ffffff" },
+      { name: "JWT",         level: 4, logo: "https://jwt.io/img/pic_logo.svg",          color: "#D63AFF" },
+      { name: "Prisma",      level: 3, logo: "https://cdn.worldvectorlogo.com/logos/prisma-2.svg",        color: "#5A67D8" },
+      { name: "Nodemailer",  level: 3, logo: "https://nodemailer.com/nm_logo_200x136.png",               color: "#22B8CF" },
+      { name: "ASP.NET",     level: 2, logo: `${DI}/dot-net/dot-net-original.svg`,       color: "#512BD4" },
     ],
   },
   {
-    category: "Database",
+    category: "Languages",
+    icon: "💻",
+    skills: [
+      { name: "JavaScript", level: 5, logo: `${DI}/javascript/javascript-original.svg`, color: "#F7DF1E" },
+      { name: "TypeScript", level: 4, logo: `${DI}/typescript/typescript-original.svg`, color: "#3178C6" },
+      { name: "Python",     level: 3, logo: `${DI}/python/python-original.svg`,         color: "#3776AB" },
+      { name: "Java",       level: 3, logo: `${DI}/java/java-original.svg`,             color: "#ED8B00" },
+      { name: "C",          level: 2, logo: `${DI}/c/c-original.svg`,                   color: "#A8B9CC" },
+    ],
+  },
+  {
+    category: "Databases",
     icon: "🗄️",
     skills: [
-      { name: "MongoDB",     level: 4, logo: `${DEVICON}/mongodb/mongodb-original.svg`,      color: "#47A248" },
-      { name: "PostgreSQL",  level: 3, logo: `${DEVICON}/postgresql/postgresql-original.svg`, color: "#4169E1" },
-      { name: "Mongoose",    level: 4, logo: `${DEVICON}/mongodb/mongodb-original.svg`,      color: "#880000" },
+      { name: "MongoDB",    level: 4, logo: `${DI}/mongodb/mongodb-original.svg`,         color: "#47A248" },
+      { name: "PostgreSQL", level: 3, logo: `${DI}/postgresql/postgresql-original.svg`,   color: "#4169E1" },
+      { name: "MySQL",      level: 3, logo: `${DI}/mysql/mysql-original.svg`,             color: "#4479A1" },
+      { name: "Redis",      level: 2, logo: `${DI}/redis/redis-original.svg`,             color: "#DC382D" },
+      { name: "Cloudinary", level: 4, logo: "https://cdn.worldvectorlogo.com/logos/cloudinary-1.svg", color: "#3448C5" },
+      { name: "AWS S3",     level: 2, logo: `${DI}/amazonwebservices/amazonwebservices-original.svg`, color: "#FF9900" },
+      { name: "ChromaDB",   level: 2, logo: "https://raw.githubusercontent.com/chroma-core/chroma/main/docs/img/chroma-logo.png", color: "#E86428" },
+      { name: "Pinecone",   level: 2, logo: "https://avatars.githubusercontent.com/u/54333248?s=200&v=4", color: "#00B4A0" },
     ],
   },
   {
-    category: "Tools & DevOps",
-    icon: "🛠️",
+    category: "DevOps & Cloud",
+    icon: "☁️",
     skills: [
-      { name: "Git",       level: 5, logo: `${DEVICON}/git/git-original.svg`,       color: "#F05032" },
-      { name: "GitHub",    level: 5, logo: `${DEVICON}/github/github-original.svg`, color: "#ffffff" },
-      { name: "VS Code",   level: 5, logo: `${DEVICON}/vscode/vscode-original.svg`, color: "#007ACC" },
-      { name: "Vercel",    level: 4, logo: `${DEVICON}/vercel/vercel-original.svg`, color: "#ffffff" },
-      { name: "Postman",   level: 4, logo: `${DEVICON}/postman/postman-original.svg`, color: "#FF6C37" },
-      { name: "Linux",     level: 3, logo: `${DEVICON}/linux/linux-original.svg`,   color: "#FCC624" },
+      { name: "Git",            level: 5, logo: `${DI}/git/git-original.svg`,         color: "#F05032" },
+      { name: "GitHub",         level: 5, logo: `${DI}/github/github-original.svg`,   color: "#ffffff" },
+      { name: "Linux",          level: 3, logo: `${DI}/linux/linux-original.svg`,     color: "#FCC624" },
+      { name: "Docker",         level: 3, logo: `${DI}/docker/docker-original.svg`,   color: "#2496ED" },
+      { name: "Kubernetes",     level: 2, logo: `${DI}/kubernetes/kubernetes-plain.svg`, color: "#326CE5" },
+      { name: "NGINX",          level: 2, logo: `${DI}/nginx/nginx-original.svg`,     color: "#009639" },
+      { name: "Jenkins",        level: 2, logo: `${DI}/jenkins/jenkins-original.svg`, color: "#D33833" },
+      { name: "GitHub Actions", level: 3, logo: `${DI}/github/github-original.svg`,   color: "#2088FF" },
+      { name: "AWS",            level: 2, logo: `${DI}/amazonwebservices/amazonwebservices-original.svg`, color: "#FF9900" },
+      { name: "Vercel",         level: 4, logo: `${DI}/vercel/vercel-original.svg`,   color: "#ffffff" },
+      { name: "Firebase",       level: 3, logo: `${DI}/firebase/firebase-plain.svg`,  color: "#FFCA28" },
+    ],
+  },
+  {
+    category: "AI & Tools",
+    icon: "🤖",
+    skills: [
+      { name: "LangChain",    level: 3, logo: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4", color: "#1C3C3C" },
+      { name: "OpenAI API",   level: 3, logo: "https://cdn.worldvectorlogo.com/logos/openai-2.svg",          color: "#ffffff" },
+      { name: "HuggingFace",  level: 2, logo: "https://huggingface.co/front/assets/huggingface_logo.svg",    color: "#FFD21E" },
+      { name: "VS Code",      level: 5, logo: `${DI}/vscode/vscode-original.svg`,    color: "#007ACC" },
+      { name: "Postman",      level: 4, logo: `${DI}/postman/postman-original.svg`,  color: "#FF6C37" },
+      { name: "Figma",        level: 3, logo: `${DI}/figma/figma-original.svg`,      color: "#F24E1E" },
+      { name: "Jest",         level: 3, logo: `${DI}/jest/jest-plain.svg`,           color: "#C21325" },
+      { name: "WordPress",    level: 3, logo: `${DI}/wordpress/wordpress-original.svg`, color: "#21759B" },
+      { name: "Notion",       level: 4, logo: "https://cdn.worldvectorlogo.com/logos/notion-2.svg", color: "#ffffff" },
+      { name: "Photoshop",    level: 2, logo: `${DI}/photoshop/photoshop-plain.svg`, color: "#31A8FF" },
     ],
   },
 ];
