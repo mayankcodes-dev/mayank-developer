@@ -20,10 +20,11 @@ interface CertItem {
   id:            string;
   title:         string;
   issuer:        string;
+  issuerLogo:    string | null;
   date:          string;
   category:      string;
   credentialUrl: string | null;
-  imageUrl:      string | null;
+  credentialId?: string;
 }
 
 const GRADIENT_PATTERNS = [
@@ -36,11 +37,15 @@ const GRADIENT_PATTERNS = [
 ];
 
 const CATEGORY_ICONS: Record<string, string> = {
-  Frontend: "⚛️",
-  Backend:  "🖥️",
-  Language: "💡",
-  Security: "🔐",
-  All:      "🏆",
+  "Full Stack": "🚀",
+  Frontend:    "⚛️",
+  Backend:     "🖥️",
+  Language:    "💡",
+  Database:    "🗄️",
+  DevOps:      "🐳",
+  Security:    "🔐",
+  AI:          "🤖",
+  All:         "🏆",
 };
 
 function strapiToItem(c: StrapiCertificate): CertItem {
@@ -48,12 +53,12 @@ function strapiToItem(c: StrapiCertificate): CertItem {
     id:            String(c.id),
     title:         c.title,
     issuer:        c.issuer,
+    issuerLogo:    c.image?.url
+      ? `${process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337"}${c.image.url}`
+      : null,
     date:          c.date,
     category:      c.category,
     credentialUrl: c.credentialUrl ?? null,
-    imageUrl:      c.image?.url
-      ? `${process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337"}${c.image.url}`
-      : null,
   };
 }
 
@@ -70,29 +75,29 @@ function CertCard({ cert, gradient }: { cert: CertItem; gradient: string }) {
       id={`cert-card-${cert.id}`}
       className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:border-primary/40"
     >
-      {/* Header image or gradient */}
+      {/* Header: issuer logo or gradient + award icon */}
       <div className={`relative flex h-44 w-full items-center justify-center bg-gradient-to-br ${gradient} overflow-hidden`}>
-        {cert.imageUrl ? (
-          <img src={cert.imageUrl} alt={cert.title} className="h-full w-full object-cover" />
-        ) : (
-          <>
-            <div
-              className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
-                backgroundSize: "28px 28px",
-              }}
-            />
-            <div className="relative z-10 flex flex-col items-center gap-2">
-              <div className="flex size-14 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 shadow-xl backdrop-blur-sm">
-                <Award className="size-7 text-white" />
-              </div>
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">
-                Certificate of Completion
-              </span>
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="relative z-10 flex flex-col items-center gap-3">
+          {cert.issuerLogo ? (
+            <div className="flex size-16 items-center justify-center rounded-2xl bg-white/20 p-2.5 ring-1 ring-white/30 shadow-xl backdrop-blur-sm">
+              <img src={cert.issuerLogo} alt={cert.issuer} className="h-full w-full object-contain" />
             </div>
-          </>
-        )}
+          ) : (
+            <div className="flex size-14 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30 shadow-xl backdrop-blur-sm">
+              <Award className="size-7 text-white" />
+            </div>
+          )}
+          <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">
+            {cert.issuer}
+          </span>
+        </div>
 
         {/* External link overlay */}
         {cert.credentialUrl && (
@@ -174,10 +179,11 @@ export default function CertificationsPage() {
           id:            c.id,
           title:         c.title,
           issuer:        c.issuer,
+          issuerLogo:    c.issuerLogo ?? null,
           date:          c.date,
           category:      c.category,
           credentialUrl: c.credentialUrl ?? null,
-          imageUrl:      c.imageUrl ?? null,
+          credentialId:  c.credentialId,
         }))
       );
       setCategories(staticCategories);
