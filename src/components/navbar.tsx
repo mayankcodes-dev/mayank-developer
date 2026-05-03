@@ -1,66 +1,47 @@
 "use client";
 
 /**
- * Navbar — Homepage only (GSAP scroll anchors)
- * ChaiCode exact style: full-width · glassmorphic top bar · orange accent
- * NOT a floating pill — full width with bottom border on scroll
+ * Navbar — Unified multi-page navigation
+ * 6 pages: Home · About Me · Projects · Certificates · Blog · Contact
+ * ChaiCode style: full-width · glassmorphic · orange accent · active underline
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Menu, X } from "lucide-react";
 
-gsap.registerPlugin(ScrollToPlugin);
-
 const NAV_LINKS = [
-  { label: "Home",    target: "hero"     },
-  { label: "Work",    target: "projects"  },
-  { label: "Skills",  target: "skills"   },
-  { label: "Contact", target: "contact"  },
+  { label: "Home",         href: "/"               },
+  { label: "About Me",     href: "/about"          },
+  { label: "Projects",     href: "/projects"       },
+  { label: "Certificates", href: "/certifications" },
+  { label: "Blog",         href: "/blog"           },
+  { label: "Contact",      href: "/contact"        },
 ];
 
 export default function Navbar() {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
-  const [active,    setActive]    = useState("hero");
-  const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const [scrolled,  setScrolled] = useState(false);
+  const [menuOpen,  setMenuOpen] = useState(false);
 
-  /* Scroll to track navbar opacity + border */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Active section highlighting */
-  useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.target));
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
-      { rootMargin: "-35% 0px -60% 0px" }
-    );
-    sections.forEach((s) => s && obs.observe(s));
-    return () => obs.disconnect();
-  }, []);
+  // Close mobile menu on route change
+  useEffect(() => setMenuOpen(false), [pathname]);
 
-  /* GSAP entrance */
-  useEffect(() => {
-    gsap.from(navRef.current, { y: -60, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.1 });
-  }, []);
-
-  const scrollTo = (target: string) => {
-    setMenuOpen(false);
-    gsap.to(window, { duration: 1.05, ease: "power2.inOut", scrollTo: { y: `#${target}`, offsetY: 72 } });
-  };
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
       <nav
-        ref={navRef}
         className={[
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
@@ -69,69 +50,55 @@ export default function Navbar() {
         ].join(" ")}
         aria-label="Main navigation"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-
+        <motion.div
+          initial={{ y: -60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10"
+        >
           {/* ── Logo ── */}
-          <button
-            onClick={() => scrollTo("hero")}
-            className="flex items-center gap-2.5 focus:outline-none"
-            aria-label="Go to top"
-          >
+          <Link href="/" className="flex items-center gap-2.5">
             <span className="btn-chai grid size-8 place-items-center bg-primary text-sm font-black text-primary-foreground shadow-md shadow-primary/30">
               M
             </span>
             <span className="hidden font-bold tracking-wide text-foreground sm:block">
               Mayank<span className="text-primary">.</span>
             </span>
-          </button>
+          </Link>
 
-          {/* ── Desktop nav links ── */}
-          <div className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map(({ label, target }) => (
-              <button
+          {/* ── Desktop links ── */}
+          <div className="hidden items-center gap-0.5 md:flex">
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link
                 key={label}
-                onClick={() => scrollTo(target)}
+                href={href}
                 className={[
-                  "relative px-4 py-2 text-sm font-semibold transition-colors duration-200",
-                  active === target
+                  "relative px-3.5 py-2 text-sm font-semibold transition-colors duration-200",
+                  isActive(href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
                 ].join(" ")}
               >
                 {label}
-                {active === target && (
+                {isActive(href) && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary"
                   />
                 )}
-              </button>
+              </Link>
             ))}
-            <Link
-              href="/about"
-              className="px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              About
-            </Link>
-            <Link
-              href="/blog"
-              className="px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Blog
-            </Link>
           </div>
 
           {/* ── Right: theme + CTA ── */}
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle />
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => scrollTo("contact")}
+            <Link
+              href="/contact"
               className="btn-chai btn-magnetic bg-primary px-5 py-2 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25"
             >
               Hire me →
-            </motion.button>
+            </Link>
           </div>
 
           {/* ── Mobile: theme + hamburger ── */}
@@ -146,7 +113,7 @@ export default function Navbar() {
               {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
-        </div>
+        </motion.div>
       </nav>
 
       {/* ── Mobile drawer ── */}
@@ -161,34 +128,28 @@ export default function Navbar() {
             className="fixed inset-x-4 top-[68px] z-40 rounded-2xl border border-border/60 bg-background/95 p-3 shadow-2xl backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1">
-              {NAV_LINKS.map(({ label, target }) => (
-                <button
+              {NAV_LINKS.map(({ label, href }) => (
+                <Link
                   key={label}
-                  onClick={() => scrollTo(target)}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
                   className={[
-                    "rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors",
-                    active === target
+                    "rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors",
+                    isActive(href)
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
                   ].join(" ")}
                 >
                   {label}
-                </button>
+                </Link>
               ))}
-              <Link href="/about" onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-muted/60 hover:text-foreground">
-                About
-              </Link>
-              <Link href="/blog" onClick={() => setMenuOpen(false)}
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-muted/60 hover:text-foreground">
-                Blog
-              </Link>
-              <button
-                onClick={() => scrollTo("contact")}
-                className="btn-chai btn-magnetic mt-1 bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground"
+              <Link
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="btn-chai btn-magnetic mt-1 block bg-primary px-4 py-2.5 text-center text-sm font-bold text-primary-foreground"
               >
                 Hire me →
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
