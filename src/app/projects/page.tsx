@@ -26,13 +26,28 @@ const TECH_COLORS: Record<string, string> = {
   "Next.js 15":   "bg-white/10 text-white",
   "Next.js 16":   "bg-white/10 text-white",
   "React":        "bg-sky-500/10 text-sky-400",
+  "Vite":         "bg-violet-500/10 text-violet-400",
   "TypeScript":   "bg-blue-500/10 text-blue-400",
+  "JavaScript":   "bg-yellow-500/10 text-yellow-400",
   "Node.js":      "bg-green-500/10 text-green-400",
   "Express":      "bg-green-500/10 text-green-300",
+  "Express.js":   "bg-green-500/10 text-green-300",
   "MongoDB":      "bg-green-600/10 text-green-500",
+  "Mongoose":     "bg-green-600/10 text-green-400",
   "PostgreSQL":   "bg-blue-600/10 text-blue-300",
   "Tailwind CSS": "bg-cyan-500/10 text-cyan-400",
-  "Tailwind CSS v4": "bg-cyan-500/10 text-cyan-400",
+  "Clerk":        "bg-purple-500/10 text-purple-400",
+  "Stripe":       "bg-indigo-500/10 text-indigo-400",
+  "Cloudinary":   "bg-sky-500/10 text-sky-300",
+  "Docker":       "bg-blue-400/10 text-blue-300",
+  "Firebase Auth":"bg-orange-500/10 text-orange-400",
+  "Firebase":     "bg-orange-500/10 text-orange-400",
+  "Passport.js":  "bg-lime-500/10 text-lime-400",
+  "MapTiler":     "bg-teal-500/10 text-teal-400",
+  "Material UI":  "bg-blue-500/10 text-blue-400",
+  "Bootstrap":    "bg-purple-600/10 text-purple-400",
+  "HTML5":        "bg-orange-500/10 text-orange-400",
+  "CSS3":         "bg-blue-500/10 text-blue-400",
   "GSAP":         "bg-emerald-500/10 text-emerald-400",
   "Python":       "bg-yellow-500/10 text-yellow-400",
   "FastAPI":      "bg-teal-500/10 text-teal-400",
@@ -40,19 +55,18 @@ const TECH_COLORS: Record<string, string> = {
   "Razorpay":     "bg-indigo-500/10 text-indigo-400",
   "Vercel":       "bg-white/10 text-white/70",
   "Resend":       "bg-rose-500/10 text-rose-400",
+  "Google Maps API": "bg-blue-500/10 text-blue-400",
 };
 
 const TAG_DEFAULT = "bg-orange-500/10 text-orange-400";
 
-const FILTERS = ["All", "Full-Stack", "Frontend", "Backend"];
-
-const PROJECT_CATEGORY: Record<string, string> = {
-  paypilot:  "Full-Stack",
-  agenthub:  "Frontend",
-  portfolio: "Full-Stack",
-  yelp:      "Full-Stack",
-  quickstay: "Full-Stack",
-};
+const TABS = [
+  { label: "All",       value: "all" },
+  { label: "Freelance", value: "freelance" },
+  { label: "Personal",  value: "personal" },
+  { label: "Pinned ⭐", value: "pinned" },
+] as const;
+type TabValue = typeof TABS[number]["value"];
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 24 },
@@ -60,11 +74,15 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function ProjectsPage() {
-  const [filter, setFilter] = useState("All");
+  const [tab, setTab] = useState<TabValue>("all");
 
-  const filtered = filter === "All"
-    ? projects
-    : projects.filter((p) => PROJECT_CATEGORY[p.id] === filter);
+  const filtered = (() => {
+    if (tab === "all")       return projects;
+    if (tab === "pinned")    return projects.filter(p => p.isPinned);
+    return projects.filter(p => p.type === tab);
+  })();
+
+  const sorted = [...filtered].sort((a, b) => (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0));
 
   return (
     <>
@@ -117,23 +135,31 @@ export default function ProjectsPage() {
 
               {/* Filter tabs */}
               <motion.div variants={fadeUp(0.16)} className="mt-8 flex flex-wrap gap-2">
-                {FILTERS.map((f) => (
-                  <motion.button
-                    key={f}
-                    id={`project-filter-${f.toLowerCase().replace(/\s/g, "-")}`}
-                    onClick={() => setFilter(f)}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={[
-                      "btn-chai px-4 py-1.5 text-sm font-semibold transition-all duration-200",
-                      filter === f
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                        : "border border-border/60 bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground",
-                    ].join(" ")}
-                  >
-                    {f}
-                  </motion.button>
-                ))}
+                {TABS.map(({ label, value }) => {
+                  const count = value === "all"
+                    ? projects.length
+                    : value === "pinned"
+                      ? projects.filter(p => p.isPinned).length
+                      : projects.filter(p => p.type === value).length;
+                  return (
+                    <motion.button
+                      key={value}
+                      id={`project-filter-${value}`}
+                      onClick={() => setTab(value)}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={[
+                        "btn-chai px-4 py-1.5 text-sm font-semibold transition-all duration-200",
+                        tab === value
+                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                          : "border border-border/60 bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground",
+                      ].join(" ")}
+                    >
+                      {label}
+                      <span className="ml-1.5 rounded-full bg-current/20 px-1.5 py-0.5 text-xs">{count}</span>
+                    </motion.button>
+                  );
+                })}
               </motion.div>
             </motion.div>
           </div>
@@ -141,9 +167,12 @@ export default function ProjectsPage() {
 
         {/* ── Project Grid ── */}
         <section className="mx-auto max-w-6xl px-6 py-14 md:px-10">
+          <p className="mb-8 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            {sorted.length} project{sorted.length !== 1 ? "s" : ""}
+          </p>
           <AnimatePresence mode="popLayout">
             <motion.div layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {filtered.map((project, idx) => (
+              {sorted.map((project, idx) => (
                 <motion.article
                   key={project.id}
                   layout
@@ -154,12 +183,22 @@ export default function ProjectsPage() {
                   whileHover={{ y: -8 }}
                   className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(249,115,22,0.12)]"
                 >
-                  {/* Featured badge */}
-                  {project.featured && (
-                    <div className="absolute right-3 top-3 z-10 rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-primary-foreground shadow-lg">
-                      Featured
-                    </div>
-                  )}
+                  {/* Badges: pinned + type */}
+                  <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
+                    {project.isPinned && (
+                      <span className="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-white shadow">
+                        ⭐ Pinned
+                      </span>
+                    )}
+                    <span className={[
+                      "rounded-full px-2 py-0.5 text-xs font-semibold",
+                      project.type === "freelance"
+                        ? "bg-violet-500/20 text-violet-400"
+                        : "bg-sky-500/20 text-sky-400",
+                    ].join(" ")}>
+                      {project.type === "freelance" ? "💼 Freelance" : "🚀 Personal"}
+                    </span>
+                  </div>
 
                   {/* Cover image / gradient */}
                   <div className="relative h-48 overflow-hidden bg-gradient-to-br from-card via-card to-primary/5">
