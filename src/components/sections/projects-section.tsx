@@ -16,8 +16,11 @@ const pinnedProjects = projects.filter((p) => p.isPinned);
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="border-t border-neutral-100">
-      <div className="mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28">
+    <section id="projects" className="relative border-t border-neutral-100 bg-[#fafafa]">
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+
+      <div className="relative mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28 z-10">
 
         {/* ── Header ── */}
         <motion.div

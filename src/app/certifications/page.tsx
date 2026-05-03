@@ -159,8 +159,9 @@ export default function CertificationsPage() {
       <main className="min-h-screen bg-white text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="border-b border-neutral-100 px-6 md:px-8 pb-12 pt-8 md:pt-14">
-          <div className="mx-auto max-w-5xl">
+        <section className="relative border-b border-neutral-100 px-6 md:px-8 pb-12 pt-8 md:pt-14 bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-5xl">
             <Link
               href="/about"
               className="mb-6 inline-flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-[#0a0a0a]"

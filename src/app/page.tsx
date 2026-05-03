@@ -6,12 +6,21 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ArrowRight, Download, Award, Mail, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Download, Award, Mail } from "lucide-react";
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 import SkillsSection from "@/components/sections/skills-section";
 import ProjectsSection from "@/components/sections/projects-section";
 import { certificates } from "@/data/certificates";
+import dynamic from "next/dynamic";
+
+const GitHubCalendar = dynamic(
+  () => import("./about/github-calendar-wrapper"),
+  {
+    ssr: false,
+    loading: () => <div className="h-32 animate-pulse rounded-xl bg-neutral-50 border border-neutral-100" />,
+  }
+);
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -229,12 +238,51 @@ export default function Home() {
       {/* ══════════════════════════ SKILLS ══════════════════════════ */}
       <SkillsSection />
 
+      {/* ══════════════════════════ GITHUB CONTRIBUTIONS ══════════════════════════ */}
+      <Section className="border-t border-neutral-100 bg-white" id="github-activity">
+        <div className="mx-auto max-w-6xl px-6 md:px-8 py-16 md:py-20">
+          <motion.div variants={fadeUp(0)} className="mb-8">
+            <p className="eyebrow mb-2">Activity</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">GitHub Contributions</h2>
+            <p className="mt-2 text-sm text-neutral-500">
+              Contributions from{" "}
+              <a
+                href="https://github.com/coderMayank69"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0a0a0a] font-medium hover:underline underline-offset-2"
+              >
+                @coderMayank69
+              </a>
+            </p>
+          </motion.div>
+          <motion.div variants={fadeUp(0.1)} className="overflow-x-auto">
+            <div className="min-w-[800px] rounded-xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm">
+              <GitHubCalendar
+                username="coderMayank69"
+                colorScheme="light"
+                fontSize={12}
+                blockSize={13}
+                blockMargin={4}
+                theme={{
+                  light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"] as [string, string, string, string, string],
+                  dark:  ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"] as [string, string, string, string, string],
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+
       {/* ══════════════════════════ PROJECTS ══════════════════════════ */}
       <ProjectsSection />
 
       {/* ══════════════════════════ CERTIFICATIONS ══════════════════════════ */}
-      <Section className="border-t border-neutral-100" id="certs">
-        <div className="mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28">
+      <Section className="relative border-t border-neutral-100 bg-[#fafafa]" id="certs">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+        
+        <div className="relative mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28 z-10">
 
           <motion.div variants={fadeUp(0)} className="mb-10 flex items-end justify-between gap-4">
             <div>

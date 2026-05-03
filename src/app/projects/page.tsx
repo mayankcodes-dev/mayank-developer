@@ -39,8 +39,9 @@ export default function ProjectsPage() {
       <main className="min-h-screen bg-white text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="border-b border-neutral-100 pb-12 pt-8 md:pt-14">
-          <div className="mx-auto max-w-6xl px-6 md:px-8">
+        <section className="relative border-b border-neutral-100 pb-12 pt-8 md:pt-14 bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
             <motion.div
               initial="hidden"
               animate="visible"

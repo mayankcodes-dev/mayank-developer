@@ -84,28 +84,31 @@ export default function Contact() {
       <main className="min-h-screen bg-white text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="mx-auto max-w-5xl px-6 md:px-8 pb-10 pt-8 md:pt-16">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
-          >
-            <motion.div variants={fadeUp(0)}>
-              <span className="eyebrow">Contact</span>
-            </motion.div>
-            <motion.h1
-              variants={fadeUp(0.05)}
-              className="mt-4 font-extrabold tracking-tighter text-balance"
-              style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}
+        <section className="relative bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-8 pb-10 pt-8 md:pt-16">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
             >
-              Let&apos;s build something{" "}
-              <span className="text-neutral-400">great.</span>
-            </motion.h1>
-            <motion.p variants={fadeUp(0.1)} className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-neutral-500">
-              Have a project in mind, want to hire me, or just want to say hi?
-              Fill out the form below and I&apos;ll get back to you within 24 hours.
-            </motion.p>
-          </motion.div>
+              <motion.div variants={fadeUp(0)}>
+                <span className="eyebrow">Contact</span>
+              </motion.div>
+              <motion.h1
+                variants={fadeUp(0.05)}
+                className="mt-4 font-extrabold tracking-tighter text-balance"
+                style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}
+              >
+                Let&apos;s build something{" "}
+                <span className="text-neutral-400">great.</span>
+              </motion.h1>
+              <motion.p variants={fadeUp(0.1)} className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-neutral-500">
+                Have a project in mind, want to hire me, or just want to say hi?
+                Fill out the form below and I&apos;ll get back to you within 24 hours.
+              </motion.p>
+            </motion.div>
+          </div>
         </section>
 
         {/* ── Form + Sidebar ── */}

@@ -116,9 +116,11 @@ export default function About() {
       <main className="min-h-screen bg-white text-[#0a0a0a]">
 
         {/* ════ HERO ════ */}
-        <section className="mx-auto max-w-4xl px-6 md:px-8 pb-12 pt-8 md:pt-16">
-          <motion.div
-            initial="hidden"
+        <section className="relative bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 pb-12 pt-8 md:pt-16">
+            <motion.div
+              initial="hidden"
             animate="visible"
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
           >
@@ -166,6 +168,7 @@ export default function About() {
               </Link>
             </motion.div>
           </motion.div>
+          </div>
         </section>
 
         {/* ════ VALUES ════ */}
@@ -193,8 +196,9 @@ export default function About() {
         </AnimatedSection>
 
         {/* ════ TIMELINE ════ */}
-        <AnimatedSection className="border-t border-neutral-100">
-          <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
+        <AnimatedSection className="relative border-t border-neutral-100 bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-8">
               My Journey
             </motion.p>
@@ -249,8 +253,9 @@ export default function About() {
         </AnimatedSection>
 
         {/* ════ LEETCODE STATS ════ */}
-        <AnimatedSection className="border-t border-neutral-100">
-          <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
+        <AnimatedSection className="relative border-t border-neutral-100 bg-[#fafafa]">
+          <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-2">
               LeetCode Progress
             </motion.p>
