@@ -267,10 +267,10 @@ export default function Home() {
                 className="hero-photo absolute w-full object-cover"
                 style={{
                   height: "130%",
-                  top: "-18%",
+                  top: "-20%",
                   left: 0,
                   right: 0,
-                  objectPosition: "50% 22%",
+                  objectPosition: "50% 20%",
                 }}
                 loading="eager"
               />
