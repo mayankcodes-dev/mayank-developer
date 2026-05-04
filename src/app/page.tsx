@@ -169,7 +169,7 @@ export default function Home() {
           </div>
 
           {/* ── CONTENT COLUMN ── */}
-          <div ref={heroRightRef} className="flex flex-col py-24 lg:py-0 lg:pt-[24dvh] z-10 px-8 md:px-14 lg:pl-14 lg:pr-8 xl:pl-10 xl:pr-6">
+          <div ref={heroRightRef} className="flex flex-col py-24 lg:py-0 lg:pt-[14dvh] z-10 px-8 md:px-14 lg:pl-14 lg:pr-8 xl:pl-10 xl:pr-6">
 
             {/* Live stats row */}
             <motion.div
@@ -289,7 +289,7 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full"
                 style={{
                   objectFit: "cover",
-                  objectPosition: "50% 20%",
+                  objectPosition: "50% 22%",
                   filter: "grayscale(100%) contrast(1.08) brightness(0.96) saturate(0)",
                   imageRendering: "crisp-edges",
                 }}
@@ -305,7 +305,7 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full pointer-events-none select-none"
                 style={{
                   objectFit: "cover",
-                  objectPosition: "50% 20%",
+                  objectPosition: "50% 22%",
                   opacity: imgHovering ? 1 : 0,
                   transition: "opacity 0.5s ease",
                 }}
