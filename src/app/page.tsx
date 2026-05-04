@@ -228,24 +228,28 @@ export default function Home() {
           </div>
 
           {/* ── RIGHT COLUMN — Full-height photo ── */}
-          <div ref={heroLeftRef} className="relative hidden lg:block self-stretch" style={{ minHeight: "100dvh" }}>
+          <div
+            ref={heroLeftRef}
+            className="relative hidden lg:block self-stretch"
+            style={{ minHeight: "100dvh" }}
+          >
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group sticky top-0 w-full overflow-hidden"
-              style={{ height: "100dvh" }}
+              className="group absolute inset-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank10.jpg"
                 alt="Mayank — Aspiring Software Engineer"
                 className="w-full h-full object-cover object-top transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
+                loading="eager"
               />
               {/* Left gradient blend */}
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10" />
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
               {/* Bottom fade */}
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
 
               {/* Availability badge */}
               <div className="absolute bottom-10 left-4 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">

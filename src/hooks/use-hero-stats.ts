@@ -14,6 +14,14 @@ function fmt(n: number | null, fallback: string): string {
   return `${n}+`;
 }
 
+/** Race a promise against a timeout — returns null if timed out */
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+  return Promise.race([
+    promise,
+    new Promise<null>((resolve) => setTimeout(() => resolve(null), ms)),
+  ]);
+}
+
 export function useHeroStats(): HeroStats {
   const [problems, setProblems] = useState<number | null>(null);
   const [contributions, setContributions] = useState<number | null>(null);
@@ -24,28 +32,55 @@ export function useHeroStats(): HeroStats {
 
     async function load() {
       try {
-        const [lcRes, ghRes] = await Promise.allSettled([
-          fetch("/api/stats?username=coderMayank69").then((r) => r.json()),
-          fetch("/api/github-contributions").then((r) => r.json()),
+        // Fetch from public CORS-friendly APIs directly — no server round-trip
+        // LeetCode: alfa-leetcode-api (more reliable than heroku endpoint)
+        const lcFetch = fetch(
+          "https://alfa-leetcode-api.onrender.com/coderMayank69/solved",
+          { cache: "no-store" }
+        )
+          .then((r) => r.json())
+          .then((d) => d?.solvedProblem ?? null)
+          .catch(() => null);
+
+        // GitHub contributions via free public API (no token needed)
+        const ghFetch = fetch(
+          "https://github-contributions-api.jogruber.de/v4/coderMayank69?y=last",
+          { cache: "no-store" }
+        )
+          .then((r) => r.json())
+          .then((d) => {
+            // Returns { total: { "2024": N, ... }, contributions: [...] }
+            if (d?.total) {
+              return Object.values(d.total as Record<string, number>).reduce(
+                (a, b) => a + b,
+                0
+              );
+            }
+            return null;
+          })
+          .catch(() => null);
+
+        // 6-second timeout — show fallback if APIs are slow
+        const [lc, gh] = await Promise.all([
+          withTimeout(lcFetch, 6000),
+          withTimeout(ghFetch, 6000),
         ]);
 
         if (cancelled) return;
 
-        if (lcRes.status === "fulfilled" && lcRes.value?.leetcode != null) {
-          setProblems(lcRes.value.leetcode);
-        }
-        if (ghRes.status === "fulfilled" && ghRes.value?.contributions != null) {
-          setContributions(ghRes.value.contributions);
-        }
+        if (typeof lc === "number") setProblems(lc);
+        if (typeof gh === "number") setContributions(gh);
       } catch {
-        // silent — fallback values shown
+        // silent — fallback values shown via fmt()
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
     load();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return {
