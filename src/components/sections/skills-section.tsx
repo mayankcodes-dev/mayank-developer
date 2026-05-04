@@ -97,14 +97,14 @@ export default function SkillsSection() {
                   </p>
                 </div>
 
-                {/* Level bar — 4 dashes, color by level */}
+                {/* 5 dashes — max filled is 3 (Intermediate). 4th & 5th always empty. */}
                 <div className="flex gap-1 w-full">
-                  {[1, 2, 3, 4].map((dot) => {
-                    let activeColor = "bg-neutral-200";
+                  {[1, 2, 3, 4, 5].map((dot) => {
+                    let activeColor = "";
                     if (dot <= skill.level) {
                       if (skill.level === 1) activeColor = "bg-orange-400";
                       else if (skill.level === 2) activeColor = "bg-yellow-400";
-                      else activeColor = "bg-green-500"; // 3 or 4
+                      else activeColor = "bg-green-500"; // level 3
                     }
                     return (
                       <div
