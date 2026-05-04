@@ -230,18 +230,18 @@ export default function Home() {
           {/* ── RIGHT COLUMN — Full-height photo ── */}
           <div
             ref={heroLeftRef}
-            className="relative hidden lg:block self-stretch"
-            style={{ minHeight: "100dvh" }}
+            className="relative hidden lg:block"
+            style={{ height: "100dvh" }}
           >
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group absolute inset-0"
+              className="group absolute inset-0 overflow-hidden"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/mayank10.jpg"
+                src="/images/mayank.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 className="w-full h-full object-cover object-top transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
                 loading="eager"
