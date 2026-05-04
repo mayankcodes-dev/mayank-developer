@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -84,7 +84,16 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
   const heroRightRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
   const stats = useHeroStats();
+
+  /* ── Parallax: subtle upward drift on the hero image as user scrolls ── */
+  const { scrollYProgress } = useScroll({
+    target: heroSectionRef,
+    offset: ["start start", "end start"],
+  });
+  const rawParallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const parallaxY = useSpring(rawParallaxY, { stiffness: 80, damping: 30, mass: 0.5 });
 
   const [latestPost, setLatestPost] = useState<HashnodePost | null>(null);
 
@@ -121,7 +130,7 @@ export default function Home() {
       <Navbar />
 
       {/* ══════════════════════════ HERO ══════════════════════════ */}
-      <main id="hero" className="relative w-full bg-[#f9f9f9]" style={{ minHeight: "100dvh" }}>
+      <main ref={heroSectionRef} id="hero" className="relative w-full bg-[#f9f9f9]" style={{ minHeight: "100dvh" }}>
         {/* Dot-grid background */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -155,9 +164,9 @@ export default function Home() {
 
             {/* Live stats row */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="flex gap-10 mb-8"
             >
               <div className="flex flex-col">
@@ -180,9 +189,9 @@ export default function Home() {
 
             {/* Giant Hello */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <h1
                 className="font-black tracking-tighter leading-[0.88] text-[#0a0a0a] select-none"
@@ -196,7 +205,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="mt-4 text-neutral-500 text-base md:text-lg leading-relaxed"
             >
               — It&apos;s Mayank, an aspiring Software Engineer.
@@ -206,7 +215,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 flex items-center flex-wrap gap-2"
             >
               {SOCIALS.map(({ href, label, path }) => (
@@ -234,9 +243,9 @@ export default function Home() {
 
             {/* Scroll hint */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.6, duration: 0.8 }}
               className="mt-16 hidden lg:flex items-center gap-2 text-neutral-400"
             >
               <motion.span
@@ -255,9 +264,10 @@ export default function Home() {
             style={{ position: "sticky", top: 0, height: "100dvh", alignSelf: "start", overflow: "hidden" }}
           >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              initial={{ opacity: 0, scale: 1.06 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              style={{ y: parallaxY }}
               className="absolute inset-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
