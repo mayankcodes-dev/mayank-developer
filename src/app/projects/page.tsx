@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
+import ProjectModal from "@/components/shared/project-modal";
+import type { Project } from "@/data/projects";
 
 const GithubIcon = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
@@ -29,6 +31,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function ProjectsPage() {
   const [tab, setTab] = useState<TabValue>("freelance");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filtered = projects.filter(p => p.type === tab);
 
@@ -122,7 +125,8 @@ export default function ProjectsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  className="card-eng group relative flex flex-col overflow-hidden"
+                  className="card-eng group relative flex flex-col overflow-hidden cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
                 >
                   {/* Badges */}
                   <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
@@ -278,6 +282,7 @@ export default function ProjectsPage() {
 
       </main>
       <Footer />
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </>
   );
 }

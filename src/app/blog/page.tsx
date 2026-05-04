@@ -18,7 +18,7 @@ import { blogConfig } from "@/data/blog-config";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Practical frontend essays on React, TypeScript, and building polished web products — by Mayank.",
+    "Sharing my development journey and what I've learned along the way — by Mayank.",
 };
 
 const HASHNODE_PROFILE = "https://codermayank.hashnode.dev";
@@ -110,13 +110,11 @@ export default async function BlogPage() {
                   className="mt-4 font-extrabold tracking-tighter text-balance"
                   style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
                 >
-                  Practical frontend essays for developers who care about{" "}
-                  <span className="text-neutral-400">craft.</span>
+                  Sharing what I've <span className="text-neutral-400">learned.</span>
                 </h1>
 
                 <p className="mt-5 max-w-xl text-base md:text-lg leading-relaxed text-neutral-500">
-                  Deep dives on React architecture, product thinking, and interface
-                  polish — built from real project decisions and production lessons.
+                  I'm starting to write out these blogs to document my journey and share what I've learned along the way. I'm not an expert frontend blog writer, just a developer sharing my process.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">

@@ -2,7 +2,7 @@ export interface Certificate {
   id: string;
   title: string;
   issuer: string;
-  issuerLogo?: string; // logo URL
+  issuerLogo?: string;
   date: string;
   category: string;
   credentialId?: string;
@@ -11,7 +11,6 @@ export interface Certificate {
   isPinned?: boolean;
 }
 
-// Official issuer logos
 const LOGOS = {
   linkedin: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
   mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
@@ -30,7 +29,7 @@ export const certificates: Certificate[] = [
     category: "Backend",
     skills: ["Node.js"],
     credentialUrl: "https://www.linkedin.com/learning/certificates/e20c600fea001c246e1eccf1907e6b8950bc44573b2814525c7f3286fb9f14eb",
-    isPinned: false,
+    isPinned: true,
   },
   {
     id: "github-copilot",
@@ -41,7 +40,7 @@ export const certificates: Certificate[] = [
     category: "AI",
     skills: ["GitHub Copilot"],
     credentialUrl: "https://www.linkedin.com/learning/certificates/38f92b971d566853d616b8f5ed4b700dee19b8e2ab33ec9b75845710d316094a",
-    isPinned: false,
+    isPinned: true,
   },
   {
     id: "mongodb-schema",
