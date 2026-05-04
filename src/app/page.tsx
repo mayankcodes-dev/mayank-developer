@@ -160,10 +160,10 @@ export default function Home() {
         </div>
 
         {/* Main grid: text left, photo right */}
-        <div className="relative mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-1 lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_600px] gap-0" style={{ minHeight: "100dvh" }}>
+        <div className="relative mx-auto max-w-[1600px] px-0 md:px-0 grid grid-cols-1 lg:grid-cols-[1fr_520px] xl:grid-cols-[1fr_680px] 2xl:grid-cols-[1fr_800px] gap-0" style={{ minHeight: "100dvh" }}>
 
           {/* ── LEFT COLUMN ── */}
-          <div ref={heroRightRef} className="flex flex-col justify-center py-24 lg:py-0 z-10">
+          <div ref={heroRightRef} className="flex flex-col justify-center py-24 lg:py-0 z-10 px-8 md:px-16 lg:pl-16 lg:pr-0">
 
             {/* Live stats row */}
             <motion.div
@@ -275,13 +275,18 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="absolute inset-0"
             >
-              {/* ── Base layer: greyscale ── */}
+              {/* ── Base layer: greyscale, image anchored to top-center so face is prominent ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
-                className="w-full h-full object-cover object-top"
-                style={{ filter: "grayscale(100%) contrast(1.05) brightness(0.97)" }}
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "50% 15%",
+                  filter: "grayscale(100%) contrast(1.08) brightness(0.96) saturate(0)",
+                  imageRendering: "crisp-edges",
+                }}
                 loading="eager"
               />
 
@@ -291,30 +296,32 @@ export default function Home() {
                 src="/images/mayank-hero.webp"
                 alt=""
                 aria-hidden
-                className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none select-none"
+                className="absolute inset-0 w-full h-full pointer-events-none select-none"
                 style={{
+                  objectFit: "cover",
+                  objectPosition: "50% 15%",
                   opacity: imgHovering ? 1 : 0,
-                  transition: "opacity 0.5s ease",
-                  WebkitMaskImage: `radial-gradient(circle 380px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
-                  maskImage: `radial-gradient(circle 380px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
+                  transition: "opacity 0.4s ease",
+                  WebkitMaskImage: `radial-gradient(circle 420px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 100%)`,
+                  maskImage: `radial-gradient(circle 420px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 100%)`,
                 }}
               />
 
               {/* Left gradient blend into page bg */}
-              <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
               {/* Bottom fade */}
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
               {/* Top subtle fade */}
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#f9f9f9]/60 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#f9f9f9]/70 to-transparent z-10 pointer-events-none" />
 
               {/* Availability badge */}
-              <div className="absolute bottom-10 left-4 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+              <div className="absolute bottom-10 left-8 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
                 <span className="status-dot" />
                 <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
               </div>
 
               {/* Year label */}
-              <div className="absolute top-10 right-5 z-20 font-mono text-[10px] text-neutral-300 uppercase tracking-widest">
+              <div className="absolute top-10 right-6 z-20 font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
                 2026
               </div>
             </motion.div>
@@ -347,18 +354,20 @@ export default function Home() {
             </a>
           </motion.div>
 
-          {/* GitHub calendar — react-github-calendar gives proper block spacing */}
+          {/* GitHub calendar — professional look with proper spacing */}
           <motion.div variants={fadeUp(0.1)} className="overflow-x-auto mb-6">
-            <div className="min-w-[800px] rounded-xl border border-neutral-200 bg-white px-6 pt-5 pb-4 shadow-sm">
-              <p className="text-xs font-mono text-neutral-400 mb-4 uppercase tracking-widest">GitHub Contributions</p>
+            <div className="rounded-xl border border-neutral-200 bg-white px-6 pt-5 pb-5 shadow-sm" style={{ minWidth: 780 }}>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest">GitHub Contributions</p>
+              </div>
               <GitHubCalendar
                 username="coderMayank69"
                 colorScheme="light"
-                fontSize={12}
-                blockSize={12}
-                blockMargin={2}
+                fontSize={11}
+                blockSize={13}
+                blockMargin={4}
                 theme={{
-                  light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"] as [string,string,string,string,string],
+                  light: ["#f0f0f0", "#c6e6c8", "#74c47a", "#339a3e", "#1a6326"] as [string,string,string,string,string],
                   dark:  ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"] as [string,string,string,string,string],
                 }}
               />
