@@ -15,7 +15,7 @@ const LOGOS = {
   linkedin: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
   mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
   google: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
-  deeplearning: "https://deeplearning.ai/logo.svg",
+  deeplearning: "/images/deeplearning-ai-logo.svg",
   udemy: "https://cdn.worldvectorlogo.com/logos/udemy-wordmark-1.svg",
 };
 
@@ -82,6 +82,7 @@ export const certificates: Certificate[] = [
     id: "ai-for-everyone",
     title: "AI For Everyone",
     issuer: "DeepLearning.AI",
+    issuerLogo: LOGOS.deeplearning,
     date: "Dec 2025",
     category: "AI",
     credentialId: "CG3UPVSTEL2M",
