@@ -35,7 +35,7 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
         }
       `,
       variables: {
-        host: "codermayank.hashnode.dev",
+        host: "codermayank69.hashnode.dev",
         first: count,
       },
     }),

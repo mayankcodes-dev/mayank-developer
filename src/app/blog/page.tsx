@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Sharing my development journey and what I've learned along the way — by Mayank.",
 };
 
-const HASHNODE_PROFILE = "https://codermayank.hashnode.dev";
+const HASHNODE_PROFILE = "https://codermayank69.hashnode.dev";
 
 export default async function BlogPage() {
   let posts: HashnodePost[] = [];
@@ -56,7 +56,7 @@ export default async function BlogPage() {
           }
         `,
         variables: {
-          host: "codermayank.hashnode.dev",
+          host: "codermayank69.hashnode.dev",
           first: 10,
         },
       }),
