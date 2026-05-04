@@ -582,3 +582,19 @@ button, [role="button"] {
   width: 100% !important;
   height: auto !important;
 }
+
+/* ════════════════════════════════════════════════════════════
+   HERO PHOTO — soft grayscale-to-color hover with subtle zoom
+   ════════════════════════════════════════════════════════════ */
+.hero-photo {
+  filter: grayscale(100%) contrast(1.08) brightness(0.96);
+  transform: scale(1);
+  transform-origin: center center;
+  transition: filter 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group\/hero:hover .hero-photo {
+  filter: grayscale(0%) contrast(1) brightness(1);
+  transform: scale(1.03);
+}

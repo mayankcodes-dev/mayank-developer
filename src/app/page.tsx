@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, useCallback } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
@@ -86,45 +86,8 @@ export default function Home() {
   const heroRightRef = useRef<HTMLDivElement>(null);
   const stats = useHeroStats();
 
-  /* ── Cursor spotlight — lerp-smoothed circular clip-path reveal ── */
-  const [cursorPos, setCursorPos] = useState({ x: -400, y: -400 });
-  const [imgHovering, setImgHovering] = useState(false);
-  const targetPosRef = useRef({ x: -400, y: -400 });
-  const currentPosRef = useRef({ x: -400, y: -400 });
-  const animFrameRef = useRef<number | null>(null);
   const [latestPost, setLatestPost] = useState<HashnodePost | null>(null);
 
-  const handleImgMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    targetPosRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-  }, []);
-
-  const handleImgEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const startX = e.clientX - rect.left;
-    const startY = e.clientY - rect.top;
-    targetPosRef.current = { x: startX, y: startY };
-    currentPosRef.current = { x: startX, y: startY };
-    setImgHovering(true);
-
-    const tick = () => {
-      currentPosRef.current = {
-        x: currentPosRef.current.x + (targetPosRef.current.x - currentPosRef.current.x) * 0.1,
-        y: currentPosRef.current.y + (targetPosRef.current.y - currentPosRef.current.y) * 0.1,
-      };
-      setCursorPos({ x: currentPosRef.current.x, y: currentPosRef.current.y });
-      animFrameRef.current = requestAnimationFrame(tick);
-    };
-    animFrameRef.current = requestAnimationFrame(tick);
-  }, []);
-
-  const handleImgLeave = useCallback(() => {
-    setImgHovering(false);
-    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    setCursorPos({ x: -400, y: -400 });
-    targetPosRef.current = { x: -400, y: -400 };
-    currentPosRef.current = { x: -400, y: -400 };
-  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -188,7 +151,7 @@ export default function Home() {
           </div>
 
           {/* ── CONTENT COLUMN ── */}
-          <div ref={heroRightRef} className="flex flex-col py-24 lg:py-0 lg:pt-[14dvh] z-10 px-8 md:px-14 lg:pl-14 lg:pr-8 xl:pl-10 xl:pr-6">
+          <div ref={heroRightRef} className="flex flex-col justify-center py-24 lg:py-0 z-10 px-8 md:px-14 lg:pl-14 lg:pr-8 xl:pl-10 xl:pr-6">
 
             {/* Live stats row */}
             <motion.div
@@ -286,13 +249,10 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* ── PHOTO COLUMN — cursor spotlight ── */}
+          {/* ── PHOTO COLUMN — soft hover animation ── */}
           <div
-            className="relative hidden lg:block"
+            className="relative hidden lg:block group/hero"
             style={{ position: "sticky", top: 0, height: "100dvh", alignSelf: "start", overflow: "hidden" }}
-            onMouseMove={handleImgMouseMove}
-            onMouseEnter={handleImgEnter}
-            onMouseLeave={handleImgLeave}
           >
             <motion.div
               initial={{ opacity: 0 }}
@@ -300,37 +260,13 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="absolute inset-0"
             >
-              {/* ── Base layer: always grayscale ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
-                className="absolute inset-0 w-full h-full"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 22%",
-                  filter: "grayscale(100%) contrast(1.08) brightness(0.96) saturate(0)",
-                }}
+                className="hero-photo absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: "50% 30%" }}
                 loading="eager"
-              />
-
-              {/* ── Color layer: revealed only inside spotlight circle ── */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/mayank-hero.webp"
-                alt=""
-                aria-hidden
-                className="absolute inset-0 w-full h-full pointer-events-none select-none"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 22%",
-                  clipPath: imgHovering
-                    ? `circle(120px at ${cursorPos.x}px ${cursorPos.y}px)`
-                    : "circle(0px at -400px -400px)",
-                  transition: imgHovering
-                    ? "clip-path 0.05s linear"
-                    : "clip-path 0.4s ease",
-                }}
               />
 
               {/* Left edge gradient — blends into page bg */}
