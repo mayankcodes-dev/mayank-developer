@@ -8,6 +8,7 @@ export interface Certificate {
   credentialId?: string;
   credentialUrl?: string;
   skills?: string[];
+  isPinned?: boolean;
 }
 
 // Official issuer logos
@@ -15,7 +16,7 @@ const LOGOS = {
   linkedin: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
   mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
   google: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
-  deeplearning: "https://avatars.githubusercontent.com/u/25246927?s=200&v=4",
+  deeplearning: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-university-assets.s3.amazonaws.com/73/9066db5ebe11e2af68e7c9869cbde9/Square-Logo.png?auto=format%2Ccompress&dpr=1&w=180&h=180",
   udemy: "https://cdn.worldvectorlogo.com/logos/udemy-wordmark-1.svg",
 };
 
@@ -29,6 +30,7 @@ export const certificates: Certificate[] = [
     category: "Backend",
     skills: ["Node.js"],
     credentialUrl: "https://www.linkedin.com/learning/certificates/e20c600fea001c246e1eccf1907e6b8950bc44573b2814525c7f3286fb9f14eb",
+    isPinned: false,
   },
   {
     id: "github-copilot",
@@ -39,6 +41,7 @@ export const certificates: Certificate[] = [
     category: "AI",
     skills: ["GitHub Copilot"],
     credentialUrl: "https://www.linkedin.com/learning/certificates/38f92b971d566853d616b8f5ed4b700dee19b8e2ab33ec9b75845710d316094a",
+    isPinned: false,
   },
   {
     id: "mongodb-schema",
@@ -50,6 +53,7 @@ export const certificates: Certificate[] = [
     credentialId: "2330876b-7781-4234-a8ea-7190a71e13af",
     skills: ["Data Modeling", "MongoDB"],
     credentialUrl: "https://www.credly.com/badges/2330876b-7781-4234-a8ea-7190a71e13af/linked_in_profile",
+    isPinned: true,
   },
   {
     id: "learning-docker",
@@ -61,6 +65,7 @@ export const certificates: Certificate[] = [
     credentialId: "5967bf9f12ce6087eb1b68bbe673c9275ed5948deb823f0f48d597ffcb9f3c03",
     skills: ["Docker"],
     credentialUrl: "https://www.linkedin.com/learning/certificates/5967bf9f12ce6087eb1b68bbe673c9275ed5948deb823f0f48d597ffcb9f3c03",
+    isPinned: false,
   },
   {
     id: "prompts-google",
@@ -72,6 +77,7 @@ export const certificates: Certificate[] = [
     credentialId: "TW19XRAXTHCN",
     skills: ["Multimodal Prompting", "AI"],
     credentialUrl: "https://www.coursera.org/account/accomplishments/verify/TW19XRAXTHCN",
+    isPinned: true,
   },
   {
     id: "ai-for-everyone",
@@ -83,6 +89,7 @@ export const certificates: Certificate[] = [
     credentialId: "CG3UPVSTEL2M",
     skills: ["Artificial Intelligence"],
     credentialUrl: "https://www.coursera.org/account/accomplishments/verify/CG3UPVSTEL2M",
+    isPinned: true,
   },
   {
     id: "fullstack-udemy",
@@ -93,6 +100,7 @@ export const certificates: Certificate[] = [
     category: "Full Stack",
     skills: ["React", "Node.js", "Express", "MongoDB", "JavaScript", "Bootstrap", "DOM"],
     credentialUrl: "https://www.udemy.com/certificate/UC-4ee4d68b-259b-41ac-a645-6cccf799a8a4/",
+    isPinned: true,
   },
 ];
 

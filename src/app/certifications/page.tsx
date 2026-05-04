@@ -19,6 +19,7 @@ interface CertItem {
   category:      string;
   credentialUrl: string | null;
   credentialId?: string;
+  isPinned?: boolean;
 }
 
 function strapiToItem(c: StrapiCertificate): CertItem {
@@ -142,6 +143,7 @@ export default function CertificationsPage() {
           category:      c.category,
           credentialUrl: c.credentialUrl ?? null,
           credentialId:  c.credentialId,
+          isPinned:      c.isPinned ?? false,
         }))
       );
       setCategories(staticCategories);
@@ -152,6 +154,8 @@ export default function CertificationsPage() {
 
   const filtered =
     activeCategory === "All" ? certs : certs.filter((c) => c.category === activeCategory);
+
+  const sorted = [...filtered].sort((a, b) => (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0));
 
   return (
     <>
@@ -232,13 +236,13 @@ export default function CertificationsPage() {
           ) : (
             <>
               <p className="mb-6 font-mono text-[11px] uppercase tracking-wider text-neutral-400">
-                {filtered.length} certificate{filtered.length !== 1 ? "s" : ""}
+                {sorted.length} certificate{sorted.length !== 1 ? "s" : ""}
                 {activeCategory !== "All" ? ` · ${activeCategory}` : ""}
               </p>
 
               <AnimatePresence mode="popLayout">
                 <motion.div className="grid gap-4 sm:grid-cols-2" layout>
-                  {filtered.map((cert) => (
+                  {sorted.map((cert) => (
                     <CertCard key={cert.id} cert={cert} />
                   ))}
                 </motion.div>

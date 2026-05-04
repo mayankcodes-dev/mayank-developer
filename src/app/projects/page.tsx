@@ -139,19 +139,28 @@ export default function ProjectsPage() {
 
                   {/* Cover */}
                   <div className="relative flex h-44 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
-                    {project.link ? (
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        onError={(e) => {
+                          const img = e.currentTarget;
+                          if (project.link && !img.dataset.fallback) {
+                            img.dataset.fallback = "1";
+                            img.src = `https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`;
+                          } else {
+                            img.style.display = "none";
+                          }
+                        }}
+                      />
+                    ) : project.link ? (
                       <img
                         src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`}
                         alt={project.title}
                         className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
-                      />
-                    ) : project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
                     ) : (
                       <Code2 className="size-16 text-neutral-200 transition-transform duration-300 group-hover:scale-110 group-hover:text-neutral-300" />
