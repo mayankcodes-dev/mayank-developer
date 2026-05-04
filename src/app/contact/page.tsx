@@ -272,7 +272,7 @@ export default function Contact() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/918115529832?text=Hi%20Mayank%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect!"
+                href="https://wa.me/message/4BKKNWXBQUQ7G1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 card-eng p-4 transition-colors hover:border-[#25D366]/50"

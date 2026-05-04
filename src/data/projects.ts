@@ -128,7 +128,7 @@ export const projects: Project[] = [
       "React + Vite frontend with Node.js/Express + MongoDB backend. Firebase Authentication token verification for protected routes. Complete CRUD for notes, REST APIs, and end-to-end client-server integration. Containerized with Docker and configured for production deployment.",
     image: "",
     technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Firebase Auth", "Docker"],
-    link: "https://note-keeper-one-theta.vercel.app",
+    link: "https://note-keeper-2-yvyt.onrender.com/",
     github: "https://github.com/coderMayank69/Note-Keeper",
     featured: false,
     isPinned: false,

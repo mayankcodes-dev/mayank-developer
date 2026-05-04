@@ -160,7 +160,7 @@ export default function Home() {
         </div>
 
         {/* Main grid: text left, photo right */}
-        <div className="relative mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_500px] gap-0" style={{ minHeight: "100dvh" }}>
+        <div className="relative mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-1 lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_600px] gap-0" style={{ minHeight: "100dvh" }}>
 
           {/* ── LEFT COLUMN ── */}
           <div ref={heroRightRef} className="flex flex-col justify-center py-24 lg:py-0 z-10">
@@ -295,8 +295,8 @@ export default function Home() {
                 style={{
                   opacity: imgHovering ? 1 : 0,
                   transition: "opacity 0.5s ease",
-                  WebkitMaskImage: `radial-gradient(circle 340px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
-                  maskImage: `radial-gradient(circle 340px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
+                  WebkitMaskImage: `radial-gradient(circle 380px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
+                  maskImage: `radial-gradient(circle 380px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
                 }}
               />
 
