@@ -37,7 +37,7 @@ export const projects: Project[] = [
       "A professionally designed service landing page built with React and Tailwind CSS. Features a clean hero section, service cards, testimonials, and a contact section — designed for high conversion and visual appeal.",
     image: "",
     technologies: ["React", "Tailwind CSS", "Vite"],
-    link: "",
+    link: "https://service-page-bay.vercel.app",
     github: "https://github.com/coderMayank69/ServicePage",
     featured: false,
     isPinned: false,

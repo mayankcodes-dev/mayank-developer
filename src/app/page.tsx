@@ -275,17 +275,18 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="absolute inset-0"
             >
-              {/* ── Base layer: greyscale, pushed up so full head is visible ── */}
+              {/* ── Base layer: greyscale, full face visible ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 className="absolute inset-0 w-full h-full"
                 style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 0%",
+                  objectFit: "contain",
+                  objectPosition: "center top",
                   filter: "grayscale(100%) contrast(1.08) brightness(0.96) saturate(0)",
                   imageRendering: "crisp-edges",
+                  backgroundColor: "#f9f9f9",
                 }}
                 loading="eager"
               />
@@ -298,8 +299,9 @@ export default function Home() {
                 aria-hidden
                 className="absolute inset-0 w-full h-full pointer-events-none select-none"
                 style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 0%",
+                  objectFit: "contain",
+                  objectPosition: "center top",
+                  backgroundColor: "#f9f9f9",
                   opacity: imgHovering ? 1 : 0,
                   transition: "opacity 0.5s ease",
                 }}
