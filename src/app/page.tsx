@@ -275,18 +275,17 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="absolute inset-0"
             >
-              {/* ── Base layer: greyscale, full face visible ── */}
+              {/* ── Base layer: greyscale, face fills the column ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 className="absolute inset-0 w-full h-full"
                 style={{
-                  objectFit: "contain",
-                  objectPosition: "center top",
+                  objectFit: "cover",
+                  objectPosition: "50% 25%",
                   filter: "grayscale(100%) contrast(1.08) brightness(0.96) saturate(0)",
                   imageRendering: "crisp-edges",
-                  backgroundColor: "#f9f9f9",
                 }}
                 loading="eager"
               />
@@ -299,9 +298,8 @@ export default function Home() {
                 aria-hidden
                 className="absolute inset-0 w-full h-full pointer-events-none select-none"
                 style={{
-                  objectFit: "contain",
-                  objectPosition: "center top",
-                  backgroundColor: "#f9f9f9",
+                  objectFit: "cover",
+                  objectPosition: "50% 25%",
                   opacity: imgHovering ? 1 : 0,
                   transition: "opacity 0.5s ease",
                 }}
@@ -354,23 +352,22 @@ export default function Home() {
             </a>
           </motion.div>
 
-          {/* GitHub calendar — card fits calendar exactly, outer div scrolls */}
+          {/* GitHub calendar — fills full card width */}
           <motion.div variants={fadeUp(0.1)} className="mb-6">
-            <div className="overflow-x-auto rounded-xl border border-neutral-200 bg-white shadow-sm">
-              <div className="px-6 pt-5 pb-5 w-max min-w-full">
-                <p className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest mb-4">GitHub Contributions</p>
-                <GitHubCalendar
-                  username="coderMayank69"
-                  colorScheme="light"
-                  fontSize={11}
-                  blockSize={13}
-                  blockMargin={4}
-                  theme={{
-                    light: ["#ebebeb", "#c6e6c8", "#74c47a", "#339a3e", "#1a6326"] as [string,string,string,string,string],
-                    dark:  ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"] as [string,string,string,string,string],
-                  }}
-                />
-              </div>
+            <div className="rounded-xl border border-neutral-200 bg-white shadow-sm px-6 pt-5 pb-5">
+              <p className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest mb-4">GitHub Contributions</p>
+              <GitHubCalendar
+                username="coderMayank69"
+                colorScheme="light"
+                fontSize={11}
+                blockSize={13}
+                blockMargin={4}
+                style={{ width: "100%" }}
+                theme={{
+                  light: ["#ebebeb", "#c6e6c8", "#74c47a", "#339a3e", "#1a6326"] as [string,string,string,string,string],
+                  dark:  ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"] as [string,string,string,string,string],
+                }}
+              />
             </div>
           </motion.div>
 
