@@ -9,38 +9,35 @@ export interface Project {
   github?: string;
   featured: boolean;
   isPinned: boolean;
-  type: "personal" | "freelance";
+  type: "personal" | "freelance" | "group";
   period?: string;
 }
 
 export const projects: Project[] = [
   /* ── FREELANCE ── */
   {
-    id: "paypilot",
-    title: "PayPilot — Invoice Copilot",
-    description:
-      "Autonomous invoice management platform with AI-powered payment tracking and Razorpay integration.",
-    longDescription:
-      "PayPilot automates invoicing for freelancers. Razorpay webhooks, JWT auth, MongoDB ledger, Next.js 15 dashboard.",
-    image: "/images/paypilot.webp",
-    technologies: ["Next.js 15", "TypeScript", "MongoDB", "Razorpay", "Node.js", "Express", "JWT"],
-    link: "https://v0-invoice-copilot-zeta.vercel.app",
-    github: "https://github.com/coderMayank69",
-    featured: true,
-    isPinned: true,
+    id: "royses",
+    title: "ROYSES",
+    description: "Freelance project of the E-commerce website build with MERN.",
+    longDescription: "A full-stack e-commerce freelance project built with the MERN stack.",
+    image: "",
+    technologies: ["MongoDB", "Express", "React", "Node.js"],
+    link: "https://royses.vercel.app",
+    github: "https://github.com/coderMayank69/ROYSES",
+    featured: false,
+    isPinned: false,
     type: "freelance",
-    period: "2025",
+    period: "2024",
   },
   {
-    id: "agenthub",
-    title: "AgentHub AI — Voice Infrastructure",
-    description:
-      "High-conversion landing page for an autonomous voice AI agent platform targeting enterprise clients.",
-    longDescription:
-      "Landing page for autonomous voice AI with Next.js 15, FastAPI lead backend, dark glassmorphism design.",
-    image: "/images/agenthub.webp",
-    technologies: ["Next.js 15", "TypeScript", "Tailwind CSS", "FastAPI", "Python", "Vercel"],
-    github: "https://github.com/coderMayank69",
+    id: "restraunt-elite",
+    title: "Restraunt Elite",
+    description: "The landing page UI for the restraunt page",
+    longDescription: "A beautiful, responsive landing page UI for a restaurant business, designed for high conversion.",
+    image: "",
+    technologies: ["React", "Tailwind CSS"],
+    link: "https://hackathon-alpha-ruby.vercel.app",
+    github: "https://github.com/coderMayank69/Restraunt-Elite",
     featured: true,
     isPinned: true,
     type: "freelance",
@@ -49,14 +46,12 @@ export const projects: Project[] = [
   {
     id: "beauty-landing",
     title: "Beauty Parlour Landing Page",
-    description:
-      "Modern, responsive landing page for a salon — hero section, service listings, testimonials, and Google Maps integration.",
-    longDescription:
-      "Built a polished online presence for salon services using React and Tailwind. Includes a visually rich hero section, service listings, client testimonials, interactive location/contact section with Google Maps. Focused on clean UI, responsive design, and performance optimization using lazy loading.",
+    description: "Home page of the ladies beauty parlour's website made with react and lot of research.",
+    longDescription: "Built a polished online presence for salon services using React and Tailwind. Includes a visually rich hero section, service listings, client testimonials, interactive location/contact section with Google Maps.",
     image: "/images/beauty.webp",
-    technologies: ["React", "Tailwind CSS", "Vite", "Google Maps API"],
-    link: "https://github.com/coderMayank69",
-    github: "https://github.com/coderMayank69",
+    technologies: ["React", "Tailwind CSS", "Vite"],
+    link: "https://beauty-parlour-blond.vercel.app",
+    github: "https://github.com/coderMayank69/beautyParlour",
     featured: false,
     isPinned: false,
     type: "freelance",
@@ -185,5 +180,63 @@ export const projects: Project[] = [
     isPinned: false,
     type: "personal",
     period: "Jul 2025",
+  },
+
+  /* ── GROUP ── */
+  {
+    id: "paypilot-codeblitz",
+    title: "PayPilot-CodeBlitz",
+    description: "Autonomous invoice management platform with AI-powered payment tracking and Razorpay integration.",
+    longDescription: "PayPilot automates invoicing for freelancers. Razorpay webhooks, JWT auth, MongoDB ledger, Next.js 15 dashboard.",
+    image: "",
+    technologies: ["Next.js", "TypeScript", "MongoDB", "Razorpay"],
+    link: "https://v0-invoice-copilot-zeta.vercel.app/",
+    github: "https://github.com/coderMayank69/PayPilot-CodeBlitz",
+    featured: false,
+    isPinned: false,
+    type: "group",
+    period: "2025",
+  },
+  {
+    id: "synapse-code-auditor",
+    title: "Synapse Code Auditor",
+    description: "CODE THAT WORKS",
+    longDescription: "A collaborative tool for auditing and improving code quality.",
+    image: "",
+    technologies: ["Next.js", "Tailwind CSS"],
+    link: "https://synapse-code-auditor.vercel.app",
+    github: "https://github.com/coderMayank69/Synapse-Code-Auditor",
+    featured: false,
+    isPinned: false,
+    type: "group",
+    period: "2025",
+  },
+  {
+    id: "servicepage",
+    title: "ServicePage",
+    description: "Service page UI project",
+    longDescription: "A clean and responsive service landing page built collaboratively.",
+    image: "",
+    technologies: ["React", "CSS"],
+    link: "",
+    github: "https://github.com/coderMayank69/ServicePage",
+    featured: false,
+    isPinned: false,
+    type: "group",
+    period: "2025",
+  },
+  {
+    id: "landing-page",
+    title: "Landing Page",
+    description: "Collaborative landing page project",
+    longDescription: "A group project focusing on building high-conversion landing page templates.",
+    image: "",
+    technologies: ["React", "Tailwind CSS"],
+    link: "",
+    github: "https://github.com/coderMayank69/landing-page",
+    featured: false,
+    isPinned: false,
+    type: "group",
+    period: "2025",
   },
 ];

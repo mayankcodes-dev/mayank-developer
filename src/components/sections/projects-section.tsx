@@ -62,13 +62,13 @@ export default function ProjectsSection() {
 
                 <span
                   className={[
-                    "badge text-[10px]",
-                    project.type === "freelance"
-                      ? "badge-yellow"
-                      : "badge-green",
+                    "badge text-[10px] capitalize",
+                    project.type === "freelance" ? "badge-yellow" : 
+                    project.type === "group" ? "badge-blue text-blue-700 bg-blue-50 border-blue-200" : 
+                    "badge-green",
                   ].join(" ")}
                 >
-                  {project.type === "freelance" ? "Freelance" : "Personal"}
+                  {project.type}
                 </span>
               </div>
 
