@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "Built QuickStay with React + Vite frontend and Node.js/Express/MongoDB backend. Features Clerk authentication with role-based access (user & owner), room search and filtering, date-based availability, booking management, Stripe payments, Cloudinary image uploads, automated email confirmations, and owner dashboards with booking and revenue insights.",
     image: "",
     technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Clerk", "Stripe", "Cloudinary"],
-    link: "https://quick-stay-pink.vercel.app",
+    link: "https://quick-stay-chi-two.vercel.app",
     github: "https://github.com/coderMayank69/QuickStay",
     featured: true,
     isPinned: true,
