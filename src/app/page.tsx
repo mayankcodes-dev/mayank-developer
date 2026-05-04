@@ -79,19 +79,43 @@ export default function Home() {
   const heroRightRef = useRef<HTMLDivElement>(null);
   const stats = useHeroStats();
 
-  /* ── Cursor spotlight state (for hero image) ── */
-  const [cursorPos, setCursorPos] = useState({ x: -300, y: -300 });
+  /* ── Cursor reveal — large soft radial with lerp smoothing ── */
+  const [cursorPos, setCursorPos] = useState({ x: -400, y: -400 });
   const [imgHovering, setImgHovering] = useState(false);
+  const targetPosRef = useRef({ x: -400, y: -400 });
+  const currentPosRef = useRef({ x: -400, y: -400 });
+  const animFrameRef = useRef<number | null>(null);
 
   const handleImgMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    targetPosRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
   }, []);
 
-  const handleImgEnter = useCallback(() => setImgHovering(true), []);
+  const handleImgEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const startX = e.clientX - rect.left;
+    const startY = e.clientY - rect.top;
+    targetPosRef.current = { x: startX, y: startY };
+    currentPosRef.current = { x: startX, y: startY };
+    setImgHovering(true);
+
+    const tick = () => {
+      currentPosRef.current = {
+        x: currentPosRef.current.x + (targetPosRef.current.x - currentPosRef.current.x) * 0.1,
+        y: currentPosRef.current.y + (targetPosRef.current.y - currentPosRef.current.y) * 0.1,
+      };
+      setCursorPos({ x: currentPosRef.current.x, y: currentPosRef.current.y });
+      animFrameRef.current = requestAnimationFrame(tick);
+    };
+    animFrameRef.current = requestAnimationFrame(tick);
+  }, []);
+
   const handleImgLeave = useCallback(() => {
     setImgHovering(false);
-    setCursorPos({ x: -300, y: -300 });
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    setCursorPos({ x: -400, y: -400 });
+    targetPosRef.current = { x: -400, y: -400 };
+    currentPosRef.current = { x: -400, y: -400 };
   }, []);
 
   useLayoutEffect(() => {
@@ -264,9 +288,9 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none select-none"
                 style={{
                   opacity: imgHovering ? 1 : 0,
-                  transition: "opacity 0.35s ease",
-                  WebkitMaskImage: `radial-gradient(circle 130px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 35%, transparent 70%)`,
-                  maskImage: `radial-gradient(circle 130px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 35%, transparent 70%)`,
+                  transition: "opacity 0.5s ease",
+                  WebkitMaskImage: `radial-gradient(circle 340px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
+                  maskImage: `radial-gradient(circle 340px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 50%, rgba(0,0,0,0.6) 70%, transparent 100%)`,
                 }}
               />
 
