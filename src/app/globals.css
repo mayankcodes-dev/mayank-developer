@@ -598,3 +598,19 @@ button, [role="button"] {
   filter: grayscale(0%) contrast(1) brightness(1);
   transform: scale(1.03);
 }
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER BRAND NAME — Giant distorted bold text
+   ════════════════════════════════════════════════════════════ */
+.footer-brand-name {
+  font-stretch: 110%;
+  letter-spacing: -0.06em;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.08);
+  opacity: 0.95;
+  transition: opacity 0.4s ease, letter-spacing 0.4s ease;
+}
+
+.footer-brand-name:hover {
+  opacity: 1;
+  letter-spacing: -0.03em;
+}

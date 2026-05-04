@@ -139,12 +139,28 @@ export function Footer() {
           ))}
         </motion.div>
 
-        {/* ── Bottom bar ── */}
+        {/* ── Giant brand name — Antigravity / Discord style ── */}
         <motion.div
-          variants={fadeUp(0.25)}
+          variants={fadeUp(0.2)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-12 pt-8 border-t border-neutral-100 text-[12px] font-mono text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3"
+          className="mt-16 md:mt-24 overflow-hidden select-none"
+        >
+          <h2
+            className="footer-brand-name text-center font-black uppercase tracking-tighter text-[#0a0a0a] leading-[0.85]"
+            style={{ fontSize: "clamp(5rem, 18vw, 16rem)" }}
+            aria-hidden
+          >
+            Mayank
+          </h2>
+        </motion.div>
+
+        {/* ── Bottom bar — below brand name ── */}
+        <motion.div
+          variants={fadeUp(0.3)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mt-8 pt-6 border-t border-neutral-100 text-[12px] font-mono text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3 pb-4"
         >
           <p>© {new Date().getFullYear()} Mayank · Lucknow, India</p>
           <p className="flex items-center gap-1.5">
