@@ -76,7 +76,7 @@ export default function ProjectsSection() {
               <div className="relative flex h-40 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
                 {project.link ? (
                   <img 
-                    src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                    src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`}
                     alt={project.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
