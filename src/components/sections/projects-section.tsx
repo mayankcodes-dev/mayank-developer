@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code2, ExternalLink, Pin } from "lucide-react";
+import { ArrowRight, Code2, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
+import ProjectModal from "@/components/shared/project-modal";
+import type { Project } from "@/data/projects";
 
 const GithubIcon = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
@@ -11,168 +14,251 @@ const GithubIcon = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+/* Skeleton card for lazy loading */
+function SkeletonCard() {
+  return (
+    <div className="card-eng overflow-hidden flex flex-col">
+      {/* Image skeleton */}
+      <div className="relative h-40 bg-neutral-100 overflow-hidden">
+        <motion.div
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+        />
+      </div>
+      {/* Content skeleton */}
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className="h-4 w-3/4 rounded bg-neutral-100 overflow-hidden relative">
+          <motion.div
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+          />
+        </div>
+        <div className="h-3 w-full rounded bg-neutral-100 overflow-hidden relative">
+          <motion.div
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+          />
+        </div>
+        <div className="h-3 w-2/3 rounded bg-neutral-100 overflow-hidden relative">
+          <motion.div
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+          />
+        </div>
+        <div className="mt-2 flex gap-1.5">
+          {[1, 2, 3].map((k) => (
+            <div key={k} className="h-5 w-12 rounded bg-neutral-100" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* Only show pinned projects on the homepage */
 const pinnedProjects = projects.filter((p) => p.isPinned);
 
 export default function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [showAll, setShowAll] = useState(false);
+
+  const markLoaded = (id: string) =>
+    setLoadedImages((prev) => new Set([...prev, id]));
+
   return (
-    <section id="projects" className="relative border-t border-neutral-100 bg-[#fafafa]">
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+    <>
+      <section id="projects" className="relative border-t border-neutral-100 bg-[#fafafa]">
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
 
-      <div className="relative mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28 z-10">
+        <div className="relative mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28 z-10">
 
-        {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 flex flex-wrap items-end justify-between gap-4"
-        >
-          <div>
-            <p className="eyebrow mb-2">
-              Featured Projects
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              What I&apos;ve built
-            </h2>
-          </div>
-          <Link
-            href="/projects"
-            className="hidden md:inline-flex items-center gap-1.5 btn btn-outline btn-sm"
+          {/* ── Header ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 flex flex-wrap items-end justify-between gap-4"
           >
-            All projects <ArrowRight className="size-3.5" />
-          </Link>
-        </motion.div>
-
-        {/* ── Grid — pinned only ── */}
-        <motion.div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {pinnedProjects.map((project, i) => (
-            <motion.article
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="card-eng group relative flex flex-col overflow-hidden"
+            <div>
+              <p className="eyebrow mb-2">Featured Projects</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                What I&apos;ve built
+              </h2>
+            </div>
+            <Link
+              href="/projects"
+              className="hidden md:inline-flex items-center gap-1.5 btn btn-outline btn-sm"
             >
-              {/* ── Badges ── */}
-              <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
+              All projects <ArrowRight className="size-3.5" />
+            </Link>
+          </motion.div>
 
-                <span
-                  className={[
-                    "badge text-[10px] capitalize",
-                    project.type === "freelance" ? "badge-yellow" : 
-                    project.type === "group" ? "badge-blue text-blue-700 bg-blue-50 border-blue-200" : 
-                    "badge-green",
-                  ].join(" ")}
+          {/* ── Grid — pinned only ── */}
+          <motion.div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {pinnedProjects.map((project, i) => {
+              const isLoaded = loadedImages.has(project.id);
+
+              return (
+                <motion.article
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.06 }}
+                  className="card-eng group relative flex flex-col overflow-hidden cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && setSelectedProject(project)}
+                  aria-label={`View details for ${project.title}`}
                 >
-                  {project.type}
-                </span>
-              </div>
-
-              {/* ── Cover ── */}
-              <div className="relative flex h-40 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      if (project.link && !img.dataset.fallback) {
-                        img.dataset.fallback = "1";
-                        img.src = `https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`;
-                      } else {
-                        img.style.display = "none";
-                      }
-                    }}
-                  />
-                ) : project.link ? (
-                  <img
-                    src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <Code2 className="size-12 text-neutral-200 transition-transform duration-300 group-hover:scale-110 group-hover:text-neutral-300" />
-                )}
-              </div>
-
-              {/* ── Content ── */}
-              <div className="flex flex-1 flex-col gap-3 p-5">
-                <div>
-                  <h3 className="font-bold text-[#0a0a0a] text-[15px] group-hover:underline underline-offset-2 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-neutral-500 line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech stack pills */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.slice(0, 4).map((t) => (
+                  {/* ── Badges ── */}
+                  <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
                     <span
-                      key={t}
-                      className="text-[11px] font-mono text-neutral-500 bg-neutral-50 border border-neutral-100 rounded-md px-2 py-0.5"
+                      className={[
+                        "badge text-[10px] capitalize",
+                        project.type === "freelance" ? "badge-yellow" :
+                        project.type === "group" ? "text-blue-700 bg-blue-50 border border-blue-200 text-[10px] rounded-full px-2 py-0.5" :
+                        "badge-green",
+                      ].join(" ")}
                     >
-                      {t}
+                      {project.type}
                     </span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <span className="text-[11px] text-neutral-400 bg-neutral-50 border border-neutral-100 rounded-md px-2 py-0.5">
-                      +{project.technologies.length - 4}
-                    </span>
-                  )}
-                </div>
+                  </div>
 
-                {/* Actions */}
-                <div className="mt-auto flex gap-2 pt-2">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline btn-sm text-[12px]"
-                    >
-                      <GithubIcon className="size-3.5" /> Code
-                    </a>
-                  )}
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary btn-sm text-[12px]"
-                    >
-                      <ExternalLink className="size-3.5" /> Live
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+                  {/* ── Cover with skeleton ── */}
+                  <div className="relative flex h-40 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
+                    {/* Skeleton shown until image loads */}
+                    {!isLoaded && (
+                      <div className="absolute inset-0 bg-neutral-100">
+                        <motion.div
+                          animate={{ x: ["-100%", "100%"] }}
+                          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                        />
+                      </div>
+                    )}
 
-        {/* Fallback if no pinned projects */}
-        {pinnedProjects.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Code2 className="mb-4 size-12 text-neutral-200" />
-            <p className="text-neutral-500">No pinned projects yet.</p>
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className={`w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+                        loading="lazy"
+                        onLoad={() => markLoaded(project.id)}
+                        onError={(e) => {
+                          const img = e.currentTarget;
+                          if (project.link && !img.dataset.fallback) {
+                            img.dataset.fallback = "1";
+                            img.src = `https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`;
+                          } else {
+                            markLoaded(project.id);
+                            img.style.display = "none";
+                          }
+                        }}
+                      />
+                    ) : project.link ? (
+                      <img
+                        src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`}
+                        alt={project.title}
+                        className={`w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+                        loading="lazy"
+                        onLoad={() => markLoaded(project.id)}
+                        onError={() => markLoaded(project.id)}
+                      />
+                    ) : (
+                      <Code2 className="size-12 text-neutral-200 transition-transform duration-300 group-hover:scale-110" />
+                    )}
+                  </div>
+
+                  {/* ── Content ── */}
+                  <div className="flex flex-1 flex-col gap-3 p-5">
+                    <div>
+                      <h3 className="font-bold text-[#0a0a0a] text-[15px] group-hover:underline underline-offset-2 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-neutral-500 line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {/* Tech stack pills */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.slice(0, 4).map((t) => (
+                        <span
+                          key={t}
+                          className="text-[11px] font-mono text-neutral-500 bg-neutral-50 border border-neutral-100 rounded-md px-2 py-0.5"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="text-[11px] text-neutral-400 bg-neutral-50 border border-neutral-100 rounded-md px-2 py-0.5">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Actions — stop propagation so they don't open modal */}
+                    <div className="mt-auto flex gap-2 pt-2">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-outline btn-sm text-[12px]"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <GithubIcon className="size-3.5" /> Code
+                        </a>
+                      )}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-sm text-[12px]"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="size-3.5" /> Live
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+
+          {/* Fallback if no pinned projects */}
+          {pinnedProjects.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <Code2 className="mb-4 size-12 text-neutral-200" />
+              <p className="text-neutral-500">No pinned projects yet.</p>
+            </div>
+          )}
+
+          {/* Mobile "view all" */}
+          <div className="mt-8 text-center md:hidden">
+            <Link href="/projects" className="btn btn-outline btn-sm">
+              View all <ArrowRight className="size-3.5" />
+            </Link>
           </div>
-        )}
-
-        {/* Mobile "view all" */}
-        <div className="mt-8 text-center md:hidden">
-          <Link href="/projects" className="btn btn-outline btn-sm">
-            View all <ArrowRight className="size-3.5" />
-          </Link>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Project detail modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
+    </>
   );
 }

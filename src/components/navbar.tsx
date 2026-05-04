@@ -5,14 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const NAV_LINKS = [
-  { label: "Home",         href: "/"               },
   { label: "About",        href: "/about"          },
   { label: "Projects",     href: "/projects"       },
   { label: "Certificates", href: "/certifications" },
   { label: "Blog",         href: "/blog"           },
-  { label: "Contact",      href: "/contact"        },
 ];
 
 export default function Navbar() {
@@ -21,12 +20,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      // Show navbar when scrolled past 80% of the viewport height (Hero section)
-      setScrolled(window.scrollY > window.innerHeight * 0.8);
-    };
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.75);
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Run once on mount to set initial state
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -36,102 +31,155 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const visible = pathname !== "/" || scrolled;
+
   return (
     <>
-      <nav
+      <motion.nav
         aria-label="Main navigation"
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] md:w-auto ${
-          pathname !== "/" || scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"
-        }`}
+        initial={{ opacity: 0, y: -16 }}
+        animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: -16, pointerEvents: "none" }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50"
       >
-        <div
-          className="flex items-center justify-between md:justify-center rounded-full transition-all duration-300 bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-neutral-200 px-4 md:px-6 py-2"
-        >
-          {/* ── Logo for mobile only ── */}
-          <Link
-            href="/"
-            className="md:hidden flex items-center gap-2 group"
-            aria-label="Mayank — Home"
-          >
-            <div className="w-8 h-8 bg-[#0a0a0a] text-white rounded-full flex items-center justify-center font-bold text-sm font-mono tracking-tighter">
-              M
+        <div className="mx-auto max-w-7xl px-5 md:px-8 h-[60px] flex items-center justify-between bg-white/90 backdrop-blur-md border-b border-neutral-100/80 shadow-[0_1px_20px_rgba(0,0,0,0.05)]">
+
+          {/* ── Logo ── */}
+          <Link href="/" className="flex items-center gap-2.5 group" aria-label="Home">
+            <div className="relative size-8 overflow-hidden rounded-lg flex-shrink-0 border border-neutral-200 shadow-sm">
+              <Image
+                src="/favicon-original.png"
+                alt="Mayank logo"
+                fill
+                className="object-cover"
+                sizes="32px"
+              />
             </div>
+            <span className="font-bold text-[15px] tracking-tight text-[#0a0a0a] group-hover:opacity-70 transition-opacity">
+              Mayank
+            </span>
           </Link>
 
-          {/* ── Desktop Links ── */}
-          <div className="hidden md:flex items-center gap-1 md:gap-2">
+          {/* ── Desktop nav links — centered ── */}
+          <div className="hidden md:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2">
             {NAV_LINKS.map(({ label, href }) => (
               <Link
-                key={label}
+                key={href}
                 href={href}
-                className={[
-                  "relative px-4 py-2 text-[14px] font-medium rounded-full transition-all duration-300",
+                className={`relative px-4 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                   isActive(href)
-                    ? "text-[#0a0a0a] bg-neutral-100/50"
-                    : "text-neutral-500 hover:text-[#0a0a0a] hover:bg-neutral-50",
-                ].join(" ")}
+                    ? "text-[#0a0a0a]"
+                    : "text-neutral-500 hover:text-[#0a0a0a]"
+                }`}
               >
                 {label}
                 {isActive(href) && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full border border-neutral-200 pointer-events-none"
+                  <motion.div
+                    layoutId="nav-indicator"
+                    className="absolute inset-0 rounded-lg bg-neutral-100"
+                    style={{ zIndex: -1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 38 }}
                   />
                 )}
               </Link>
             ))}
           </div>
 
-          {/* ── Hamburger ── */}
+          {/* ── CTA right ── */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-neutral-500 hover:text-[#0a0a0a] transition-colors"
+            >
+              Contact
+            </Link>
+            <Link
+              href="https://drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-sm text-[13px] px-4"
+            >
+              Resume ↗
+            </Link>
+          </div>
+
+          {/* ── Mobile menu button ── */}
           <button
-            onClick={() => setMenuOpen((p) => !p)}
+            className="md:hidden grid size-8 place-items-center rounded-lg border border-neutral-200 text-neutral-600 hover:bg-neutral-50 transition-colors"
+            onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
-            className="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-neutral-200 bg-white text-[#0a0a0a] hover:bg-neutral-50 transition-colors"
-            id="mobile-menu-toggle"
           >
-            {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            <AnimatePresence mode="wait">
+              {menuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <X className="size-4" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="open"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Menu className="size-4" />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </div>
-      </nav>
 
-      {/* ── Mobile Menu ── */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 35 }}
-            className="fixed inset-x-4 top-[84px] z-40 rounded-2xl border border-neutral-200 bg-white shadow-xl shadow-black/5 md:hidden overflow-hidden"
-          >
-            <div className="p-2 flex flex-col gap-1">
-              {NAV_LINKS.map(({ label, href }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className={[
-                    "flex items-center px-4 py-3 rounded-xl text-[15px] font-medium transition-colors",
-                    isActive(href)
-                      ? "bg-neutral-50 text-[#0a0a0a]"
-                      : "text-neutral-500 hover:bg-neutral-50 hover:text-[#0a0a0a]",
-                  ].join(" ")}
-                >
-                  {isActive(href) && (
-                    <span className="mr-3 size-1.5 rounded-full bg-[#0a0a0a] flex-shrink-0" />
-                  )}
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* ── Mobile dropdown ── */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="md:hidden mx-4 mt-1 rounded-xl bg-white border border-neutral-200 shadow-lg overflow-hidden"
+            >
+              <div className="flex flex-col p-2 gap-0.5">
+                {[{ label: "Home", href: "/" }, ...NAV_LINKS, { label: "Contact", href: "/contact" }].map(
+                  ({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                        isActive(href)
+                          ? "bg-neutral-50 text-[#0a0a0a]"
+                          : "text-neutral-600 hover:bg-neutral-50 hover:text-[#0a0a0a]"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  )
+                )}
+                <div className="px-2 pt-1 pb-1 border-t border-neutral-100 mt-1">
+                  <a
+                    href="https://drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm w-full justify-center text-[13px]"
+                  >
+                    Resume ↗
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
-      {/* Spacer */}
-      <div className="h-24" aria-hidden />
+      {/* Spacer for pages that are NOT the homepage (hero already handles its own spacing) */}
+      {pathname !== "/" && <div className="h-[60px]" />}
     </>
   );
 }

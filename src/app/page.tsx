@@ -108,77 +108,106 @@ export default function Home() {
       <Navbar />
 
       {/* ══════════════════════════ HERO ══════════════════════════ */}
-      <main id="hero" className="relative w-full">
-        {/* Subtle grid background */}
-        <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
+      <main id="hero" className="relative w-full overflow-hidden bg-[#f9f9f9]" style={{ minHeight: "100dvh" }}>
+        {/* Subtle dot-grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, #d4d4d4 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+            opacity: 0.35,
+          }}
+          aria-hidden
+        />
 
-        <div className="relative mx-auto max-w-6xl px-6 md:px-8 grid min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-[1fr_380px] gap-16 items-center py-20">
+        {/* Vertical rotated label — left side */}
+        <div className="absolute left-5 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-3 z-10">
+          <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-[0.25em] rotate-[-90deg] whitespace-nowrap">
+            Full-Stack Developer
+          </span>
+          <div className="w-px h-16 bg-neutral-200" />
+        </div>
 
-          {/* RIGHT — Photo (shows first in DOM for LG grid order) */}
-          <div ref={heroLeftRef} className="order-last lg:order-last">
-            <div className="relative w-full max-w-[340px] mx-auto lg:mx-0 lg:ml-auto">
-              {/* Photo container */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-neutral-200 shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
-                <Image
-                  src="/images/mayank2.jpg"
-                  alt="Mayank — Software Engineer"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                  sizes="(min-width: 1024px) 340px, 90vw"
-                />
-                {/* Gradient overlay at bottom */}
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/60 to-transparent" />
-              </div>
+        {/* Main grid: text left, photo right */}
+        <div className="relative mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_500px] min-h-dvh items-center gap-0">
 
-              {/* Floating availability badge */}
-              <div className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 shadow-md shadow-black/5 backdrop-blur-sm">
-                <span className="status-dot" />
-                <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">
-                  Open to internships
-                </span>
-              </div>
+          {/* ── LEFT COLUMN ── */}
+          <div ref={heroRightRef} className="flex flex-col justify-center py-24 lg:py-0 z-10">
 
-              {/* Small tech badge */}
-              <div className="absolute -top-4 -right-4 rounded-xl border border-neutral-200 bg-white px-3 py-2 shadow-md shadow-black/5">
-                <p className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">stack</p>
-                <p className="font-semibold text-[11px] text-[#0a0a0a] mt-0.5">MERN · Next.js</p>
-              </div>
-            </div>
-          </div>
-
-          {/* LEFT — Text content */}
-          <div ref={heroRightRef} className="flex flex-col justify-center order-first lg:order-first">
-
-            {/* Eyebrow */}
-            <div className="flex items-center gap-2 mb-6">
-              <span className="eyebrow">Software Engineer</span>
-              <span className="text-neutral-300">/</span>
-              <span className="eyebrow">MERN Stack</span>
-            </div>
-
-            {/* Name */}
-            <h1 className="font-extrabold tracking-tighter leading-none text-[#0a0a0a]" style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}>
-              Mayank<br />
-              <span className="text-neutral-400">Singh.</span>
-            </h1>
-
-            {/* Desc */}
-            <p className="mt-6 text-base md:text-lg text-neutral-500 max-w-md leading-relaxed">
-              I build <span className="text-[#0a0a0a] font-semibold">production-grade web apps</span> with React,
-              Node.js &amp; MongoDB. Based in Lucknow, India.
-              Currently seeking internship opportunities.
-            </p>
-
-            {/* Stack pills */}
-            <div className="mt-6 flex flex-wrap gap-2">
-              {STACK.map((s) => (
-                <span key={s} className="skill-pill text-[12px]">{s}</span>
+            {/* Stats row */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="flex gap-10 mb-8"
+            >
+              {STATS.slice(0, 2).map(({ value, label }) => (
+                <div key={label} className="flex flex-col">
+                  <span className="text-3xl md:text-4xl font-black tracking-tighter text-[#0a0a0a]">{value}</span>
+                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-widest mt-0.5">{label}</span>
+                </div>
               ))}
-            </div>
+            </motion.div>
+
+            {/* Giant Hello */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h1
+                className="font-black tracking-tighter leading-[0.9] text-[#0a0a0a] select-none"
+                style={{ fontSize: "clamp(5rem, 15vw, 10rem)" }}
+              >
+                Hello.
+              </h1>
+            </motion.div>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4 text-neutral-500 text-base md:text-lg max-w-sm leading-relaxed"
+            >
+              — It&apos;s{" "}
+              <span className="text-[#0a0a0a] font-semibold">Mayank</span>, an aspiring{" "}
+              <span className="text-[#0a0a0a] font-semibold">Software Engineer</span>{" "}
+              building production-grade web apps.
+            </motion.p>
+
+            {/* Social icons row */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 flex items-center gap-2"
+            >
+              {SOCIALS.map(({ href, label, path }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.92 }}
+                  className="grid size-10 place-items-center rounded-xl border border-neutral-200 bg-white text-neutral-500 hover:border-neutral-400 hover:text-[#0a0a0a] transition-all duration-200 shadow-sm hover:shadow-md"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-[15px]" aria-hidden>
+                    <path d={path} />
+                  </svg>
+                </motion.a>
+              ))}
+            </motion.div>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 flex flex-wrap gap-3"
+            >
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
@@ -188,7 +217,6 @@ export default function Home() {
               >
                 View my work <ArrowRight className="size-4" />
               </motion.button>
-
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
@@ -200,36 +228,68 @@ export default function Home() {
               >
                 <Download className="size-4" /> Resume
               </motion.a>
+            </motion.div>
+
+            {/* Scroll hint */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="mt-16 hidden lg:flex items-center gap-2 text-neutral-400"
+            >
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                className="text-[11px] font-mono uppercase tracking-widest"
+              >
+                Scroll down ↓
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT COLUMN — Full-height photo ── */}
+          <div ref={heroLeftRef} className="relative hidden lg:flex items-stretch self-stretch">
+            {/* Photo — grayscale by default, full color on hover */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative w-full overflow-hidden"
+              style={{ minHeight: "100dvh" }}
+            >
+              <Image
+                src="/images/mayank2.jpg"
+                alt="Mayank — Aspiring Software Engineer"
+                fill
+                priority
+                className="object-cover object-top transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
+                sizes="(min-width: 1024px) 500px, 0px"
+              />
+              {/* Gradient fade on left edge to blend into background */}
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10" />
+              {/* Bottom fade */}
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10" />
+
+              {/* Hover hint */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                className="absolute bottom-8 right-6 z-20 flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-neutral-200 px-3 py-1.5 text-[11px] font-mono text-neutral-500 shadow-sm opacity-0 group-hover:opacity-0 transition-opacity"
+              >
+                hover for colour
+              </motion.div>
+            </motion.div>
+
+            {/* Floating availability badge */}
+            <div className="absolute bottom-10 left-4 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+              <span className="status-dot" />
+              <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
             </div>
 
-            {/* Social icons */}
-            <div className="mt-8 flex items-center gap-2">
-              {SOCIALS.map(({ href, label, path }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="grid size-9 place-items-center rounded-lg border border-neutral-200 bg-white text-neutral-500 hover:border-neutral-400 hover:text-[#0a0a0a] transition-colors shadow-sm"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="size-[15px]" aria-hidden>
-                    <path d={path} />
-                  </svg>
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <div className="mt-10 grid grid-cols-4 gap-4 border-t border-neutral-100 pt-8">
-              {STATS.map(({ value, label }) => (
-                <div key={label} className="flex flex-col gap-0.5">
-                  <span className="text-2xl font-extrabold tracking-tight text-[#0a0a0a]">{value}</span>
-                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">{label}</span>
-                </div>
-              ))}
+            {/* Year label */}
+            <div className="absolute top-10 right-5 z-20 font-mono text-[10px] text-neutral-300 uppercase tracking-widest">
+              2026
             </div>
           </div>
         </div>
