@@ -12,7 +12,7 @@ import {
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 
-import { getHashnodePosts, formatPostDate, type HashnodePost } from "@/lib/hashnode";
+import { formatPostDate, type HashnodePost } from "@/lib/hashnode";
 import { blogConfig } from "@/data/blog-config";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default async function BlogPage() {
     // Add 10s timeout to prevent indefinite hanging during slow/unreachable APIs
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
-    
+
     const res = await fetch("https://gql.hashnode.com", {
       method: "POST",
       signal: controller.signal,
@@ -62,9 +62,9 @@ export default async function BlogPage() {
       }),
       next: { revalidate: 3600 },
     });
-    
+
     clearTimeout(timeout);
-    
+
     if (res.ok) {
       const json = await res.json();
       const edges = json?.data?.publication?.posts?.edges ?? [];
@@ -114,7 +114,7 @@ export default async function BlogPage() {
                 </h1>
 
                 <p className="mt-5 max-w-xl text-base md:text-lg leading-relaxed text-neutral-500">
-                  I'm starting to write out these blogs to document my journey and share what I've learned along the way. I'm not an expert frontend blog writer, just a developer sharing my process.
+                  I'm starting to write out these blogs to document my journey and share what I've learned along the way.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">

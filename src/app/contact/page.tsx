@@ -219,7 +219,7 @@ export default function Contact() {
                     <a
                       key={s.label}
                       href={s.href}
-                      target={s.label !== "Email" ? "_blank" : undefined}
+                      target={s.label === "Email" || s.label === "Phone" ? undefined : "_blank"}
                       rel="noopener noreferrer"
                       className="group flex items-center gap-3 text-sm text-neutral-500 transition-colors"
                     >

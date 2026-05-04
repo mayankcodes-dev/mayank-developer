@@ -8,9 +8,9 @@ export default function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Skip cursor on touch devices or during build/development heavy loads
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Skip cursor in SSR or on touch devices
     if (typeof window === "undefined") return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const dot  = dotRef.current!;
     const ring = ringRef.current!;

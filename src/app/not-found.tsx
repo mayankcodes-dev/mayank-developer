@@ -88,7 +88,7 @@ export default function NotFound() {
                   <TypingLine
                     text={line.text}
                     delay={i === 0 ? line.delay : 0}
-                    error={line.error}
+                    error={line.error ?? false}
                     onDone={() => {
                       if (i === visibleLines && i < TERMINAL_LINES.length - 1) {
                         setTimeout(() => setVisibleLines((v) => v + 1), 150);

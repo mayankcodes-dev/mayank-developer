@@ -127,6 +127,10 @@ export default function ProjectsPage() {
                   transition={{ duration: 0.3, delay: idx * 0.04 }}
                   className="card-eng group relative flex flex-col overflow-hidden cursor-pointer"
                   onClick={() => setSelectedProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && setSelectedProject(project)}
+                  aria-label={`View details for ${project.title}`}
                 >
                   {/* Badges */}
                   <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
@@ -208,6 +212,7 @@ export default function ProjectsPage() {
                           rel="noopener noreferrer"
                           className="btn btn-outline btn-sm text-[12px]"
                           aria-label={`View ${project.title} on GitHub`}
+                          onClick={(e) => e.stopPropagation()}
                         >
                           <GithubIcon className="size-3.5" /> Code
                         </a>
@@ -219,6 +224,7 @@ export default function ProjectsPage() {
                           rel="noopener noreferrer"
                           className="btn btn-primary btn-sm text-[12px]"
                           aria-label={`View live demo of ${project.title}`}
+                          onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="size-3.5" /> Live
                         </a>

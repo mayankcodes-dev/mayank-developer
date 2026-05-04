@@ -66,7 +66,6 @@ const pinnedProjects = projects
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-  const [showAll, setShowAll] = useState(false);
 
   const markLoaded = (id: string) =>
     setLoadedImages((prev) => new Set([...prev, id]));
