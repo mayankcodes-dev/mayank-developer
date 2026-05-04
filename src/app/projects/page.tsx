@@ -125,9 +125,7 @@ export default function ProjectsPage() {
                 >
                   {/* Badges */}
                   <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
-                    {project.isPinned && (
-                      <span className="badge badge-neutral text-[10px]">Pinned</span>
-                    )}
+
                     <span className={[
                       "badge text-[10px]",
                       project.type === "freelance" ? "badge-yellow" : "badge-green",
@@ -137,18 +135,24 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Cover */}
-                  <div className="relative h-44 overflow-hidden bg-neutral-50 border-b border-neutral-100">
-                    {project.image ? (
+                  <div className="relative flex h-44 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
+                    {project.link ? (
+                      <img
+                        src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                        alt={project.title}
+                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : project.image ? (
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
-                    ) : null}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-15 group-hover:opacity-25 transition-opacity">
-                      <Code2 className="size-16 text-neutral-300" />
-                    </div>
+                    ) : (
+                      <Code2 className="size-16 text-neutral-200 transition-transform duration-300 group-hover:scale-110 group-hover:text-neutral-300" />
+                    )}
                   </div>
 
                   {/* Content */}

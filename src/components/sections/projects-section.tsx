@@ -32,7 +32,7 @@ export default function ProjectsSection() {
         >
           <div>
             <p className="eyebrow mb-2">
-              <Pin className="size-3" /> Pinned Projects
+              Featured Projects
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
               What I&apos;ve built
@@ -59,9 +59,7 @@ export default function ProjectsSection() {
             >
               {/* ── Badges ── */}
               <div className="absolute right-3 top-3 z-10 flex flex-col items-end gap-1.5">
-                <span className="badge badge-neutral text-[10px]">
-                  <Pin className="size-2.5" /> Pinned
-                </span>
+
                 <span
                   className={[
                     "badge text-[10px]",
@@ -75,8 +73,17 @@ export default function ProjectsSection() {
               </div>
 
               {/* ── Cover ── */}
-              <div className="relative flex h-40 items-center justify-center bg-neutral-50 border-b border-neutral-100">
-                <Code2 className="size-12 text-neutral-200 transition-transform duration-300 group-hover:scale-110 group-hover:text-neutral-300" />
+              <div className="relative flex h-40 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
+                {project.link ? (
+                  <img 
+                    src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <Code2 className="size-12 text-neutral-200 transition-transform duration-300 group-hover:scale-110 group-hover:text-neutral-300" />
+                )}
               </div>
 
               {/* ── Content ── */}

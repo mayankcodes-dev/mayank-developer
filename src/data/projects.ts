@@ -111,6 +111,20 @@ export const projects: Project[] = [
     period: "2025",
   },
   {
+    id: "mayank-developer",
+    title: "Portfolio Website",
+    description: "Personal portfolio website built with Next.js",
+    longDescription: "A fully responsive, high-performance developer portfolio built with Next.js, featuring smooth GSAP/Framer Motion animations, a premium dark-themed technical aesthetic, and a custom terminal boot sequence.",
+    image: "/images/mayank-developer.webp",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
+    link: "https://mayank-developer.vercel.app",
+    github: "https://github.com/coderMayank69/mayank-developer",
+    featured: false,
+    isPinned: false,
+    type: "personal",
+    period: "2026",
+  },
+  {
     id: "note-keeper",
     title: "Note Keeper",
     description:
