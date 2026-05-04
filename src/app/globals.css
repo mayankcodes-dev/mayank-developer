@@ -584,15 +584,15 @@ button, [role="button"] {
 }
 
 /* ════════════════════════════════════════════════════════════
-   HERO PHOTO — cursor spotlight color reveal
-   Layer 1: Always grayscale · Layer 2: Color masked to cursor
+   HERO PHOTO — smooth grayscale-to-color on hover
    ════════════════════════════════════════════════════════════ */
-.hero-photo-grayscale {
+.hero-photo {
   filter: grayscale(100%) contrast(1.08) brightness(0.96);
+  transition: filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hero-photo-color {
-  filter: contrast(1.02) brightness(1.02) saturate(1.1);
+.group\/hero:hover .hero-photo {
+  filter: grayscale(0%) contrast(1) brightness(1);
 }
 
 /* ════════════════════════════════════════════════════════════

@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
+import { useLayoutEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -84,26 +84,7 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
   const heroRightRef = useRef<HTMLDivElement>(null);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const heroPhotoRef = useRef<HTMLDivElement>(null);
   const stats = useHeroStats();
-
-  /* ── Parallax: subtle upward drift on the hero image as user scrolls ── */
-  const { scrollYProgress } = useScroll({
-    target: heroSectionRef,
-    offset: ["start start", "end start"],
-  });
-  const rawParallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const parallaxY = useSpring(rawParallaxY, { stiffness: 80, damping: 30, mass: 0.5 });
-
-  /* ── Spotlight: cursor-based color reveal ── */
-  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
-  const [isHoveringPhoto, setIsHoveringPhoto] = useState(false);
-
-  const handlePhotoMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setSpotlightPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, []);
 
   const [latestPost, setLatestPost] = useState<HashnodePost | null>(null);
 
@@ -140,7 +121,7 @@ export default function Home() {
       <Navbar />
 
       {/* ══════════════════════════ HERO ══════════════════════════ */}
-      <main ref={heroSectionRef} id="hero" className="relative w-full bg-[#f9f9f9]" style={{ minHeight: "100dvh" }}>
+      <main id="hero" className="relative w-full bg-[#f9f9f9]" style={{ minHeight: "100dvh" }}>
         {/* Dot-grid background */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -268,62 +249,24 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* ── PHOTO COLUMN — cursor spotlight effect ── */}
+          {/* ── PHOTO COLUMN — smooth grayscale-to-color on hover ── */}
           <div
-            ref={heroPhotoRef}
-            className="relative hidden lg:block"
-            style={{ position: "sticky", top: 0, height: "100dvh", alignSelf: "start", overflow: "hidden", cursor: "none" }}
-            onMouseMove={handlePhotoMouseMove}
-            onMouseEnter={() => setIsHoveringPhoto(true)}
-            onMouseLeave={() => setIsHoveringPhoto(false)}
+            className="relative hidden lg:block group/hero"
+            style={{ position: "sticky", top: 0, height: "100dvh", alignSelf: "start", overflow: "hidden" }}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 1.06 }}
+              initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              style={{ y: parallaxY }}
               className="absolute inset-0"
             >
-              {/* Layer 1: Grayscale base (always visible) */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
-                className="hero-photo-grayscale absolute inset-0 w-full h-full object-cover"
+                className="hero-photo absolute inset-0 w-full h-full object-cover"
                 style={{ objectPosition: "50% 45%" }}
                 loading="eager"
-              />
-
-              {/* Layer 2: Color overlay (masked to cursor spotlight) */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/mayank-hero.webp"
-                alt=""
-                aria-hidden
-                className="hero-photo-color absolute inset-0 w-full h-full object-cover pointer-events-none"
-                style={{
-                  objectPosition: "50% 45%",
-                  opacity: isHoveringPhoto ? 1 : 0,
-                  maskImage: `radial-gradient(circle 180px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, black 40%, transparent 100%)`,
-                  WebkitMaskImage: `radial-gradient(circle 180px at ${spotlightPos.x}px ${spotlightPos.y}px, black 0%, black 40%, transparent 100%)`,
-                  transition: "opacity 0.4s ease",
-                }}
-              />
-
-              {/* Custom cursor ring */}
-              <div
-                className="pointer-events-none absolute z-30"
-                style={{
-                  left: spotlightPos.x - 24,
-                  top: spotlightPos.y - 24,
-                  width: 48,
-                  height: 48,
-                  borderRadius: "50%",
-                  border: "1.5px solid rgba(255,255,255,0.5)",
-                  opacity: isHoveringPhoto ? 1 : 0,
-                  transition: "opacity 0.3s ease",
-                  mixBlendMode: "difference",
-                }}
               />
 
               {/* Left edge gradient — blends into page bg */}
