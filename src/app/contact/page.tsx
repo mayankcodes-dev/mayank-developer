@@ -16,12 +16,12 @@ const ICON_PATHS = {
 };
 
 const SOCIALS = [
-  { label: "Email",    value: "mayankbca96325@gmail.com",           href: "mailto:mayankbca96325@gmail.com",           icon: "email" },
-  { label: "Phone",    value: "+91 8115529832",                    href: "tel:+918115529832",                        icon: "phone" },
-  { label: "GitHub",   value: "github.com/coderMayank69",          href: "https://github.com/coderMayank69",         icon: "github" },
-  { label: "LinkedIn", value: "linkedin.com/in/codermayank69",     href: "https://www.linkedin.com/in/codermayank69/",icon: "linkedin" },
-  { label: "LeetCode", value: "leetcode.com/u/coderMayank69",      href: "https://leetcode.com/u/coderMayank69/",    icon: "leetcode" },
-  { label: "Hashnode", value: "codermayank69.hashnode.dev",        href: "https://codermayank69.hashnode.dev/",      icon: "hashnode" },
+  { label: "Email",    value: "mayankbca96325@gmail.com",           href: "mailto:mayankbca96325@gmail.com",           icon: "email",    colorClass: "group-hover:text-red-500",    iconClass: "group-hover:text-red-500 group-hover:border-red-500/30" },
+  { label: "Phone",    value: "+91 8115529832",                    href: "tel:+918115529832",                        icon: "phone",    colorClass: "group-hover:text-emerald-500", iconClass: "group-hover:text-emerald-500 group-hover:border-emerald-500/30" },
+  { label: "GitHub",   value: "github.com/coderMayank69",          href: "https://github.com/coderMayank69",         icon: "github",   colorClass: "group-hover:text-neutral-900",       iconClass: "group-hover:text-neutral-900 group-hover:border-neutral-900/30" },
+  { label: "LinkedIn", value: "linkedin.com/in/codermayank69",     href: "https://www.linkedin.com/in/codermayank69/",icon: "linkedin", colorClass: "group-hover:text-[#0A66C2]",   iconClass: "group-hover:text-[#0A66C2] group-hover:border-[#0A66C2]/30" },
+  { label: "LeetCode", value: "leetcode.com/u/coderMayank69",      href: "https://leetcode.com/u/coderMayank69/",    icon: "leetcode", colorClass: "group-hover:text-[#FFA116]",   iconClass: "group-hover:text-[#FFA116] group-hover:border-[#FFA116]/30" },
+  { label: "Hashnode", value: "codermayank69.hashnode.dev",        href: "https://codermayank69.hashnode.dev/",      icon: "hashnode", colorClass: "group-hover:text-[#2962FF]",   iconClass: "group-hover:text-[#2962FF] group-hover:border-[#2962FF]/30" },
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -221,13 +221,13 @@ export default function Contact() {
                       href={s.href}
                       target={s.label !== "Email" ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-3 text-sm text-neutral-500 transition-colors hover:text-[#0a0a0a]"
+                      className="group flex items-center gap-3 text-sm text-neutral-500 transition-colors"
                     >
-                      <span className="grid size-8 shrink-0 place-items-center rounded-lg border border-neutral-200 bg-white transition-colors group-hover:border-neutral-400 group-hover:text-[#0a0a0a]">
+                      <span className={`grid size-8 shrink-0 place-items-center rounded-lg border border-neutral-200 bg-white transition-colors ${s.iconClass || "group-hover:border-neutral-400 group-hover:text-[#0a0a0a]"}`}>
                         <SocialIcon type={s.icon} />
                       </span>
                       <div>
-                        <p className="font-semibold text-[#0a0a0a] text-sm">{s.label}</p>
+                        <p className={`font-semibold text-[#0a0a0a] text-sm transition-colors ${s.colorClass || "group-hover:text-[#0a0a0a]"}`}>{s.label}</p>
                         <p className="text-xs text-neutral-400">{s.value}</p>
                       </div>
                     </a>
@@ -328,7 +328,7 @@ export default function Contact() {
             >
               <iframe
                 title="Mayank's location — Krishna Nagar, Lucknow"
-                src="https://maps.google.com/maps?q=Krishna+Nagar,+Lucknow,+Uttar+Pradesh,+India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7122.9512082682495!2d80.8764773793074!3d26.792980875759895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1777902355610!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: "grayscale(0.1) contrast(1.05) saturate(0.9)" }}
