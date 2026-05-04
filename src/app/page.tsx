@@ -248,49 +248,37 @@ export default function Home() {
           </div>
 
           {/* ── RIGHT COLUMN — Full-height photo ── */}
-          <div ref={heroLeftRef} className="relative hidden lg:flex items-stretch self-stretch">
+          <div ref={heroLeftRef} className="relative hidden lg:block self-stretch" style={{ minHeight: "100dvh" }}>
             {/* Photo — grayscale by default, full color on hover */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative w-full overflow-hidden"
-              style={{ minHeight: "100dvh" }}
+              className="group sticky top-0 w-full overflow-hidden"
+              style={{ height: "100dvh" }}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/images/mayank2.jpg"
                 alt="Mayank — Aspiring Software Engineer"
-                fill
-                priority
-                className="object-cover object-top transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
-                sizes="(min-width: 1024px) 500px, 0px"
+                className="w-full h-full object-cover object-top transition-all duration-700 ease-in-out grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
               />
               {/* Gradient fade on left edge to blend into background */}
               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10" />
               {/* Bottom fade */}
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10" />
 
-              {/* Hover hint */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="absolute bottom-8 right-6 z-20 flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-neutral-200 px-3 py-1.5 text-[11px] font-mono text-neutral-500 shadow-sm opacity-0 group-hover:opacity-0 transition-opacity"
-              >
-                hover for colour
-              </motion.div>
+              {/* Floating availability badge */}
+              <div className="absolute bottom-10 left-4 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+                <span className="status-dot" />
+                <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
+              </div>
+
+              {/* Year label */}
+              <div className="absolute top-10 right-5 z-20 font-mono text-[10px] text-neutral-300 uppercase tracking-widest">
+                2026
+              </div>
             </motion.div>
-
-            {/* Floating availability badge */}
-            <div className="absolute bottom-10 left-4 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
-              <span className="status-dot" />
-              <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
-            </div>
-
-            {/* Year label */}
-            <div className="absolute top-10 right-5 z-20 font-mono text-[10px] text-neutral-300 uppercase tracking-widest">
-              2026
-            </div>
           </div>
         </div>
       </main>
