@@ -113,6 +113,8 @@ export default function ProjectsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.06 }}
                   className="card-eng group relative flex flex-col overflow-hidden cursor-pointer"
+                  whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedProject(project)}
                   role="button"
                   tabIndex={0}

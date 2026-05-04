@@ -86,18 +86,21 @@ export function Footer() {
             {/* Social icons */}
             <div className="flex gap-2">
               {SOCIALS.map(({ href, label, path, hoverClass }) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
                   aria-label={label}
                   className={`w-8 h-8 rounded-lg border border-neutral-200 bg-white flex items-center justify-center text-neutral-400 transition-colors ${hoverClass || "hover:text-[#0a0a0a] hover:border-neutral-400"}`}
+                  whileHover={{ y: -3, scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5" aria-hidden>
                     <path d={path} />
                   </svg>
-                </a>
+                </motion.a>
               ))}
             </div>
 

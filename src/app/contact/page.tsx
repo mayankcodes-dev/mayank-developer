@@ -216,12 +216,14 @@ export default function Contact() {
                 <p className="eyebrow mb-4">Other ways to reach me</p>
                 <div className="space-y-2.5">
                   {SOCIALS.map((s) => (
-                    <a
+                    <motion.a
                       key={s.label}
                       href={s.href}
                       target={s.label === "Email" || s.label === "Phone" ? undefined : "_blank"}
                       rel="noopener noreferrer"
                       className="group flex items-center gap-3 text-sm text-neutral-500 transition-colors"
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
                     >
                       <span className={`grid size-8 shrink-0 place-items-center rounded-lg border border-neutral-200 bg-white transition-colors ${s.iconClass || "group-hover:border-neutral-400 group-hover:text-[#0a0a0a]"}`}>
                         <SocialIcon type={s.icon} />
@@ -230,7 +232,7 @@ export default function Contact() {
                         <p className={`font-semibold text-[#0a0a0a] text-sm transition-colors ${s.colorClass || "group-hover:text-[#0a0a0a]"}`}>{s.label}</p>
                         <p className="text-xs text-neutral-400">{s.value}</p>
                       </div>
-                    </a>
+                    </motion.a>
                   ))}
                 </div>
               </div>

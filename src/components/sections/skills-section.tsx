@@ -65,6 +65,8 @@ export default function SkillsSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
                 className="card-eng group flex flex-col items-center gap-3 p-5"
+                whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+                whileTap={{ scale: 0.97 }}
               >
                 {/* Logo */}
                 <div

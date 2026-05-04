@@ -286,7 +286,11 @@ button, [role="button"] {
   border: 1.5px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn-primary {
@@ -326,13 +330,14 @@ button, [role="button"] {
   background: #ffffff;
   border: 1.5px solid #e5e5e5;
   border-radius: 0.75rem;
-  transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-eng:hover {
   border-color: #d4d4d4;
-  box-shadow: 0 4px 24px -6px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -8px rgba(0,0,0,0.1);
 }
 
 /* ════════════════════════════════════════════════════════════
