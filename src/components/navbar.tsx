@@ -9,7 +9,6 @@ import { LogoMark } from "@/components/logo";
 
 const NAV_LINKS = [
   { label: "Home",         href: "/"               },
-  { label: "About",        href: "/about"          },
   { label: "Projects",     href: "/projects"       },
   { label: "Certificates", href: "/certifications" },
   { label: "Blog",         href: "/blog"           },
@@ -48,13 +47,10 @@ export default function Navbar() {
         <div
           className="flex items-center justify-between md:justify-center rounded-full transition-all duration-300 bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-neutral-200 px-4 md:px-6 py-2"
         >
-          {/* ── Logo — visible on mobile AND desktop ── */}
-          <Link href="/" aria-label="Home" className="flex items-center gap-2 mr-3 group">
+          {/* ── Logo — small screens only ── */}
+          <Link href="/" aria-label="Home" className="md:hidden flex items-center gap-2 group">
             <span className="transition-transform duration-200 group-hover:scale-105">
               <LogoMark size={28} />
-            </span>
-            <span className="hidden sm:block font-semibold text-sm text-[#0a0a0a] tracking-tight">
-              Mayank
             </span>
           </Link>
 

@@ -290,7 +290,7 @@ export default function Home() {
                 loading="eager"
               />
 
-              {/* ── Color reveal layer: masked to cursor spotlight ── */}
+              {/* ── Color reveal layer: full-image colour on hover ── */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/mayank-hero.webp"
@@ -301,9 +301,7 @@ export default function Home() {
                   objectFit: "cover",
                   objectPosition: "50% 0%",
                   opacity: imgHovering ? 1 : 0,
-                  transition: "opacity 0.4s ease",
-                  WebkitMaskImage: `radial-gradient(circle 420px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 100%)`,
-                  maskImage: `radial-gradient(circle 420px at ${cursorPos.x}px ${cursorPos.y}px, black 0%, black 45%, rgba(0,0,0,0.5) 65%, transparent 100%)`,
+                  transition: "opacity 0.5s ease",
                 }}
               />
 

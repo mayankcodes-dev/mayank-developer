@@ -13,7 +13,6 @@ const NAV_COLS: Array<{
     heading: "Navigate",
     links: [
       { label: "Home",         href: "/"               },
-      { label: "About",        href: "/about"          },
       { label: "Projects",     href: "/projects"       },
       { label: "Certificates", href: "/certifications" },
       { label: "Blog",         href: "/blog"           },
