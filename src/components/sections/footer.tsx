@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import { LogoMark } from "@/components/logo";
 
 const NAV_COLS: Array<{
   heading: string;
@@ -70,10 +71,7 @@ export function Footer() {
           {/* ── Brand column ── */}
           <motion.div variants={fadeUp(0)}>
             <div className="flex items-center gap-3 mb-4">
-              {/* Monogram */}
-              <div className="w-9 h-9 rounded-md bg-[#0a0a0a] text-white flex items-center justify-center font-bold text-sm font-mono">
-                M
-              </div>
+              <LogoMark size={36} />
               <div>
                 <p className="font-semibold text-[#0a0a0a] text-[15px]">Mayank Singh</p>
                 <p className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
