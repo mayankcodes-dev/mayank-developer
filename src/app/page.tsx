@@ -245,7 +245,7 @@ export default function Home() {
               <img
                 src="/images/mayank-hero.png"
                 alt="Mayank — Aspiring Software Engineer"
-                className="hero-photo absolute bottom-[1vh] left-[65%] -translate-x-1/2 w-full max-w-[1050px] h-[98dvh] object-cover object-top"
+                className="absolute bottom-[-2vh] left-[65%] xl:left-[70%] -translate-x-1/2 w-[150%] max-w-[1300px] h-[102dvh] object-cover object-top"
                 loading="eager"
               />
 
@@ -257,7 +257,7 @@ export default function Home() {
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#f9f9f9]/80 to-transparent z-10 pointer-events-none" />
 
               {/* Availability badge */}
-              <div className="absolute bottom-[15%] left-[40%] xl:left-[45%] z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+              <div className="absolute bottom-[25%] left-[30%] xl:left-[35%] z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
                 <span className="status-dot" />
                 <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
               </div>

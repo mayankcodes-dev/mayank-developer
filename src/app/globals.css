@@ -588,17 +588,7 @@ button, [role="button"] {
   height: auto !important;
 }
 
-/* ════════════════════════════════════════════════════════════
-   HERO PHOTO — smooth grayscale-to-color on hover
-   ════════════════════════════════════════════════════════════ */
-.hero-photo {
-  filter: grayscale(100%) contrast(1.08) brightness(0.96);
-  transition: filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.group\/hero:hover .hero-photo {
-  filter: grayscale(0%) contrast(1) brightness(1);
-}
 
 /* ════════════════════════════════════════════════════════════
    FOOTER BRAND NAME — Giant distorted bold text
