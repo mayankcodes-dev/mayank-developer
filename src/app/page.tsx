@@ -137,7 +137,7 @@ export default function Home() {
             – sidebar is a real 56px column at xl+ so it NEVER overlaps content
             – image column is much larger (560 / 760 / 920px) for an impactful photo */}
         <div
-          className="relative mx-auto max-w-[1600px] grid grid-cols-1 lg:grid-cols-[1fr_58%] xl:grid-cols-[56px_1fr_58%]"
+          className="relative mx-auto max-w-[1600px] grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[56px_360px_1fr]"
           style={{ minHeight: "100dvh" }}
         >
 
@@ -265,7 +265,11 @@ export default function Home() {
                 src="/images/mayank-hero.png"
                 alt="Mayank — Aspiring Software Engineer"
                 className="hero-photo absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: "50% 18%" }}
+                style={{
+                  objectPosition: "50% 15%",
+                  transform: "scale(1.55)",
+                  transformOrigin: "50% 30%",
+                }}
                 loading="eager"
               />
 
