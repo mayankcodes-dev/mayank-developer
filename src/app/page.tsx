@@ -197,7 +197,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 text-neutral-500 text-base md:text-lg leading-relaxed"
+              className="mt-4 text-neutral-500 text-base md:text-lg leading-relaxed whitespace-nowrap"
             >
               — It&apos;s Mayank, an aspiring Software Engineer.
             </motion.p>
@@ -264,7 +264,7 @@ export default function Home() {
               <img
                 src="/images/mayank-hero.png"
                 alt="Mayank — Aspiring Software Engineer"
-                className="hero-photo absolute bottom-0 left-[55%] -translate-x-1/2 w-full max-w-[850px] h-[100dvh] object-cover object-top"
+                className="hero-photo absolute bottom-0 left-[55%] -translate-x-1/2 w-full max-w-[850px] h-[100dvh] object-cover object-top contrast-[1.15] saturate-[1.1] brightness-[1.05]"
                 loading="eager"
               />
 
@@ -276,7 +276,7 @@ export default function Home() {
               <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#f9f9f9]/60 to-transparent z-10 pointer-events-none" />
 
               {/* Availability badge */}
-              <div className="absolute bottom-10 left-8 z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+              <div className="absolute bottom-16 left-[25%] lg:left-[30%] xl:left-[35%] z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
                 <span className="status-dot" />
                 <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
               </div>
