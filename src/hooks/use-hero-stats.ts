@@ -10,8 +10,8 @@ interface HeroStats {
 
 function fmt(n: number | null, fallback: string): string {
   if (n === null) return fallback;
-  if (n >= 1000) return `${(n / 1000).toFixed(1).replace(".0", "")}K+`;
-  return `${n}+`;
+  if (n >= 1000) return `${(n / 1000).toFixed(1).replace(".0", "")}K`;
+  return `${n}`;
 }
 
 /** Race a promise against a timeout — returns null if timed out */
