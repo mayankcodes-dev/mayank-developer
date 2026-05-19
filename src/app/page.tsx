@@ -137,7 +137,7 @@ export default function Home() {
             – sidebar is a real 56px column at xl+ so it NEVER overlaps content
             – image column is much larger (560 / 760 / 920px) for an impactful photo */}
         <div
-          className="relative mx-auto max-w-[1600px] grid grid-cols-1 lg:grid-cols-[1fr_640px] xl:grid-cols-[56px_1fr_860px] 2xl:grid-cols-[56px_1fr_1020px]"
+          className="relative mx-auto max-w-[1600px] grid grid-cols-1 lg:grid-cols-[1fr_58%] xl:grid-cols-[56px_1fr_58%]"
           style={{ minHeight: "100dvh" }}
         >
 
@@ -262,15 +262,15 @@ export default function Home() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/mayank-hero.webp"
+                src="/images/mayank-hero.png"
                 alt="Mayank — Aspiring Software Engineer"
                 className="hero-photo absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: "50% 45%" }}
+                style={{ objectPosition: "50% 18%" }}
                 loading="eager"
               />
 
               {/* Left edge gradient — blends into page bg */}
-              <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
               {/* Bottom fade */}
               <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f9f9f9] to-transparent z-10 pointer-events-none" />
               {/* Top fade */}
