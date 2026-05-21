@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState, MouseEvent } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ArrowRight, Award, Mail } from "lucide-react";
@@ -241,12 +242,14 @@ export default function Home() {
               transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
-              {/* Full Color Base Image */}
-              <img
-                src="/images/mayank-hero.png"
+              {/* Full Color Base Image — LCP: priority + WebP */}
+              <Image
+                src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
-                className="absolute bottom-[-2vh] left-[65%] xl:left-[70%] -translate-x-1/2 w-[150%] max-w-[1300px] h-[102dvh] object-cover object-top"
-                loading="eager"
+                fill
+                priority
+                sizes="(max-width: 1024px) 0px, 60vw"
+                className="absolute bottom-[-2vh] left-[65%] xl:left-[70%] -translate-x-1/2 !w-[150%] !max-w-[1300px] object-cover object-top"
               />
 
               {/* Left edge gradient — blends into page bg */}

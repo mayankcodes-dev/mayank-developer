@@ -74,6 +74,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        {/* Preconnect to external image/data CDNs for faster resource loading */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://api.microlink.io" />
+        <link rel="dns-prefetch" href="https://cdn.worldvectorlogo.com" />
+        <link rel="dns-prefetch" href="https://leetcard.jacoblin.cool" />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <PageLoader />
         <CustomCursor />

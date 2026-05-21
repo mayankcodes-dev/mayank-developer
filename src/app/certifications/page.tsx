@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteNav from "@/components/layout/site-nav";
 import { Footer } from "@/components/sections/footer";
@@ -52,7 +53,14 @@ function CertCard({ cert }: { cert: CertItem }) {
       <div className="relative flex h-36 w-full items-center justify-center bg-neutral-50 border-b border-neutral-100">
         {cert.issuerLogo ? (
           <div className="flex size-14 items-center justify-center rounded-xl bg-white border border-neutral-200 p-2.5 shadow-sm">
-            <img src={cert.issuerLogo} alt={cert.issuer} className="h-full w-full object-contain" />
+            <Image
+              src={cert.issuerLogo}
+              alt={cert.issuer}
+              width={48}
+              height={48}
+              className="h-full w-full object-contain"
+              loading="lazy"
+            />
           </div>
         ) : (
           <div className="flex size-12 items-center justify-center rounded-xl bg-white border border-neutral-200 shadow-sm">

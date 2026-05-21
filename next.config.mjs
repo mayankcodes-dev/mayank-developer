@@ -13,6 +13,16 @@ const nextConfig = {
   },
 
   images: {
+    /* Serve AVIF first, fall back to WebP — both are far smaller than PNG/JPEG */
+    formats: ["image/avif", "image/webp"],
+
+    /* Aggressive CDN cache — images never change without a new URL */
+    minimumCacheTTL: 31536000, // 1 year
+
+    /* Responsive breakpoints matching Tailwind defaults */
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 64, 96, 128, 256, 384],
+
     remotePatterns: [
       {
         // Hashnode CDN — cover images
