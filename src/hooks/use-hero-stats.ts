@@ -84,8 +84,8 @@ export function useHeroStats(): HeroStats {
   }, []);
 
   return {
-    problems: fmt(problems, "450+"),
-    contributions: fmt(contributions, "1.2K+"),
+    problems: fmt(problems, "450"),
+    contributions: fmt(contributions, "1.2K"),
     loading,
   };
 }

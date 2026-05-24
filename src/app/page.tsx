@@ -162,7 +162,7 @@ export default function Home() {
               >
                 <div className="flex flex-col">
                   <span className="text-4xl md:text-5xl font-bold tracking-tight text-[#0a0a0a] leading-none">
-                    {stats.loading ? "..." : stats.problems}
+                    {stats.loading ? "—" : stats.problems}
                   </span>
                   <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Problems
@@ -170,7 +170,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-4xl md:text-5xl font-bold tracking-tight text-[#0a0a0a] leading-none">
-                    {stats.loading ? "..." : stats.contributions}+
+                    {stats.loading ? "—" : `${stats.contributions}+`}
                   </span>
                   <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Contributions
