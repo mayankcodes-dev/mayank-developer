@@ -233,23 +233,23 @@ export default function Home() {
             >
               {/* Hero photo — fills column, person framed from shoulders up */}
               <Image
-                src="/images/mayank-hero.webp"
+                src="/images/mayank-hero-cropped.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 0px, 60vw"
-                className="absolute inset-0 w-full h-full object-cover object-[60%_top] filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
+                className="absolute inset-0 w-full h-full object-contain object-top filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
               />
 
               {/* Left edge gradient — blends into white */}
-              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
               {/* Bottom fade */}
-              <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
               {/* Top fade — subtle */}
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/60 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/40 to-transparent z-10 pointer-events-none" />
 
-              {/* Availability badge */}
-              <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full border border-neutral-200 bg-white/95 backdrop-blur-sm px-4 py-2 shadow-md">
+              {/* Availability badge — sits just below centre of image */}
+              <div className="absolute bottom-[18%] left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full border border-neutral-200 bg-white/95 backdrop-blur-sm px-4 py-2 shadow-md">
                 <span className="status-dot" />
                 <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
               </div>
