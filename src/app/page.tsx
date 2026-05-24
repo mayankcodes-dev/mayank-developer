@@ -134,7 +134,7 @@ export default function Home() {
                   <span className="text-4xl md:text-5xl font-bold tracking-tight text-[#0a0a0a] leading-none">
                     {stats.loading ? "—" : stats.problems}
                   </span>
-                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-[0.18em] mt-2">
+                  <span className="text-[11px] font-sans text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Problems
                   </span>
                 </div>
@@ -142,7 +142,7 @@ export default function Home() {
                   <span className="text-4xl md:text-5xl font-bold tracking-tight text-[#0a0a0a] leading-none">
                     {stats.loading ? "—" : stats.contributions}
                   </span>
-                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-[0.18em] mt-2">
+                  <span className="text-[11px] font-sans text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Contributions
                   </span>
                 </div>
@@ -155,7 +155,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h1
-                  className="font-black tracking-[-0.04em] leading-[0.88] text-[#0a0a0a] select-none text-[7rem] sm:text-[9.5rem] md:text-[11rem] lg:text-[13rem] xl:text-[14.5rem]"
+                  className="font-black tracking-[-0.04em] leading-[0.88] text-[#0a0a0a] select-none text-[6.5rem] sm:text-[8.5rem] md:text-[10rem] lg:text-[12rem] xl:text-[13.5rem]"
                 >
                   Hello.
                 </h1>
@@ -166,7 +166,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-6 text-neutral-500 text-base md:text-lg leading-relaxed font-light italic"
+                className="mt-6 text-neutral-500 text-base md:text-lg leading-relaxed font-sans font-light italic"
               >
                 — It&apos;s Mayank, an aspiring Software Engineer.
               </motion.p>
@@ -231,14 +231,14 @@ export default function Home() {
               transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
-              {/* Hero photo — fills column, aligned to the bottom */}
+              {/* Hero photo — fills column, aligned to the bottom-right */}
               <Image
                 src="/images/mayank-hero-cropped.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 0px, 60vw"
-                className="absolute inset-0 w-full h-full object-cover object-[center_bottom] filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
+                className="absolute inset-0 w-full h-full object-contain object-[right_bottom] filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
               />
 
               {/* Left edge gradient — blends into white */}

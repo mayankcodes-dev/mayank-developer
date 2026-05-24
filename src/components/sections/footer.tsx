@@ -141,29 +141,31 @@ export function Footer() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
 
-        {/* ── Giant brand name — Antigravity / Discord style ── */}
-        <motion.div
-          variants={fadeUp(0.2)}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="mt-16 md:mt-24 overflow-hidden select-none w-full text-center"
+      {/* ── Giant brand name — Antigravity / Discord style (spans full viewport width, minimal padding) ── */}
+      <motion.div
+        variants={fadeUp(0.2)}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="mt-12 md:mt-16 overflow-hidden select-none w-full text-center px-4 md:px-6"
+      >
+        <h2
+          className="footer-brand-name font-black uppercase tracking-[-0.05em] text-[#0a0a0a] leading-[0.8] w-full text-center select-none"
+          style={{ fontSize: "clamp(6rem, 24.5vw, 32rem)", letterSpacing: "-0.06em" }}
+          aria-hidden
         >
-          <h2
-            className="footer-brand-name font-black uppercase tracking-tighter text-[#0a0a0a] leading-[0.85] w-full"
-            style={{ fontSize: "clamp(5rem, 23vw, 28rem)" }}
-            aria-hidden
-          >
-            MAYANK
-          </h2>
-        </motion.div>
+          MAYANK
+        </h2>
+      </motion.div>
 
+      <div className="mx-auto max-w-6xl px-6 md:px-8 pb-10 md:pb-12 pt-4">
         {/* ── Bottom bar — below brand name ── */}
         <motion.div
           variants={fadeUp(0.3)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="mt-8 pt-6 border-t border-neutral-100 text-[12px] font-mono text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3 pb-4"
+          className="mt-4 pt-6 border-t border-neutral-100 text-[12px] font-mono text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3"
         >
           <p>© {new Date().getFullYear()} Mayank · Lucknow, India</p>
           <p className="flex items-center gap-1.5">
