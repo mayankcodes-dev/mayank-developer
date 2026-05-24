@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, MouseEvent } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +9,6 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ArrowRight, Award, Mail } from "lucide-react";
 import { useHeroStats } from "@/hooks/use-hero-stats";
 import Navbar from "@/components/navbar";
-import Logo from "@/components/logo";
 import { Footer } from "@/components/sections/footer";
 import SkillsSection from "@/components/sections/skills-section";
 import ProjectsSection from "@/components/sections/projects-section";
