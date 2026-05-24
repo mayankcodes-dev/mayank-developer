@@ -140,7 +140,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-4xl md:text-5xl font-bold tracking-tight text-[#0a0a0a] leading-none">
-                    {stats.loading ? "—" : `${stats.contributions}+`}
+                    {stats.loading ? "—" : stats.contributions}
                   </span>
                   <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Contributions
@@ -233,12 +233,12 @@ export default function Home() {
             >
               {/* Hero photo — fills column, person framed from shoulders up */}
               <Image
-                src="/images/mayank-hero1.webp"
+                src="/images/mayank-hero.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 0px, 60vw"
-                className="object-cover object-[50%_8%] filter grayscale contrast-[1.08] brightness-[0.97] transition-all duration-700 group-hover/hero:grayscale-0"
+                className="absolute inset-0 w-full h-full object-cover object-[60%_top] filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
               />
 
               {/* Left edge gradient — blends into white */}
