@@ -104,34 +104,6 @@ export default function Home() {
 
       {/* ══════════════════════════ HERO ══════════════════════════ */}
       <main id="hero" className="relative w-full bg-white" style={{ minHeight: "100dvh" }}>
-        {/* HERO HEADER (Desktop-only layout matching mockup) */}
-        <header className="absolute top-0 left-0 right-0 z-30 hidden lg:flex items-center justify-between px-12 py-8 max-w-[1600px] mx-auto w-full">
-          <div className="flex items-center">
-            <Logo size={32} />
-          </div>
-          <nav className="flex items-center gap-10 text-[13px] font-medium text-neutral-500">
-            <button onClick={() => scrollTo("skills")} className="hover:text-black transition-colors cursor-pointer font-sans">
-              About Me
-            </button>
-            <button onClick={() => scrollTo("projects")} className="hover:text-black transition-colors cursor-pointer font-sans">
-              Portfolio
-            </button>
-            <button onClick={() => scrollTo("certs")} className="hover:text-black transition-colors cursor-pointer font-sans">
-              Certificates
-            </button>
-            <button onClick={() => scrollTo("contact")} className="hover:text-black transition-colors cursor-pointer font-sans">
-              Contact
-            </button>
-          </nav>
-          <div>
-            <a
-              href="mailto:mayankbca96325@gmail.com"
-              className="text-[13px] font-semibold text-neutral-800 hover:text-black transition-colors pb-0.5 border-b border-neutral-300 hover:border-black flex items-center gap-1 cursor-pointer font-sans"
-            >
-              Book A Call <span className="text-[10px]">↗</span>
-            </a>
-          </div>
-        </header>
 
         {/* Main grid: [sidebar] | content | photo */}
         <div
@@ -140,14 +112,13 @@ export default function Home() {
         >
 
           {/* ── SIDEBAR — vertical label & line (xl+ only) ── */}
-          <div className="hidden xl:flex flex-col items-center justify-between py-16 border-r border-neutral-100 select-none text-neutral-400 font-mono text-[10px] relative h-full">
-            <span className="uppercase tracking-[0.25em] -rotate-90 whitespace-nowrap my-16 origin-center text-neutral-400">
-              Full-Stack Developer
-            </span>
-            <div className="w-px h-32 bg-neutral-200" />
-            <span className="uppercase tracking-widest leading-none mt-auto text-neutral-400">
-              2026
-            </span>
+          <div className="hidden xl:flex flex-col items-center justify-center border-r border-neutral-100 select-none text-neutral-400 font-mono text-[10px] relative" style={{ height: "100dvh", position: "sticky", top: 0 }}>
+            <div className="flex flex-col items-center gap-6">
+              <span className="uppercase tracking-[0.22em] -rotate-90 whitespace-nowrap origin-center text-neutral-400 text-[9px]">
+                Full-Stack Developer
+              </span>
+              <div className="w-px h-20 bg-neutral-300" />
+            </div>
           </div>
 
           {/* ── CONTENT COLUMN ── */}
@@ -249,7 +220,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* ── PHOTO COLUMN — smooth grayscale-to-color on hover ── */}
+          {/* ── PHOTO COLUMN — sticky, fills viewport height ── */}
           <div
             ref={heroPhotoRef}
             className="relative hidden lg:block group/hero"
@@ -261,32 +232,32 @@ export default function Home() {
               transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
-              {/* Grayscale Base Image — LCP: priority + WebP */}
+              {/* Hero photo — fills column, person framed from shoulders up */}
               <Image
-                src="/images/mayank-hero.webp"
+                src="/images/mayank-hero1.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 0px, 60vw"
-                className="absolute bottom-[-2vh] left-[65%] xl:left-[70%] -translate-x-1/2 !w-[150%] !max-w-[1300px] object-cover object-top filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
+                className="object-cover object-[50%_8%] filter grayscale contrast-[1.08] brightness-[0.97] transition-all duration-700 group-hover/hero:grayscale-0"
               />
 
-              {/* Left edge gradient — blends into page bg */}
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              {/* Left edge gradient — blends into white */}
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
               {/* Bottom fade */}
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
-              {/* Top fade */}
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+              {/* Top fade — subtle */}
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/60 to-transparent z-10 pointer-events-none" />
 
               {/* Availability badge */}
-              <div className="absolute bottom-[25%] left-[30%] xl:left-[35%] z-20 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white/90 backdrop-blur-sm px-4 py-2.5 shadow-md">
+              <div className="absolute bottom-[22%] left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 rounded-full border border-neutral-200 bg-white/95 backdrop-blur-sm px-4 py-2 shadow-md">
                 <span className="status-dot" />
                 <span className="text-xs font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
               </div>
 
-              {/* Year label */}
-              <div className="absolute top-10 right-6 z-20 font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
-                2026
+              {/* Year label — top right */}
+              <div className="absolute top-6 right-6 z-20 font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
+                26|26
               </div>
             </motion.div>
           </div>
