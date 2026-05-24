@@ -114,8 +114,10 @@ export default function Home() {
     <div ref={rootRef} className="w-full bg-white text-[#0a0a0a]">
       <Navbar />
 
-      {/* ══════════════════════════ HERO ══════════════════════════ */}
+       {/* ══════════════════════════ HERO ══════════════════════════ */}
       <main id="hero" className="relative w-full bg-white" style={{ minHeight: "100dvh" }}>
+        {/* Background grid */}
+        <div className="absolute inset-0 bg-grid opacity-[0.18] pointer-events-none" aria-hidden />
 
         {/* Main grid: [sidebar] | content | photo */}
         <div
