@@ -152,7 +152,7 @@ export function Footer() {
       >
         <h2
           className="footer-brand-name font-black uppercase tracking-[-0.05em] text-[#0a0a0a] leading-[0.8] w-full text-center select-none"
-          style={{ fontSize: "clamp(6rem, 24.5vw, 32rem)", letterSpacing: "-0.06em" }}
+          style={{ fontSize: "clamp(5rem, 22.5vw, 28rem)", letterSpacing: "-0.06em" }}
           aria-hidden
         >
           MAYANK

@@ -166,7 +166,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-6 text-neutral-500 text-base md:text-lg leading-relaxed font-sans font-light italic"
+                className="mt-6 text-neutral-500 text-lg md:text-xl leading-relaxed font-sans font-light italic"
               >
                 — It&apos;s Mayank, an aspiring Software Engineer.
               </motion.p>
@@ -231,14 +231,14 @@ export default function Home() {
               transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0"
             >
-              {/* Hero photo — fills column, aligned to the bottom-right */}
+              {/* Hero photo — fills column, aligned to the bottom-right and slightly zoomed */}
               <Image
                 src="/images/mayank-hero-cropped.webp"
                 alt="Mayank — Aspiring Software Engineer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 0px, 60vw"
-                className="absolute inset-0 w-full h-full object-contain object-[right_bottom] filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
+                className="absolute inset-0 w-full h-full object-contain object-[right_bottom] scale-[1.08] origin-bottom-right filter grayscale contrast-[1.05] brightness-[0.98] transition-all duration-700 group-hover/hero:grayscale-0"
               />
 
               {/* Left edge gradient — blends into white */}
