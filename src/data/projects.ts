@@ -11,6 +11,7 @@ export interface Project {
   isPinned: boolean;
   type: "personal" | "freelance" | "group";
   period?: string;
+  tags?: Array<"full-stack" | "landing">;
 }
 
 export const projects: Project[] = [
@@ -28,6 +29,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "freelance",
     period: "2024",
+    tags: ["full-stack"],
   },
   {
     id: "beauty-landing",
@@ -42,6 +44,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "freelance",
     period: "Sep 2025",
+    tags: ["landing"],
   },
   {
     id: "service-page",
@@ -57,6 +60,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "freelance",
     period: "2025",
+    tags: ["landing"],
   },
   {
     id: "restraunt-elite",
@@ -71,6 +75,7 @@ export const projects: Project[] = [
     isPinned: true,
     type: "freelance",
     period: "2025",
+    tags: ["landing"],
   },
 
   /* ── PERSONAL ── */
@@ -89,6 +94,7 @@ export const projects: Project[] = [
     isPinned: true,
     type: "personal",
     period: "Dec 2025 – Jan 2026",
+    tags: ["full-stack"],
   },
   {
     id: "yelp",
@@ -105,6 +111,7 @@ export const projects: Project[] = [
     isPinned: true,
     type: "personal",
     period: "Oct 2025",
+    tags: ["full-stack"],
   },
   {
     id: "url-shortner",
@@ -119,6 +126,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "personal",
     period: "2025",
+    tags: ["full-stack"],
   },
   {
     id: "mayank-developer",
@@ -149,6 +157,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "personal",
     period: "Aug – Sep 2025",
+    tags: ["full-stack"],
   },
   {
     id: "todo",
@@ -211,6 +220,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "group",
     period: "2025",
+    tags: ["full-stack"],
   },
   {
     id: "synapse-code-auditor",
@@ -239,6 +249,7 @@ export const projects: Project[] = [
     isPinned: false,
     type: "group",
     period: "2025",
+    tags: ["landing"],
   },
   {
     id: "landing-page",
@@ -253,5 +264,6 @@ export const projects: Project[] = [
     isPinned: false,
     type: "group",
     period: "2025",
+    tags: ["landing"],
   },
 ];

@@ -18,14 +18,30 @@ import { Footer } from "@/components/sections/footer";
 import { projects } from "@/data/projects";
 
 const TABS = [
-  { label: "All",       value: "all"      },
-  { label: "Freelance", value: "freelance" },
-  { label: "Personal",  value: "personal"  },
-  { label: "Group",     value: "group"     },
+  { label: "All",           value: "all"        },
+  { label: "Full Stack",    value: "full-stack"  },
+  { label: "Freelance",     value: "freelance"   },
+  { label: "Personal",      value: "personal"    },
+  { label: "Group",         value: "group"       },
+  { label: "Landing Pages", value: "landing"     },
 ] as const;
 type TabValue = typeof TABS[number]["value"];
 
 const TYPE_ORDER: Record<string, number> = { freelance: 0, personal: 1, group: 2 };
+
+const getFiltered = (tab: TabValue) => {
+  if (tab === "all")        return projects;
+  if (tab === "full-stack") return projects.filter(p => p.tags?.includes("full-stack"));
+  if (tab === "landing")    return projects.filter(p => p.tags?.includes("landing"));
+  return projects.filter(p => p.type === tab);
+};
+
+const getCount = (tab: TabValue) => {
+  if (tab === "all")        return projects.length;
+  if (tab === "full-stack") return projects.filter(p => p.tags?.includes("full-stack")).length;
+  if (tab === "landing")    return projects.filter(p => p.tags?.includes("landing")).length;
+  return projects.filter(p => p.type === tab).length;
+};
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 20 },
@@ -36,10 +52,9 @@ export default function ProjectsPage() {
   const [tab, setTab] = useState<TabValue>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const filtered = tab === "all" ? projects : projects.filter(p => p.type === tab);
+  const filtered = getFiltered(tab);
 
   const sorted = [...filtered].sort((a, b) => {
-    // Pinned first, then by type order, then alphabetically
     if (b.isPinned !== a.isPinned) return (b.isPinned ? 1 : 0) - (a.isPinned ? 1 : 0);
     if (tab === "all") {
       const typeOrder = TYPE_ORDER[a.type] - TYPE_ORDER[b.type];
@@ -97,9 +112,7 @@ export default function ProjectsPage() {
               {/* Filter tabs */}
               <motion.div variants={fadeUp(0.16)} className="mt-8 flex flex-wrap gap-2">
                 {TABS.map(({ label, value }) => {
-                  const count = value === "all"
-                    ? projects.length
-                    : projects.filter(p => p.type === value).length;
+                  const count = getCount(value);
                   return (
                     <button
                       key={value}
