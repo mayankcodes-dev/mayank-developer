@@ -221,7 +221,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="flex gap-16 mb-12 lg:mb-16"
+                className="flex gap-8 sm:gap-16 mb-12 lg:mb-16"
               >
                 <div className="flex flex-col group cursor-default">
                   <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0a0a] leading-none tabular-nums transition-all group-hover:scale-105 origin-left">
@@ -241,6 +241,30 @@ export default function Home() {
                 </div>
               </motion.div>
 
+              {/* Mobile Hero Avatar (visible only on mobile/tablet) */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden mb-8 flex items-center gap-4"
+              >
+                <div className="relative size-14 rounded-2xl border border-neutral-200 overflow-hidden bg-neutral-50 shadow-sm flex-shrink-0">
+                  <Image
+                    src="/images/mayank-hero-cropped.webp"
+                    alt="Mayank Singh"
+                    fill
+                    priority
+                    className="object-cover object-[center_28%] filter grayscale contrast-[1.05]"
+                  />
+                </div>
+                <div className="flex flex-col select-none">
+                  <span className="font-extrabold text-[#0a0a0a] text-[15px] leading-none tracking-tight">Mayank Singh</span>
+                  <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest mt-1.5 leading-none">
+                    Full-Stack Developer
+                  </span>
+                </div>
+              </motion.div>
+
               {/* Giant Hello */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -248,7 +272,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h1
-                  className="font-black tracking-[-0.04em] leading-[0.88] text-[#0a0a0a] select-none text-[6.5rem] sm:text-[8.5rem] md:text-[10rem] lg:text-[12rem] xl:text-[13.5rem]"
+                  className="font-black tracking-[-0.04em] leading-[0.88] text-[#0a0a0a] select-none text-[5rem] min-[375px]:text-[6rem] sm:text-[8.5rem] md:text-[10rem] lg:text-[12rem] xl:text-[13.5rem]"
                 >
                   Hello.
                 </h1>

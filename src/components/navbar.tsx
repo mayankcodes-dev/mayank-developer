@@ -43,7 +43,9 @@ export default function Navbar() {
       <nav
         aria-label="Main navigation"
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] md:w-auto ${
-          pathname !== "/" || scrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"
+          pathname !== "/" || scrolled
+            ? "opacity-100 translate-y-0"
+            : "max-md:opacity-100 max-md:translate-y-0 opacity-0 -translate-y-8 md:pointer-events-none"
         }`}
       >
         <div
