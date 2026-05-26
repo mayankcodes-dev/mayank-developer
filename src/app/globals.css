@@ -236,13 +236,13 @@
 }
 
 /* ════════════════════════════════════════════════════════════
-   SCROLLBAR — Barely visible
+   SCROLLBAR — Black to match dark footer background
    ════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #a3a3a3; }
-* { scrollbar-color: #d4d4d4 transparent; scrollbar-width: thin; }
+::-webkit-scrollbar         { width: 6px; height: 6px; }
+::-webkit-scrollbar-track   { background: #000000; }
+::-webkit-scrollbar-thumb   { background: #2a2a2a; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+*                           { scrollbar-color: #2a2a2a #000000; scrollbar-width: thin; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
