@@ -34,10 +34,12 @@ export default function FooterScrollWrapper({ children, footer, className = "" }
         {
           scale: 0.9,
           borderRadius: "0 0 40px 40px",
-          ease: "power2.out",
+          ease: "none",
           scrollTrigger: {
             trigger: footerEl,
-            scrub: 0.5,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: true,
           },
         }
       );

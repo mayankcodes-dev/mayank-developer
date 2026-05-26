@@ -603,7 +603,7 @@ button, [role="button"] {
 
 .footer-brand-name:hover {
   opacity: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.02em;
 }
 
 /* ════════════════════════════════════════════════════════════

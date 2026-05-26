@@ -144,9 +144,8 @@ export default function Home() {
     /* ── Exact mdsaban.com scroll animation ──
        The white content wrapper scales from 1→0.9 and gains
        rounded bottom corners as footer scrolls into view.
-       scrub: 0.5 makes it follow the scroll position smoothly.
-       No start/end = ScrollTrigger defaults (top bottom → bottom top)
-       which means the animation runs for the full footer scroll duration. */
+       scrub: true binds it directly to the scrollbar movement.
+       ease: "none" matches the scroll speed linearly. */
     if (mainContentRef.current && footerRef.current) {
       gsap.fromTo(
         mainContentRef.current,
@@ -154,10 +153,12 @@ export default function Home() {
         {
           scale: 0.9,
           borderRadius: "0 0 40px 40px",
-          ease: "power2.out",
+          ease: "none",
           scrollTrigger: {
             trigger: footerRef.current,
-            scrub: 0.5,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: true,
           },
         }
       );
