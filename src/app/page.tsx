@@ -110,8 +110,6 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const mainContentRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLElement>(null);
   const heroRightRef = useRef<HTMLDivElement>(null);
   const heroPhotoRef = useRef<HTMLDivElement>(null);
   const stats = useHeroStats();
@@ -141,29 +139,6 @@ export default function Home() {
       gsap.from(heroRightRef.current, { opacity: 0, y: 32, duration: 0.8, ease: "power3.out" });
     }
 
-    /* ── Exact mdsaban.com scroll animation ──
-       The white content wrapper scales from 1→0.9 and gains
-       rounded bottom corners as footer scrolls into view.
-       scrub: true binds it directly to the scrollbar movement.
-       ease: "none" matches the scroll speed linearly. */
-    if (mainContentRef.current && footerRef.current) {
-      gsap.fromTo(
-        mainContentRef.current,
-        { scale: 1, borderRadius: "0" },
-        {
-          scale: 0.9,
-          borderRadius: "0 0 40px 40px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        }
-      );
-    }
-
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
@@ -172,13 +147,9 @@ export default function Home() {
 
   return (
     <div ref={rootRef} className="w-full bg-black overflow-x-hidden">
-      {/* ── White content wrapper — scales + gets rounded bottom corners on scroll ── */}
-      <div
-        ref={mainContentRef}
-        className="relative w-full bg-white text-[#0a0a0a] overflow-hidden"
-        style={{ transformOrigin: "top center", willChange: "transform" }}
-      >
       <Navbar />
+      {/* ── White content wrapper ── */}
+      <div className="relative w-full bg-white text-[#0a0a0a] overflow-hidden">
 
       {/* ────────────────────────── HERO ────────────────────────── */}
       <main
@@ -594,9 +565,9 @@ export default function Home() {
         </div>
       </Section>
 
-      </div>{/* end mainContentRef scaling wrapper */}
+      </div>
 
-      <Footer ref={footerRef} />
+      <Footer />
     </div>
   );
 }

@@ -1,10 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, type ReactNode } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -13,54 +9,19 @@ interface Props {
 }
 
 /**
- * Wraps <main> content + <Footer> so that:
- *  - The white content wrapper scales 1→0.9 and gets rounded bottom corners
- *    as the footer scrolls into view (exact mdsaban.com effect).
- *  - Works on every sub-page without GSAP logic in each page file.
+ * Wraps <main> content + <Footer> so that they layout naturally.
+ * Removed the GSAP scaling animation to eliminate visual scroll gaps and ensure fixed positioning works perfectly.
  */
 export default function FooterScrollWrapper({ children, footer, className = "" }: Props) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const wrapper = wrapperRef.current;
-    const footerEl = footerRef.current;
-    if (!wrapper || !footerEl) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        wrapper,
-        { scale: 1, borderRadius: "0" },
-        {
-          scale: 0.8,
-          borderRadius: "0 0 60px 60px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerEl,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div className="w-full bg-black overflow-x-hidden">
-      {/* White content — scales on footer scroll */}
-      <div
-        ref={wrapperRef}
-        className={`relative w-full bg-white text-[#0a0a0a] overflow-hidden ${className}`}
-        style={{ transformOrigin: "top center", willChange: "transform" }}
-      >
+      {/* White content */}
+      <div className={`relative w-full bg-white text-[#0a0a0a] overflow-hidden ${className}`}>
         {children}
       </div>
 
-      {/* Footer sits outside the scaling wrapper */}
-      <div ref={footerRef}>
+      {/* Footer */}
+      <div>
         {footer}
       </div>
     </div>
