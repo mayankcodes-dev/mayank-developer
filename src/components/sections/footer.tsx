@@ -1,8 +1,9 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import Link from "next/link";
 import { LogoMark } from "@/components/logo";
+import { Copy, Check } from "lucide-react";
 
 const NAV_COLS: Array<{
   heading: string;
@@ -50,6 +51,16 @@ const SOCIALS = [
 ];
 
 export const Footer = forwardRef<HTMLElement>(function Footer(_, ref) {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("mayankbca96325@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch { /* ignore */ }
+  };
+
   return (
     <footer ref={ref} className="w-full overflow-hidden bg-black">
       <div className="mx-auto max-w-8xl px-6 md:px-8 pt-16 md:pt-20 pb-0">
@@ -91,8 +102,23 @@ export const Footer = forwardRef<HTMLElement>(function Footer(_, ref) {
               ))}
             </div>
 
+            {/* Email copy row */}
+            <div className="mt-4 flex items-center gap-2">
+              <span className="text-xs font-mono text-neutral-500">mayankbca96325@gmail.com</span>
+              <button
+                onClick={copyEmail}
+                className="group/copy p-1 rounded-md text-neutral-600 hover:text-white hover:bg-white/10 transition-colors"
+                title="Copy email"
+                aria-label="Copy email address"
+              >
+                {emailCopied
+                  ? <Check className="size-3 text-emerald-400" />
+                  : <Copy className="size-3" />}
+              </button>
+            </div>
+
             {/* Status badge */}
-            <div className="mt-5 inline-flex items-center gap-2 badge badge-green text-[11px]">
+            <div className="mt-4 inline-flex items-center gap-2 badge badge-green text-[11px]">
               <span className="status-dot" style={{ width: 5, height: 5 }} />
               Available for projects
             </div>

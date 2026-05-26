@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Award, Mail } from "lucide-react";
 import { useHeroStats } from "@/hooks/use-hero-stats";
+import { useTypewriter } from "@/hooks/use-typewriter";
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
 import SkillsSection from "@/components/sections/skills-section";
@@ -70,6 +71,26 @@ const fadeUp = (delay = 0) => ({
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const, delay } },
 });
 
+/* ─── CountUp hook ─── */
+function useCountUp(target: number, duration = 1400) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!target) return;
+    let start: number | null = null;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(ease * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    const raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+  return count;
+}
+
 /* ─── Section wrapper (scroll-triggered) ─── */
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
   const ref = useRef<HTMLElement>(null);
@@ -95,6 +116,16 @@ export default function Home() {
   const heroRightRef = useRef<HTMLDivElement>(null);
   const heroPhotoRef = useRef<HTMLDivElement>(null);
   const stats = useHeroStats();
+
+  // Typewriter cycling subtitle
+  const typeText = useTypewriter(
+    ["Full-Stack Developer", "MERN Stack Engineer", "Problem Solver", "Open-Source Contributor"],
+    72, 38, 1800
+  );
+
+  // Animated stat counters (count up from 0 when data loads)
+  const problemsCount     = useCountUp(stats.loading ? 0 : Number(stats.problems)     || 0);
+  const contributionsCount = useCountUp(stats.loading ? 0 : Number(stats.contributions) || 0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -188,17 +219,17 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="flex gap-16 mb-12 lg:mb-16"
               >
-                <div className="flex flex-col">
-                  <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0a0a] leading-none">
-                    {stats.loading ? "—" : stats.problems}
+                <div className="flex flex-col group cursor-default">
+                  <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0a0a] leading-none tabular-nums transition-all group-hover:scale-105 origin-left">
+                    {stats.loading ? "—" : problemsCount}
                   </span>
                   <span className="text-[12.5px] font-sans text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Problems
                   </span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0a0a] leading-none">
-                    {stats.loading ? "—" : stats.contributions}
+                <div className="flex flex-col group cursor-default">
+                  <span className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0a0a0a] leading-none tabular-nums transition-all group-hover:scale-105 origin-left">
+                    {stats.loading ? "—" : contributionsCount}
                   </span>
                   <span className="text-[12.5px] font-sans text-neutral-400 uppercase tracking-[0.18em] mt-2">
                     Contributions
@@ -219,14 +250,18 @@ export default function Home() {
                 </h1>
               </motion.div>
 
-              {/* Minimal subtitle */}
+              {/* Typewriter subtitle */}
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-6 text-neutral-500 text-xl md:text-xl leading-relaxed font-sans font-light"
               >
-                — It&apos;s Mayank, an aspiring Software Engineer.
+                — It&apos;s Mayank,{" "}
+                <span className="text-[#0a0a0a] font-medium">
+                  {typeText}
+                  <span className="inline-block w-[2px] h-[1.1em] bg-[#0a0a0a] ml-[2px] align-middle animate-blink" />
+                </span>
               </motion.p>
 
               {/* Social icons */}

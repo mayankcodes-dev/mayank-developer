@@ -2,9 +2,10 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, ExternalLink, Send, CheckCircle, AlertCircle, MapPin, Clock, Briefcase } from "lucide-react";
+import { Mail, ExternalLink, Send, CheckCircle, AlertCircle, MapPin, Clock, Briefcase, Copy, Check } from "lucide-react";
 import SiteNav from "@/components/layout/site-nav";
 import { Footer } from "@/components/sections/footer";
+import { useToast, ToastContainer } from "@/components/shared/toast";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -51,6 +52,19 @@ export default function Contact() {
   const [formData,     setFormData]     = useState({ name: "", email: "", message: "" });
   const [formState,    setFormState]    = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [copiedId,     setCopiedId]     = useState<string | null>(null);
+  const { toasts, show: showToast, remove: removeToast } = useToast();
+
+  const copyToClipboard = async (value: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedId(id);
+      showToast("Copied to clipboard!", "success");
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      showToast("Failed to copy.", "error");
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -216,23 +230,37 @@ export default function Contact() {
                 <p className="eyebrow mb-4">Other ways to reach me</p>
                 <div className="space-y-2.5">
                   {SOCIALS.map((s) => (
-                    <motion.a
-                      key={s.label}
-                      href={s.href}
-                      target={s.label === "Email" || s.label === "Phone" ? undefined : "_blank"}
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-3 text-sm text-neutral-500 transition-colors"
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <span className={`grid size-8 shrink-0 place-items-center rounded-lg border border-neutral-200 bg-white transition-colors ${s.iconClass || "group-hover:border-neutral-400 group-hover:text-[#0a0a0a]"}`}>
-                        <SocialIcon type={s.icon} />
-                      </span>
-                      <div>
-                        <p className={`font-semibold text-[#0a0a0a] text-sm transition-colors ${s.colorClass || "group-hover:text-[#0a0a0a]"}`}>{s.label}</p>
-                        <p className="text-xs text-neutral-400">{s.value}</p>
-                      </div>
-                    </motion.a>
+                    <div key={s.label} className="group/social flex items-center gap-3">
+                      <motion.a
+                        href={s.href}
+                        target={s.label === "Email" || s.label === "Phone" ? undefined : "_blank"}
+                        rel="noopener noreferrer"
+                        className="flex flex-1 items-center gap-3 text-sm text-neutral-500 transition-colors"
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <span className={`grid size-8 shrink-0 place-items-center rounded-lg border border-neutral-200 bg-white transition-colors ${s.iconClass || "group-hover/social:border-neutral-400 group-hover/social:text-[#0a0a0a]"}`}>
+                          <SocialIcon type={s.icon} />
+                        </span>
+                        <div>
+                          <p className={`font-semibold text-[#0a0a0a] text-sm transition-colors ${s.colorClass || ""}`}>{s.label}</p>
+                          <p className="text-xs text-neutral-400">{s.value}</p>
+                        </div>
+                      </motion.a>
+                      {/* Copy button — email & phone only */}
+                      {(s.label === "Email" || s.label === "Phone") && (
+                        <button
+                          onClick={() => copyToClipboard(s.value, s.label)}
+                          className="opacity-0 group-hover/social:opacity-100 transition-opacity p-1.5 rounded-lg hover:bg-neutral-100 text-neutral-400 hover:text-[#0a0a0a]"
+                          title={`Copy ${s.label.toLowerCase()}`}
+                          aria-label={`Copy ${s.label.toLowerCase()}`}
+                        >
+                          {copiedId === s.label
+                            ? <Check className="size-3.5 text-emerald-500" />
+                            : <Copy className="size-3.5" />}
+                        </button>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -364,6 +392,7 @@ export default function Contact() {
 
       </main>
       <Footer />
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </>
   );
 }

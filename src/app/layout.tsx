@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import PageLoader from "@/components/shared/page-loader";
 import CustomCursor from "@/components/shared/cursor";
+import ScrollProgress from "@/components/shared/scroll-progress";
 import "./globals.css";
 
 /* Self-hosted via next/font — no external CSS imports needed */
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <PageLoader />
         <CustomCursor />
+        <ScrollProgress />
         <ThemeProvider defaultTheme="light" enableSystem={false} disableTransitionOnChange>{children}</ThemeProvider>
       </body>
     </html>

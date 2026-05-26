@@ -112,9 +112,25 @@ export default function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.06 }}
-                  className="card-eng group relative flex flex-col overflow-hidden cursor-pointer"
+                  className="group relative flex flex-col overflow-hidden cursor-pointer rounded-xl border border-neutral-200 bg-white shadow-sm"
+                  style={{ transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}
                   whileHover={{ y: -5, transition: { duration: 0.25, ease: "easeOut" } }}
                   whileTap={{ scale: 0.98 }}
+                  onMouseEnter={(e) => {
+                    // Pick a color based on the project type
+                    const colors: Record<string, string> = {
+                      freelance: "#F59E0B",
+                      group:     "#3B82F6",
+                      personal:  "#8B5CF6",
+                    };
+                    const c = colors[project.type] ?? "#0a0a0a";
+                    e.currentTarget.style.borderColor = c;
+                    e.currentTarget.style.boxShadow = `0 0 0 1px ${c}30, 0 12px 32px -6px ${c}25`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.boxShadow = "";
+                  }}
                   onClick={() => setSelectedProject(project)}
                   role="button"
                   tabIndex={0}
