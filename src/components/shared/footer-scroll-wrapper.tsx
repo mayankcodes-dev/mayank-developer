@@ -32,9 +32,9 @@ export default function FooterScrollWrapper({ children, footer, className = "" }
         wrapper,
         { scale: 1, borderRadius: "0" },
         {
-          scale: 0.75,
+          scale: 0.88,
           borderRadius: "0 0 60px 60px",
-          ease: "linear",
+          ease: "none",
           scrollTrigger: {
             trigger: footerEl,
             start: "top bottom",
