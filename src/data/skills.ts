@@ -15,6 +15,21 @@ const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
 export const skillCategories: SkillCategory[] = [
   {
+    category: "Core",
+    icon: "⭐",
+    skills: [
+      { name: "React",         level: 4, logo: `${DI}/react/react-original.svg`,           color: "#61DAFB" },
+      { name: "Node.js",       level: 3, logo: `${DI}/nodejs/nodejs-original.svg`,          color: "#339933" },
+      { name: "Express.js",    level: 3, logo: `${DI}/express/express-original.svg`,        color: "#888888" },
+      { name: "Next.js",       level: 3, logo: `${DI}/nextjs/nextjs-original.svg`,          color: "#ffffff" },
+      { name: "MongoDB",       level: 3, logo: `${DI}/mongodb/mongodb-original.svg`,        color: "#47A248" },
+      { name: "JavaScript",    level: 4, logo: `${DI}/javascript/javascript-original.svg`,  color: "#F7DF1E" },
+      { name: "Tailwind CSS",  level: 4, logo: `${DI}/tailwindcss/tailwindcss-original.svg`,color: "#06B6D4" },
+      { name: "Problem Solving",level: 4,logo: "https://cdn.simpleicons.org/leetcode",      color: "#FFA116" },
+      { name: "GitHub",        level: 4, logo: `${DI}/github/github-original.svg`,          color: "#6e40c9" },
+    ],
+  },
+  {
     category: "Frontend",
     icon: "🎨",
     skills: [

@@ -64,9 +64,25 @@ export default function SkillsSection() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
-                className="card-eng group flex flex-col items-center gap-3 p-5"
-                whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="skill-card group flex flex-col items-center gap-3 p-5 rounded-xl border border-neutral-200 bg-white cursor-default relative overflow-hidden"
+                style={{
+                  transition: "border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
+                }}
+                whileHover={{
+                  y: -4,
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
                 whileTap={{ scale: 0.97 }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = skill.color;
+                  el.style.boxShadow = `0 0 0 1px ${skill.color}40, 0 8px 24px -4px ${skill.color}30`;
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = "";
+                  el.style.boxShadow = "";
+                }}
               >
                 {/* Logo */}
                 <div
