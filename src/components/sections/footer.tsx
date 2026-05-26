@@ -133,8 +133,8 @@ export const Footer = forwardRef<HTMLElement>(function Footer(_, ref) {
       {/* ── Giant brand name ── */}
       <div className="mt-12 md:mt-16 overflow-hidden select-none w-full text-center px-4 md:px-6">
         <h2
-          className="footer-brand-name font-black uppercase tracking-[-0.05em] text-white leading-[0.8] w-full text-center select-none cursor-default"
-          style={{ fontSize: "clamp(4.99995rem, 22.49977vw, 27.99972rem)", letterSpacing: "-0.06em" }}
+          className="footer-brand-name font-black uppercase text-white leading-[0.85] w-full text-center select-none cursor-default"
+          style={{ fontSize: "clamp(3.5rem, 15vw, 12rem)", letterSpacing: "-0.05em" }}
           aria-hidden
         >
           MAYANK
