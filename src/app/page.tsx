@@ -278,7 +278,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-6 text-neutral-500 text-xl md:text-xl leading-relaxed font-sans font-light"
               >
-                — It&apos;s Mayank, an aspiring Software Engineer.
+                — I build, ship, and solve. Full-Stack Engineer.
               </motion.p>
 
               {/* Social icons */}
@@ -329,7 +329,7 @@ export default function Home() {
 
               <div className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white/95 px-3 py-1.5 shadow-sm">
                 <span className="status-dot" style={{ width: 6, height: 6 }} />
-                <span className="text-[10px] font-semibold text-[#0a0a0a] whitespace-nowrap">Open to internships</span>
+                <span className="text-[10px] font-semibold text-[#0a0a0a] whitespace-nowrap">Open to work</span>
               </div>
             </motion.div>
           </div>
