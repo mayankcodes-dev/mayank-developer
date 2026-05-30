@@ -548,26 +548,38 @@ export default function Home() {
               {/* Buttons: Email + WhatsApp */}
               <div className="mt-8 flex flex-wrap gap-3">
 
-                {/* Email button — mailto + copy icon */}
-                <div className="flex items-stretch rounded-xl overflow-hidden border border-[#0a0a0a] shadow-sm">
-                  <a
-                    href="mailto:admin@mayankcodes.dev"
-                    className="flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
-                    id="cta-email"
+                {/* Email button — mailto with hover copy scroll animation */}
+                <a
+                  href="mailto:admin@mayankcodes.dev"
+                  onClick={(e) => {
+                    copyEmail();
+                  }}
+                  className="group relative block h-[48px] w-[260px] overflow-hidden rounded-xl border border-[#0a0a0a] bg-[#0a0a0a] text-white text-sm font-semibold shadow-sm transition-colors hover:bg-neutral-800"
+                  id="cta-email"
+                >
+                  <div
+                    className={`flex flex-col w-full transition-transform duration-300 ease-in-out ${
+                      emailCopied ? "-translate-y-2/3" : "group-hover:-translate-y-1/3"
+                    }`}
+                    style={{ height: "144px" }}
                   >
-                    <Mail className="size-4" />
-                    Email me
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    title="Copy email address"
-                    className="flex items-center gap-1.5 px-3 bg-neutral-100 border-l border-neutral-300 text-neutral-600 hover:bg-neutral-200 hover:text-[#0a0a0a] transition-colors text-xs font-mono"
-                  >
-                    {emailCopied
-                      ? <><Check className="size-3.5 text-emerald-500" /><span className="text-emerald-600">Copied!</span></>
-                      : <><Copy className="size-3.5" /><span>Copy</span></>}
-                  </button>
-                </div>
+                    {/* State 1: Default (Email Address) */}
+                    <div className="h-[48px] flex items-center justify-center gap-2 px-4">
+                      <Mail className="size-4 text-white/90" />
+                      <span className="font-mono text-xs sm:text-sm">admin@mayankcodes.dev</span>
+                    </div>
+                    {/* State 2: Hover (Copy Action) */}
+                    <div className="h-[48px] flex items-center justify-center gap-2 px-4 text-neutral-300">
+                      <Copy className="size-4" />
+                      <span>Copy to clipboard</span>
+                    </div>
+                    {/* State 3: Clicked (Copied Success) */}
+                    <div className="h-[48px] flex items-center justify-center gap-2 px-4 text-emerald-400">
+                      <Check className="size-4 text-emerald-400" />
+                      <span>Copied email!</span>
+                    </div>
+                  </div>
+                </a>
 
                 {/* WhatsApp button — green like contact page */}
                 <a
