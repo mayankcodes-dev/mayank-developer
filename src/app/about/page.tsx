@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
@@ -91,16 +91,16 @@ function LeetCodeStats() {
     <div className="mt-6 grid gap-4 sm:grid-cols-2">
       <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
         <img
-          src="https://leetcard.jacoblin.cool/coderMayank69?theme=light&font=Inter&ext=activity"
-          alt="LeetCode stats for coderMayank69"
+          src="https://leetcard.jacoblin.cool/mayankcodes-dev?theme=light&font=Inter&ext=activity"
+          alt="LeetCode stats for mayankcodes-dev"
           className="w-full object-cover"
           loading="lazy"
         />
       </div>
       <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
         <img
-          src="https://leetcard.jacoblin.cool/coderMayank69?theme=light&font=Inter&ext=heatmap"
-          alt="LeetCode heatmap for coderMayank69"
+          src="https://leetcard.jacoblin.cool/mayankcodes-dev?theme=light&font=Inter&ext=heatmap"
+          alt="LeetCode heatmap for mayankcodes-dev"
           className="w-full object-cover"
           loading="lazy"
         />
@@ -230,17 +230,17 @@ export default function About() {
             <motion.p variants={fadeUp(0.05)} className="mb-8 text-sm text-neutral-500">
               Contributions from{" "}
               <a
-                href="https://github.com/coderMayank69"
+                href="https://github.com/mayankcodes-dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#0a0a0a] font-medium hover:underline underline-offset-2"
               >
-                @coderMayank69
+                @mayankcodes-dev
               </a>
             </motion.p>
             <motion.div variants={fadeUp(0.1)} className="overflow-x-auto card-eng p-6">
               <GitHubCalendar
-                username="coderMayank69"
+                username="mayankcodes-dev"
                 colorScheme="light"
                 fontSize={12}
                 blockSize={13}
@@ -264,12 +264,12 @@ export default function About() {
             <motion.p variants={fadeUp(0.05)} className="mb-6 text-sm text-neutral-500">
               Problem-solving on{" "}
               <a
-                href="https://leetcode.com/u/coderMayank69/"
+                href="https://leetcode.com/u/mayankcodes-dev/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#0a0a0a] font-medium hover:underline underline-offset-2"
               >
-                LeetCode @coderMayank69
+                LeetCode @mayankcodes-dev
               </a>
             </motion.p>
             <motion.div variants={fadeUp(0.1)}>
@@ -324,9 +324,9 @@ export default function About() {
             </motion.p>
             <motion.div variants={fadeUp(0.1)} className="flex flex-wrap gap-2">
               {[
-                { label: "GitHub",   href: "https://github.com/coderMayank69"             },
-                { label: "LinkedIn", href: "https://www.linkedin.com/in/codermayank69/"   },
-                { label: "LeetCode", href: "https://leetcode.com/u/coderMayank69/"        },
+                { label: "GitHub",   href: "https://github.com/mayankcodes-dev"             },
+                { label: "LinkedIn", href: "https://www.linkedin.com/in/mayankcodes-dev/"   },
+                { label: "LeetCode", href: "https://leetcode.com/u/mayankcodes-dev/"        },
                 { label: "Hashnode", href: "https://hashnode.com/@coderMayank"            },
               ].map(({ label, href }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">

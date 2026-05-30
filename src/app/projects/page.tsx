@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -322,7 +322,7 @@ export default function ProjectsPage() {
                 Let&apos;s Talk →
               </Link>
               <a
-                href="https://github.com/coderMayank69"
+                href="https://github.com/mayankcodes-dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"

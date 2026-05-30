@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 
@@ -35,7 +35,7 @@ export function useHeroStats(): HeroStats {
         // Fetch from public CORS-friendly APIs directly — no server round-trip
         // LeetCode: alfa-leetcode-api (more reliable than heroku endpoint)
         const lcFetch = fetch(
-          "https://alfa-leetcode-api.onrender.com/coderMayank69/solved",
+          "https://alfa-leetcode-api.onrender.com/mayankcodes-dev/solved",
           { cache: "no-store" }
         )
           .then((r) => r.json())
@@ -44,7 +44,7 @@ export function useHeroStats(): HeroStats {
 
         // GitHub contributions via free public API (no token needed)
         const ghFetch = fetch(
-          "https://github-contributions-api.jogruber.de/v4/coderMayank69",
+          "https://github-contributions-api.jogruber.de/v4/mayankcodes-dev",
           { cache: "no-store" }
         )
           .then((r) => r.json())

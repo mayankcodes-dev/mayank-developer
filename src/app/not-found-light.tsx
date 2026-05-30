@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -134,7 +134,7 @@ const TERMINAL_LINES = [
   { text: "> Route not found in manifest", color: "#ff4466", delay: 2400 },
   { text: "> STATUS: 404 — ROUTE_UNDEFINED", color: "#ff003c", delay: 3600 },
   { text: "> Tracing origin... [FAILED]", color: "#888", delay: 4800 },
-  { text: "$ whoami → coderMayank69", color: "#00ff9d", delay: 6000 },
+  { text: "$ whoami → mayankcodes-dev", color: "#00ff9d", delay: 6000 },
 ];
 
 export default function NotFound() {

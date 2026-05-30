@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 
 interface ContactPayload {
   name: string;
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
 
   const emailPayload = {
     from: "Portfolio Contact <onboarding@resend.dev>",
-    to: ["mayankbca96325@gmail.com"], // ← update to your real inbox once domain is verified
+    to: ["admin@mayankcodes.dev"], // ← update to your real inbox once domain is verified
     reply_to: email,
     subject: `New message from ${name} via portfolio`,
     html: `

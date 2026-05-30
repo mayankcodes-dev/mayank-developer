@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, ReactNode } from "react";
 
@@ -13,7 +13,7 @@ type BootLine = {
 const BOOT_LINES: BootLine[] = [
   { type: "cmd", text: "npm run dev", delay: 0 },
   { type: "out", text: "", delay: 1000 },
-  { type: "out", text: "> codermayank69@0.1.0 dev", delay: 1000 },
+  { type: "out", text: "> mayankcodes-dev@0.1.0 dev", delay: 1000 },
   { type: "out", text: "> next dev", delay: 1100 },
   { type: "out", text: "", delay: 2400 }, // Slight delay after next dev
   {
@@ -111,7 +111,7 @@ export default function PageLoader() {
             <span className="size-3 rounded-full bg-[#28c840]" />
           </div>
           <div className="text-xs text-neutral-300 font-sans flex-1 text-center pr-14">
-            MINGW64: ~/OneDrive/Desktop/projects/codermayank69
+            MINGW64: ~/OneDrive/Desktop/projects/mayankcodes-dev
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export default function PageLoader() {
                         <span className="text-[#bc3fbc]">MINGW64</span>
                       </div>
                       <div className="flex flex-wrap items-center gap-1.5 leading-none">
-                        <span className="text-[#e3b341]">~/OneDrive/Desktop/projects/codermayank69</span>
+                        <span className="text-[#e3b341]">~/OneDrive/Desktop/projects/mayankcodes-dev</span>
                         <span className="text-[#58a6ff]">(main)</span>
                       </div>
                     </div>

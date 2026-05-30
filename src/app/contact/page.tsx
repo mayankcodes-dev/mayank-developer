@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -18,12 +18,12 @@ const ICON_PATHS = {
 };
 
 const SOCIALS = [
-  { label: "Email",    value: "mayankbca96325@gmail.com",           href: "mailto:mayankbca96325@gmail.com",           icon: "email",    colorClass: "group-hover:text-red-500",    iconClass: "group-hover:text-red-500 group-hover:border-red-500/30" },
+  { label: "Email",    value: "admin@mayankcodes.dev",           href: "mailto:admin@mayankcodes.dev",           icon: "email",    colorClass: "group-hover:text-red-500",    iconClass: "group-hover:text-red-500 group-hover:border-red-500/30" },
   { label: "Phone",    value: "+91 8115529832",                    href: "tel:+918115529832",                        icon: "phone",    colorClass: "group-hover:text-emerald-500", iconClass: "group-hover:text-emerald-500 group-hover:border-emerald-500/30" },
-  { label: "GitHub",   value: "github.com/coderMayank69",          href: "https://github.com/coderMayank69",         icon: "github",   colorClass: "group-hover:text-neutral-900",       iconClass: "group-hover:text-neutral-900 group-hover:border-neutral-900/30" },
-  { label: "LinkedIn", value: "linkedin.com/in/codermayank69",     href: "https://www.linkedin.com/in/codermayank69/",icon: "linkedin", colorClass: "group-hover:text-[#0A66C2]",   iconClass: "group-hover:text-[#0A66C2] group-hover:border-[#0A66C2]/30" },
-  { label: "LeetCode", value: "leetcode.com/u/coderMayank69",      href: "https://leetcode.com/u/coderMayank69/",    icon: "leetcode", colorClass: "group-hover:text-[#FFA116]",   iconClass: "group-hover:text-[#FFA116] group-hover:border-[#FFA116]/30" },
-  { label: "Hashnode", value: "codermayank69.hashnode.dev",        href: "https://codermayank69.hashnode.dev/",      icon: "hashnode", colorClass: "group-hover:text-[#2962FF]",   iconClass: "group-hover:text-[#2962FF] group-hover:border-[#2962FF]/30" },
+  { label: "GitHub",   value: "github.com/mayankcodes-dev",          href: "https://github.com/mayankcodes-dev",         icon: "github",   colorClass: "group-hover:text-neutral-900",       iconClass: "group-hover:text-neutral-900 group-hover:border-neutral-900/30" },
+  { label: "LinkedIn", value: "linkedin.com/in/mayankcodes-dev",     href: "https://www.linkedin.com/in/mayankcodes-dev/",icon: "linkedin", colorClass: "group-hover:text-[#0A66C2]",   iconClass: "group-hover:text-[#0A66C2] group-hover:border-[#0A66C2]/30" },
+  { label: "LeetCode", value: "leetcode.com/u/mayankcodes-dev",      href: "https://leetcode.com/u/mayankcodes-dev/",    icon: "leetcode", colorClass: "group-hover:text-[#FFA116]",   iconClass: "group-hover:text-[#FFA116] group-hover:border-[#FFA116]/30" },
+  { label: "Hashnode", value: "mayankcodes-dev.hashnode.dev",        href: "https://mayankcodes-dev.hashnode.dev/",      icon: "hashnode", colorClass: "group-hover:text-[#2962FF]",   iconClass: "group-hover:text-[#2962FF] group-hover:border-[#2962FF]/30" },
 ];
 
 const fadeUp = (delay = 0) => ({

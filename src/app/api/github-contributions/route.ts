@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 /**
  * Fetches total GitHub contributions for the past year via the GraphQL API.
@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
  */
 export async function GET() {
   const token = process.env.GITHUB_TOKEN;
-  const username = "coderMayank69";
+  const username = "mayankcodes-dev";
 
   if (!token) {
     // No token — return a static fallback value

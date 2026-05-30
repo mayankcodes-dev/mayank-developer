@@ -1,4 +1,4 @@
-export interface HashnodePost {
+﻿export interface HashnodePost {
   title: string;
   brief: string;
   slug: string;
@@ -35,7 +35,7 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
         }
       `,
       variables: {
-        host: "codermayank69.hashnode.dev",
+        host: "mayankcodes-dev.hashnode.dev",
         first: count,
       },
     }),

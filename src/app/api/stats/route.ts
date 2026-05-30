@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 /**
  * Fetches LeetCode solved count via the unofficial stats API.
- * GET /api/stats?username=coderMayank69
+ * GET /api/stats?username=mayankcodes-dev
  */
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const username = searchParams.get("username") ?? "coderMayank69";
+  const username = searchParams.get("username") ?? "mayankcodes-dev";
 
   try {
     const res = await fetch(
