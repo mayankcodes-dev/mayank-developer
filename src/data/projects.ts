@@ -1,4 +1,4 @@
-﻿export interface Project {
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -151,7 +151,7 @@ export const projects: Project[] = [
     image: "",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
     link: "https://mayank-developer.vercel.app",
-    github: "https://github.com/mayankcodes-dev/mayank-developer",
+    github: "https://github.com/mayankcodes-dev/Portfolio",
     featured: false,
     isPinned: false,
     type: "personal",

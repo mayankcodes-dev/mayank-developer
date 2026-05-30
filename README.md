@@ -1,6 +1,9 @@
 <div align="center">
+<a href="https://mayank-developer.vercel.app">
+  <img src="src/app/icon.svg" width="80" height="80" alt="Mayank Singh Logo" style="border-radius: 20%;" />
+</a>
 
-# 🚀 mayank-developer
+# 🚀 Portfolio
 
 **A premium, minimal developer portfolio built with Next.js 16, Framer Motion & Tailwind CSS v4.**
 
@@ -82,8 +85,8 @@ src/
 
 ```bash
 # Clone the repository
-git clone https://github.com/coderMayank69/mayank-developer.git
-cd mayank-developer
+git clone https://github.com/mayankcodes-dev/Portfolio.git
+cd Portfolio
 
 # Install dependencies
 npm install
@@ -133,10 +136,10 @@ The project uses a custom **Engineer Minimal** design system defined in `globals
 
 ## 📬 Contact
 
-- **Email** — mayankbca96325@gmail.com
-- **LinkedIn** — [codermayank69](https://linkedin.com/in/codermayank69)
-- **GitHub** — [coderMayank69](https://github.com/coderMayank69)
-- **LeetCode** — [coderMayank69](https://leetcode.com/u/coderMayank69)
+- **Email** — admin@mayankcodes.dev
+- **LinkedIn** — [mayankcodes-dev](https://linkedin.com/in/mayankcodes-dev)
+- **GitHub** — [mayankcodes-dev](https://github.com/mayankcodes-dev)
+- **LeetCode** — [mayankcodes-dev](https://leetcode.com/u/mayankcodes-dev)
 
 ---
 
