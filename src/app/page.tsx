@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useLayoutEffect, useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Award, Mail } from "lucide-react";
 import { useHeroStats } from "@/hooks/use-hero-stats";
 import Navbar from "@/components/navbar";
@@ -22,7 +21,7 @@ const GitHubCalendar = dynamic(
 );
 
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 /* ─── Socials ─── */
 const SOCIALS = [
@@ -113,7 +112,6 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 
 export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const mainContentRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLElement>(null);
   const heroRightRef = useRef<HTMLDivElement>(null);
   const heroPhotoRef = useRef<HTMLDivElement>(null);
@@ -158,26 +156,6 @@ export default function Home() {
     if (heroRightRef.current) {
       gsap.from(heroRightRef.current, { opacity: 0, y: 32, duration: 0.8, ease: "power3.out" });
     }
-
-    if (mainContentRef.current && footerRef.current) {
-      gsap.fromTo(
-        mainContentRef.current,
-        { scale: 1, borderRadius: "0" },
-        {
-          scale: 0.82,
-          borderRadius: "0 0 60px 60px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        }
-      );
-    }
-
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
   const scrollTo = (id: string) =>
@@ -186,11 +164,10 @@ export default function Home() {
   return (
     <div ref={rootRef} className="w-full bg-black overflow-x-hidden">
       <Navbar />
-      {/* ── White content wrapper — scales + gets rounded bottom corners on scroll ── */}
+      {/* ── White content wrapper — scales via CSS scroll-driven animation ── */}
       <div
-        ref={mainContentRef}
-        className="relative w-full bg-white text-[#0a0a0a] overflow-hidden"
-        style={{ transformOrigin: "bottom center", willChange: "transform" }}
+        className="relative w-full bg-white text-[#0a0a0a] overflow-hidden footer-scale-wrapper"
+        style={{ transformOrigin: "bottom center" }}
       >
 
       {/* ────────────────────────── HERO ────────────────────────── */}

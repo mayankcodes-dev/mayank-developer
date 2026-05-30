@@ -1,10 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, type ReactNode } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -13,56 +9,50 @@ interface Props {
 }
 
 /**
- * Wraps <main> content + <Footer> so that:
- *  - The white content wrapper scales 1→0.95 and gets rounded bottom corners
- *    as the footer scrolls into view (exact mdsaban.com effect).
- *  - Works on every sub-page without GSAP logic in each page file.
+ * Wraps <main> content + <Footer> on sub-pages.
+ * The white content wrapper scales 1→0.82 and gets rounded bottom corners
+ * as the footer scrolls into view — using CSS scroll-driven animation
+ * instead of GSAP scrub for zero jank and native GPU compositing.
  */
 export default function FooterScrollWrapper({ children, footer, className = "" }: Props) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const wrapper = wrapperRef.current;
-    const footerEl = footerRef.current;
-    if (!wrapper || !footerEl) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        wrapper,
-        { scale: 1, borderRadius: "0" },
-        {
-          scale: 0.82,
-          borderRadius: "0 0 60px 60px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerEl,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div className="w-full bg-black overflow-x-hidden">
-      {/* White content — scales on footer scroll */}
+      {/* White content — scales via CSS scroll-driven animation */}
       <div
-        ref={wrapperRef}
-        className={`relative w-full bg-white text-[#0a0a0a] overflow-hidden ${className}`}
-        style={{ transformOrigin: "bottom center", willChange: "transform" }}
+        className={`relative w-full bg-white text-[#0a0a0a] overflow-hidden footer-scale-wrapper ${className}`}
+        style={{ transformOrigin: "bottom center" }}
       >
         {children}
       </div>
 
       {/* Footer sits outside the scaling wrapper */}
-      <div ref={footerRef}>
+      <div className="footer-trigger">
         {footer}
       </div>
+
+      <style>{`
+        @supports (animation-timeline: scroll()) {
+          .footer-scale-wrapper {
+            animation: footer-shrink linear both;
+            animation-timeline: scroll(root);
+            animation-range: calc(100vh * 0) calc(100% - 0px);
+          }
+
+          @keyframes footer-shrink {
+            0%   { scale: 1;    border-radius: 0; }
+            85%  { scale: 1;    border-radius: 0; }
+            100% { scale: 0.82; border-radius: 0 0 60px 60px; }
+          }
+        }
+
+        /* Fallback for browsers without scroll-driven animations (Firefox < 110, Safari < 18) */
+        @supports not (animation-timeline: scroll()) {
+          .footer-scale-wrapper {
+            scale: 1;
+            border-radius: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }

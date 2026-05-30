@@ -336,8 +336,7 @@ button, [role="button"] {
 }
 
 .card-eng:hover {
-  border-color: #d4d4d4;
-  box-shadow: 0 8px 30px -8px rgba(0,0,0,0.1);
+  /* hover removed — no lift/shadow on project cards */
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -659,4 +658,31 @@ html.scrollbar-dark::-webkit-scrollbar-thumb {
 }
 html.scrollbar-dark::-webkit-scrollbar-thumb:hover {
   background: #737373;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER SCROLL SCALE — CSS scroll-driven animation
+   Replaces GSAP scrub for zero-jank GPU-composited scaling
+   ════════════════════════════════════════════════════════════ */
+
+@supports (animation-timeline: scroll()) {
+  .footer-scale-wrapper {
+    animation: footer-shrink linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0% 100%;
+  }
+
+  @keyframes footer-shrink {
+    0%,
+    85% { scale: 1;    border-radius: 0; }
+    100% { scale: 0.82; border-radius: 0 0 60px 60px; }
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  /* Fallback: no scale animation on older browsers */
+  .footer-scale-wrapper {
+    scale: 1;
+    border-radius: 0;
+  }
 }

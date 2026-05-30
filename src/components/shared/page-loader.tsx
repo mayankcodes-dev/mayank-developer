@@ -37,12 +37,13 @@ const BOOT_LINES: BootLine[] = [
   },
   { type: "out", text: "", delay: 4300 },
 
-  // ── Compiling... (matches screenshot) ──
+  // ── Route log ──
   {
     type: "out",
-    content: <><span className="text-white/60">○</span> Compiling / ...</>,
+    content: <> GET / <span className="text-[#39d353]">200</span> in 312ms <span className="text-neutral-500">(next.js: 98ms, application-code: 214ms)</span></>,
     delay: 4700,
   },
+  { type: "out", text: "", delay: 4900 },
 ];
 
 // Total time before the loader fades out (must be after last line)
