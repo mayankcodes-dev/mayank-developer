@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Mayank Singh",
   description:
-    "Mayank Singh — Full-Stack Engineer. I design systems, write clean code, and ship products that work at scale.",
+    "Mayank Singh â€” Full-Stack Engineer. I design systems, write clean code, and ship products that work at scale.",
 };
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
