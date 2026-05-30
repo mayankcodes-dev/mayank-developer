@@ -542,8 +542,7 @@ export default function Home() {
                 Ready to build<br />something great?
               </h2>
               <p className="mt-5 text-neutral-500 text-base leading-relaxed max-w-md">
-                I&apos;m actively looking for internships and freelance projects.
-                If you have an idea, let&apos;s make it happen.
+                Excited to connect with the amazing folks &amp; builders out there.
               </p>
 
               {/* Buttons: Email + WhatsApp */}
@@ -583,18 +582,6 @@ export default function Home() {
                   </svg>
                   Chat on WhatsApp
                 </a>
-              </div>
-
-              {/* Quick info row */}
-              <div className="mt-8 flex flex-wrap gap-4 text-sm text-neutral-500">
-                <span className="flex items-center gap-1.5">
-                  <span className="size-1.5 rounded-full bg-emerald-400 inline-block" />
-                  Open to internships &amp; freelance
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="size-1.5 rounded-full bg-neutral-300 inline-block" />
-                  Replies within 24 hours
-                </span>
               </div>
             </div>
 
