@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ArrowRight, Award, Mail, MapPin, ExternalLink } from "lucide-react";
+import { ArrowRight, Award, Mail, MapPin, ExternalLink, Copy, Check } from "lucide-react";
 import { useHeroStats } from "@/hooks/use-hero-stats";
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -121,6 +121,13 @@ export default function Home() {
   const statsInView = useInView(statsRef, { once: true, margin: "-50px" });
 
   const [loaderDone, setLoaderDone] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("admin@mayankcodes.dev");
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -541,22 +548,34 @@ export default function Home() {
 
               {/* Buttons: Email + WhatsApp */}
               <div className="mt-8 flex flex-wrap gap-3">
-                {/* Email button */}
-                <a
-                  href="mailto:admin@mayankcodes.dev"
-                  className="btn btn-primary btn-lg"
-                  id="cta-email"
-                >
-                  <Mail className="size-4" />
-                  Email me
-                </a>
 
-                {/* WhatsApp button */}
+                {/* Email button — mailto + copy icon */}
+                <div className="flex items-stretch rounded-xl overflow-hidden border border-[#0a0a0a] shadow-sm">
+                  <a
+                    href="mailto:admin@mayankcodes.dev"
+                    className="flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
+                    id="cta-email"
+                  >
+                    <Mail className="size-4" />
+                    Email me
+                  </a>
+                  <button
+                    onClick={copyEmail}
+                    title="Copy email address"
+                    className="flex items-center gap-1.5 px-3 bg-neutral-100 border-l border-neutral-300 text-neutral-600 hover:bg-neutral-200 hover:text-[#0a0a0a] transition-colors text-xs font-mono"
+                  >
+                    {emailCopied
+                      ? <><Check className="size-3.5 text-emerald-500" /><span className="text-emerald-600">Copied!</span></>
+                      : <><Copy className="size-3.5" /><span>Copy</span></>}
+                  </button>
+                </div>
+
+                {/* WhatsApp button — green like contact page */}
                 <a
                   href="https://wa.me/message/4BKKNWXBQUQ7G1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-outline btn-lg gap-2"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] text-white text-sm font-semibold transition-colors shadow-sm"
                   id="cta-whatsapp"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden>

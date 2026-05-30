@@ -49,56 +49,10 @@ const pinnedProjects = projects
     return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
   });
 
-/* ── Hover popup that stays on-screen ── */
-function HoverPopup({ project }: { project: Project }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -4 }}
-      transition={{ duration: 0.15, ease: "easeOut" }}
-      /* Always render below the card image area, inside the card */
-      className="absolute inset-x-0 bottom-0 z-20 pointer-events-none"
-    >
-      <div className="mx-4 mb-4 pointer-events-auto rounded-lg border border-neutral-200 bg-white/95 backdrop-blur-sm shadow-lg px-4 py-3 flex items-center justify-between gap-3">
-        <p className="text-[12px] text-neutral-500 font-sans leading-snug truncate flex-1">
-          {project.description}
-        </p>
-        <div className="flex gap-2 shrink-0">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-neutral-200 bg-white text-[11px] font-medium text-neutral-700 hover:border-neutral-400 hover:text-[#0a0a0a] transition-colors"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="size-3" aria-hidden><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84a9.56 9.56 0 0 1 2.5.34c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
-              Code
-            </a>
-          )}
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-[#0a0a0a] text-[11px] font-medium text-white hover:bg-neutral-700 transition-colors"
-            >
-              <ExternalLink className="size-3" />
-              Live
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [loadedImages, setLoadedImages]       = useState<Set<string>>(new Set());
-  const [hoveredId, setHoveredId]             = useState<string | null>(null);
 
   const markLoaded = (id: string) =>
     setLoadedImages((prev) => new Set([...prev, id]));
@@ -136,8 +90,7 @@ export default function ProjectsSection() {
           {/* ── Grid — pinned only ── */}
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {pinnedProjects.map((project, i) => {
-              const isLoaded  = loadedImages.has(project.id);
-              const isHovered = hoveredId === project.id;
+              const isLoaded = loadedImages.has(project.id);
 
               return (
                 <motion.article
@@ -147,8 +100,6 @@ export default function ProjectsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.06 }}
                   className="relative flex flex-col overflow-hidden cursor-pointer rounded-xl border border-neutral-200 bg-white shadow-sm"
-                  onMouseEnter={() => setHoveredId(project.id)}
-                  onMouseLeave={() => setHoveredId(null)}
                   onClick={() => setSelectedProject(project)}
                   role="button"
                   tabIndex={0}
@@ -268,10 +219,6 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  {/* ── Hover popup — always inside card, at bottom ── */}
-                  <AnimatePresence>
-                    {isHovered && <HoverPopup project={project} />}
-                  </AnimatePresence>
                 </motion.article>
               );
             })}

@@ -124,7 +124,7 @@ export default function PageLoader() {
             <span className="size-3 rounded-full bg-[#28c840]" />
           </div>
           <div className="text-xs text-neutral-300 font-mono flex-1 text-center pr-14 select-none">
-            MINGW64: /d/codermayank69
+            MINGW64: /d/Portfolio
           </div>
         </div>
 
@@ -141,7 +141,7 @@ export default function PageLoader() {
                     <div className="flex flex-wrap items-center gap-1.5 leading-none mb-1 mt-1">
                       <span className="text-[#39d353]">Mayank@LAPTOP-VI7N8JMU</span>
                       <span className="text-[#bc3fbc]">MINGW64</span>
-                      <span className="text-[#e3b341]">/d/codermayank69</span>
+                      <span className="text-[#e3b341]">/d/Portfolio</span>
                       <span className="text-[#58a6ff]">(main)</span>
                     </div>
                   )}
