@@ -604,52 +604,63 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-sm"
-              style={{ height: "380px" }}
+              className="flex flex-col gap-3"
             >
-              {/* Blue glowing pulse on Lucknow location */}
-              <div
-                aria-hidden
-                className="absolute z-10 pointer-events-none"
-                style={{ top: "42%", left: "53%", transform: "translate(-50%, -50%)" }}
-              >
-                <span
-                  className="absolute inline-flex rounded-full bg-blue-400 opacity-60 animate-ping"
-                  style={{ width: 36, height: 36, top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}
-                />
-                <span
-                  className="relative inline-flex rounded-full bg-blue-500 shadow-[0_0_16px_6px_rgba(59,130,246,0.55)]"
-                  style={{ width: 14, height: 14, display: "block" }}
-                />
+              {/* Header row: LOCATION label + city + Get Directions */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest mb-0.5">Location</p>
+                  <p className="text-base font-bold text-[#0a0a0a]">Based in Lucknow, India</p>
+                </div>
+                <a
+                  href="https://www.google.com/maps/dir//Krishna+Nagar,+Lucknow,+Uttar+Pradesh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-neutral-200 bg-white text-xs font-semibold text-[#0a0a0a] hover:border-neutral-400 hover:shadow-sm transition-all"
+                >
+                  <MapPin className="size-3.5 text-neutral-500" />
+                  Get Directions
+                </a>
               </div>
 
-              <iframe
-                title="Mayank's location — Krishna Nagar, Lucknow"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14245.368439659092!2d80.88758535!3d26.797233399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1777930972403!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: "grayscale(0.1) contrast(1.05) saturate(0.9)", pointerEvents: "none" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-
-              {/* Bottom info bar overlay */}
-              <div className="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm border-t border-neutral-100 px-5 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#0a0a0a] text-white">
-                    <MapPin className="size-4" />
-                  </span>
-                  <div>
-                    <p className="text-xs font-semibold text-[#0a0a0a]">Krishna Nagar, Lucknow</p>
-                    <p className="text-[11px] text-neutral-400">Uttar Pradesh, India · IST (UTC+5:30)</p>
-                  </div>
+              {/* Map card */}
+              <div
+                className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-sm"
+                style={{ height: "340px" }}
+              >
+                {/* Blue glowing pulse on Lucknow location */}
+                <div
+                  aria-hidden
+                  className="absolute z-10 pointer-events-none"
+                  style={{ top: "42%", left: "53%", transform: "translate(-50%, -50%)" }}
+                >
+                  <span
+                    className="absolute inline-flex rounded-full bg-blue-400 opacity-60 animate-ping"
+                    style={{ width: 36, height: 36, top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}
+                  />
+                  <span
+                    className="relative inline-flex rounded-full bg-blue-500 shadow-[0_0_16px_6px_rgba(59,130,246,0.55)]"
+                    style={{ width: 14, height: 14, display: "block" }}
+                  />
                 </div>
+
+                <iframe
+                  title="Mayank's location — Krishna Nagar, Lucknow"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14245.368439659092!2d80.88758535!3d26.797233399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1777930972403!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: "grayscale(0.1) contrast(1.05) saturate(0.9)", pointerEvents: "none" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+
+                {/* Bottom-left "Open in Maps" overlay button */}
                 <a
                   href="https://maps.app.goo.gl/WHHrY1Vy3UARDXgC8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[11px] font-semibold text-[#0a0a0a] hover:text-neutral-600 flex items-center gap-1 transition-colors"
+                  className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-neutral-200 shadow-sm text-xs font-semibold text-[#0a0a0a] hover:shadow-md hover:border-neutral-400 transition-all"
                 >
                   Open in Maps <ExternalLink className="size-3" />
                 </a>
