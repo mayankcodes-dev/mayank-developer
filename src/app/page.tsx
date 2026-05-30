@@ -628,11 +628,11 @@ export default function Home() {
                 className="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-sm"
                 style={{ height: "340px" }}
               >
-                {/* Blue glowing pulse on Lucknow location */}
+                {/* Blue glowing pulse — centered on embed location */}
                 <div
                   aria-hidden
                   className="absolute z-10 pointer-events-none"
-                  style={{ top: "42%", left: "53%", transform: "translate(-50%, -50%)" }}
+                  style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
                 >
                   <span
                     className="absolute inline-flex rounded-full bg-blue-400 opacity-60 animate-ping"

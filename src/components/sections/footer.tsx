@@ -9,7 +9,7 @@ export const Footer = forwardRef<HTMLElement, {}>(function Footer(_, ref) {
       {/* ── Giant brand name ── */}
       <div
         className="overflow-hidden select-none w-full text-center px-4 md:px-6"
-        style={{ paddingTop: "clamp(6.2rem, 27.8vw, 34.6rem)" }}
+        style={{ paddingTop: "clamp(3.5rem, 15vw, 18rem)" }}
       >
         <h2
           className="footer-brand-name font-black uppercase text-white leading-[0.8] w-full text-center select-none cursor-default"
