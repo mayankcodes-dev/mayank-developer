@@ -278,7 +278,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="mt-6 text-neutral-500 text-xl md:text-xl leading-relaxed font-sans font-light"
               >
-                — I build, ship, and solve. Full-Stack Engineer.
+                — It&apos;s Mayank, an aspiring Software Engineer.
               </motion.p>
 
               {/* Social icons */}
