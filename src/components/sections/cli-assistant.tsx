@@ -202,18 +202,12 @@ function renderContent(text: string): React.ReactNode {
 function Prompt() {
   return (
     <span className="flex-shrink-0 select-none text-[14px] leading-relaxed">
-      {/* Mayank → bright green like Git Bash username */}
       <span style={{ color: "#1eff00" }}>visitor</span>
-      {/* @LAPTOP-... → white */}
       <span style={{ color: "#ffffff" }}>@</span>
       <span style={{ color: "#ffffff" }}>portfolio</span>
-      {/* MINGW64 → bright blue */}
-      <span style={{ color: "#5fd7ff" }}> MINGW64 </span>
-      {/* path → yellow (like git bash path) */}
+      <span style={{ color: "#5fd7ff" }}> home </span>
       <span style={{ color: "#ffff00" }}>~</span>
-      {/* (branch) → teal */}
       <span style={{ color: "#00d7af" }}> (main)</span>
-      {/* $ → white */}
       <span style={{ color: "#ffffff" }}>{" $"}</span>
     </span>
   );
@@ -367,12 +361,12 @@ export default function CliAssistant() {
           <span className="w-3 h-3 rounded-full" style={{ background: "#ffbd2e" }} />
           <span className="w-3 h-3 rounded-full" style={{ background: "#28c840" }} />
         </div>
-        {/* Center title — mimics Git Bash title bar exactly */}
+        {/* Center title */}
         <div className="flex flex-col items-center">
           <span className="text-[11px] font-mono tracking-wide" style={{ color: "#9e9e9e" }}>
             <span style={{ color: "#1eff00" }}>visitor</span>
             <span style={{ color: "#ffffff" }}>@portfolio</span>
-            <span style={{ color: "#5fd7ff" }}> MINGW64 </span>
+            <span style={{ color: "#5fd7ff" }}> home </span>
             <span style={{ color: "#ffff00" }}>~/assistant</span>
             <span style={{ color: "#00d7af" }}> (main)</span>
           </span>
