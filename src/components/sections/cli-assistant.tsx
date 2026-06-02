@@ -330,11 +330,11 @@ export default function CliAssistant() {
   /* ─── Output line colors (matching real terminal palette) ─── */
   const lineStyle: Record<LineType, React.CSSProperties> = {
     input:   { color: "#ffffff" },
-    output:  { color: "#d4d4d4" },
+    output:  { color: "#ffffff" },
     error:   { color: "#ff5555" },
     success: { color: "#1eff00" },
     info:    { color: "#5fd7ff" },
-    ai:      { color: "#e3b341" },
+    ai:      { color: "#ffffff" },
   };
 
   return (
@@ -343,11 +343,13 @@ export default function CliAssistant() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full rounded-xl overflow-hidden"
+      className="w-full rounded-xl overflow-hidden antialiased"
       style={{
         fontFamily: "var(--font-mono, 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace)",
         border: "1px solid #2a2a2a",
         boxShadow: "0 0 0 1px #1a1a1a, 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0, 215, 175, 0.04)",
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale",
       }}
       onClick={focusInput}
     >
