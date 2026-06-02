@@ -205,7 +205,7 @@ function Prompt() {
       <span style={{ color: "#1eff00" }}>visitor</span>
       <span style={{ color: "#ffffff" }}>@</span>
       <span style={{ color: "#ffffff" }}>portfolio</span>
-      <span style={{ color: "#5fd7ff" }}> home </span>
+      <span style={{ color: "#5fd7ff" }}> Home </span>
       <span style={{ color: "#ffff00" }}>~</span>
       <span style={{ color: "#00d7af" }}> (main)</span>
       <span style={{ color: "#ffffff" }}>{" $"}</span>
@@ -366,7 +366,7 @@ export default function CliAssistant() {
           <span className="text-[11px] font-mono tracking-wide" style={{ color: "#9e9e9e" }}>
             <span style={{ color: "#1eff00" }}>visitor</span>
             <span style={{ color: "#ffffff" }}>@portfolio</span>
-            <span style={{ color: "#5fd7ff" }}> home </span>
+            <span style={{ color: "#5fd7ff" }}> Home </span>
             <span style={{ color: "#ffff00" }}>~/assistant</span>
             <span style={{ color: "#00d7af" }}> (main)</span>
           </span>
