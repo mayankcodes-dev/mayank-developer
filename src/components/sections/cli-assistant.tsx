@@ -108,7 +108,7 @@ const mkLine = (type: LineType, content: string): TerminalLine => ({
 /* ─── Prompt component ─── */
 function Prompt() {
   return (
-    <span className="flex-shrink-0 select-none text-[13px] leading-relaxed">
+    <span className="flex-shrink-0 select-none text-[14px] leading-relaxed">
       {/* Mayank → bright green like Git Bash username */}
       <span style={{ color: "#1eff00" }}>visitor</span>
       {/* @LAPTOP-... → white */}
@@ -256,28 +256,35 @@ export default function CliAssistant() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full rounded-xl overflow-hidden shadow-2xl"
+      className="w-full rounded-xl overflow-hidden"
       style={{
         fontFamily: "var(--font-mono, 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace)",
-        border: "1px solid #3a3a3a",
-        boxShadow: "0 0 0 1px #222, 0 25px 50px rgba(0,0,0,0.7)",
+        border: "1px solid #2a2a2a",
+        boxShadow: "0 0 0 1px #1a1a1a, 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(0, 215, 175, 0.04)",
       }}
       onClick={focusInput}
     >
       {/* ── Title Bar ── */}
       <div
-        className="flex items-center justify-between px-4 py-2.5 select-none"
-        style={{ background: "#2d2d2d", borderBottom: "1px solid #444" }}
+        className="flex items-center justify-between px-4 py-3 select-none"
+        style={{ background: "#1e1e1e", borderBottom: "1px solid #333" }}
       >
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-full" style={{ background: "#ff5f57" }} />
           <span className="w-3 h-3 rounded-full" style={{ background: "#ffbd2e" }} />
           <span className="w-3 h-3 rounded-full" style={{ background: "#28c840" }} />
         </div>
-        <span className="text-[11px] font-mono tracking-wide" style={{ color: "#9e9e9e" }}>
-          MINGW64:~/assistant — bash
-        </span>
-        <span className="text-[11px] font-mono" style={{ color: "#616161" }}>bash</span>
+        {/* Center title — mimics Git Bash title bar exactly */}
+        <div className="flex flex-col items-center">
+          <span className="text-[11px] font-mono tracking-wide" style={{ color: "#9e9e9e" }}>
+            <span style={{ color: "#1eff00" }}>visitor</span>
+            <span style={{ color: "#ffffff" }}>@portfolio</span>
+            <span style={{ color: "#5fd7ff" }}> MINGW64 </span>
+            <span style={{ color: "#ffff00" }}>~/assistant</span>
+            <span style={{ color: "#00d7af" }}> (main)</span>
+          </span>
+        </div>
+        <span className="text-[11px] font-mono" style={{ color: "#4a4a4a" }}>bash — 120×40</span>
       </div>
 
       {/* ── Terminal Body ── */}
@@ -285,9 +292,11 @@ export default function CliAssistant() {
         ref={bodyRef}
         className="overflow-y-auto cursor-text"
         style={{
-          height: "500px",
+          height: "600px",
           background: "#0c0c0c",
-          padding: "20px 24px 16px",
+          padding: "20px 28px 16px",
+          /* Subtle scanline feel */
+          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)",
         }}
       >
         <div className="space-y-0.5">
@@ -299,7 +308,7 @@ export default function CliAssistant() {
                 <div className="flex items-start gap-2 mt-3">
                   <Prompt />
                   <span
-                    className="text-[13px] leading-relaxed break-all"
+                    className="text-[14px] leading-relaxed break-all"
                     style={{ color: "#ffffff" }}
                   >
                     {line.content}
@@ -310,7 +319,7 @@ export default function CliAssistant() {
               {/* ── Output / ai / info / error lines ── */}
               {line.type !== "input" && (
                 <pre
-                  className="text-[13px] leading-relaxed whitespace-pre-wrap break-words"
+                  className="text-[14px] leading-relaxed whitespace-pre-wrap break-words"
                   style={{
                     ...lineStyle[line.type],
                     marginTop: line.type === "info" ? 0 : "4px",
@@ -334,8 +343,8 @@ export default function CliAssistant() {
           {/* Loading indicator */}
           {loading && (
             <div className="flex items-center gap-2 mt-3">
-              <span style={{ color: "#00d7af", fontSize: 13 }}>assistant</span>
-              <span style={{ color: "#616161", fontSize: 13 }}>›</span>
+              <span style={{ color: "#00d7af", fontSize: 14 }}>assistant</span>
+              <span style={{ color: "#616161", fontSize: 14 }}>›</span>
               <LoadingDots />
             </div>
           )}
@@ -367,7 +376,7 @@ export default function CliAssistant() {
           className="flex-1 bg-transparent outline-none min-w-0"
           style={{
             color: "#ffffff",
-            fontSize: 13,
+            fontSize: 14,
             caretColor: "#1eff00",
           }}
         />
@@ -407,5 +416,5 @@ function LoadingDots() {
     }, 380);
     return () => clearInterval(t);
   }, []);
-  return <span style={{ color: "#e3b341", fontSize: 13 }}>{dots}</span>;
+  return <span style={{ color: "#e3b341", fontSize: 14 }}>{dots}</span>;
 }

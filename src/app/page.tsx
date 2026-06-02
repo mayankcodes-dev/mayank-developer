@@ -483,16 +483,11 @@ export default function Home() {
       <ProjectsSection />
 
       {/* ══════════════════════════ AI ASSISTANT ══════════════════════════ */}
-      <Section className="border-t border-neutral-100 bg-[#fafafa]" id="assistant">
-        <div className="mx-auto max-w-6xl px-6 md:px-8 py-20 md:py-28">
-          <motion.div variants={fadeUp(0)} className="mb-10">
-            <p className="eyebrow mb-2">AI Assistant</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Ask my assistant</h2>
-            <p className="mt-3 text-sm text-neutral-500 max-w-lg">
-              Type <span className="font-mono bg-neutral-100 px-1.5 py-0.5 rounded text-[#0a0a0a] text-xs">help</span> to see available commands, or{" "}
-              <span className="font-mono bg-neutral-100 px-1.5 py-0.5 rounded text-[#0a0a0a] text-xs">ask &lt;question&gt;</span>{" "}
-              to chat with my AI about my stack, projects, and experience.
-            </p>
+      <Section className="border-t border-neutral-800 bg-[#0a0a0a]" id="assistant">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 py-20 md:py-28">
+          <motion.div variants={fadeUp(0)} className="mb-8">
+            <p className="eyebrow mb-2" style={{ color: "#00d7af" }}>AI Assistant</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">Ask my assistant</h2>
           </motion.div>
           <motion.div variants={fadeUp(0.1)}>
             <CliAssistant />
