@@ -590,17 +590,19 @@ button, [role="button"] {
 }
 
 /* ── Level-1 outline: distinguishes "very few commits" from "none" ── */
-/* GitHub calendar — green outline matching the light-green level-1 fill */
+/* GitHub calendar — bold green outline */
 .github-calendar-wrapper .react-activity-calendar rect[data-level="1"] {
-  stroke: #26a641;
-  stroke-width: 1.5px;
+  stroke: #2da44e;
+  stroke-width: 2.5px;
+  stroke-opacity: 1;
   paint-order: stroke fill;
 }
 
-/* LeetCode calendar — orange outline matching the light-orange level-1 fill */
+/* LeetCode calendar — bold orange outline */
 .leetcode-calendar-wrapper .react-activity-calendar rect[data-level="1"] {
   stroke: #ffa116;
-  stroke-width: 1.5px;
+  stroke-width: 2.5px;
+  stroke-opacity: 1;
   paint-order: stroke fill;
 }
 
