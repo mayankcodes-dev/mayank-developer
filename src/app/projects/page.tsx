@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ExternalLink, ArrowLeft, Code2, Layers } from "lucide-react";
 import ProjectModal from "@/components/shared/project-modal";
+import ProjectCover  from "@/components/shared/project-cover";
 import type { Project } from "@/data/projects";
 
 const GithubIcon = ({ className = "" }: { className?: string }) => (
@@ -192,34 +193,12 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Cover */}
-                    <div className="relative flex h-44 items-center justify-center bg-neutral-50 border-b border-neutral-100 overflow-hidden">
-                      {project.image ? (
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="h-full w-full object-cover object-top"
-                          loading="lazy"
-                          onError={(e) => {
-                            const img = e.currentTarget;
-                            if (project.link && !img.dataset.fallback) {
-                              img.dataset.fallback = "1";
-                              img.src = `https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`;
-                            } else {
-                              img.style.display = "none";
-                            }
-                          }}
-                        />
-                      ) : project.link ? (
-                        <img
-                          src={`https://api.microlink.io?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=8000`}
-                          alt={project.title}
-                          className="h-full w-full object-cover object-top"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <Code2 className="size-16 text-neutral-200" />
-                      )}
-                    </div>
+                    <ProjectCover
+                      image={project.image}
+                      link={project.link}
+                      title={project.title}
+                      technologies={project.technologies}
+                    />
 
                     {/* Content */}
                     <div className="flex flex-1 flex-col gap-3 p-5">

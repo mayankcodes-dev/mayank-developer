@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Mayank Singh",
-    template: "Mayank Singh | %s",
+    template: "%s | Mayank Singh",
   },
   description:
     "Mayank Singh — Full-Stack Engineer from Lucknow. I build fast, polished web products with Next.js, TypeScript, and the MERN stack. Freelance & contract work welcome.",

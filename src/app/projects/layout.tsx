@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Mayank Singh",
+  title: "Projects",
   description:
     "Projects by Mayank Singh — full-stack web apps, SaaS products, and tools built with Next.js, TypeScript, and the MERN stack.",
 };

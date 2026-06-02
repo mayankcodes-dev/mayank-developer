@@ -688,3 +688,15 @@ html.scrollbar-dark::-webkit-scrollbar-thumb:hover {
     border-radius: 0;
   }
 }
+
+/* ── Shimmer loading animation ── */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.5s infinite ease-in-out;
+}
+@keyframes shimmer-slide {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
