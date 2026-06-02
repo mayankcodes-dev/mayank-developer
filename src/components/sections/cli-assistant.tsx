@@ -73,23 +73,23 @@ const SKILLS_TEXT = `
 const PROJECTS_TEXT = `
   PROJECT              STACK                          LIVE
   ──────────────────────────────────────────────────────────────────
-  QuickStay            React · Node.js · Stripe       quick-stay-chi-two.vercel.app
-  YelpCamp             Node · Express · MongoDB        yelpcamp-1-wcof.onrender.com
-  Reducate University  Next.js · Tailwind              college-landing-page-lemon.vercel.app
-  URL Shortener        Node · Docker                   url-shortner-9amn.vercel.app
-  PayPilot-CodeBlitz   Next.js · Razorpay · MongoDB    v0-invoice-copilot-zeta.vercel.app
-  Synapse Code Auditor Next.js · Tailwind              synapse-code-auditor.vercel.app
-  ROYSES               MERN Stack                      royses.vercel.app
+  QuickStay            React · Node.js · Stripe       https://quick-stay-chi-two.vercel.app
+  YelpCamp             Node · Express · MongoDB        https://yelpcamp-1-wcof.onrender.com
+  Reducate University  Next.js · Tailwind              https://college-landing-page-lemon.vercel.app
+  URL Shortener        Node · Docker                   https://url-shortner-9amn.vercel.app
+  PayPilot-CodeBlitz   Next.js · Razorpay · MongoDB    https://v0-invoice-copilot-zeta.vercel.app
+  Synapse Code Auditor Next.js · Tailwind              https://synapse-code-auditor.vercel.app
+  ROYSES               MERN Stack                      https://royses.vercel.app
 
   → Run "ask about <project>" for full details`;
 
 const CONTACT_TEXT = `
   Email     : admin@mayankcodes.dev
-  GitHub    : github.com/mayankcodes-dev
-  LinkedIn  : linkedin.com/in/mayankcodes-dev
-  WhatsApp  : wa.me/message/4BKKNWXBQUQ7G1
-  Portfolio : mayank-developer.vercel.app
-  Resume    : drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view`;
+  GitHub    : https://github.com/mayankcodes-dev
+  LinkedIn  : https://www.linkedin.com/in/mayankcodes-dev
+  WhatsApp  : https://wa.me/message/4BKKNWXBQUQ7G1
+  Portfolio : https://mayank-developer.vercel.app
+  Resume    : https://drive.google.com/file/d/1HH8bHTrCKS_YGufdW8zs5rgTZcf6xIp8/view`;
 
 const WELCOME_LINES = [
   "Mayank's Portfolio AI Assistant  v1.0.0",
@@ -104,6 +104,99 @@ const mkLine = (type: LineType, content: string): TerminalLine => ({
   type,
   content,
 });
+
+/* ─── URL detection regex ─── */
+const URL_REGEX = /https?:\/\/[^\s,)\]>"'`]+/g;
+
+/* ─── Clickable terminal link (Ctrl+click to open) ─── */
+function TerminalLink({ href }: { href: string }) {
+  const [hovered, setHovered] = useState(false);
+  const [ctrlHeld, setCtrlHeld] = useState(false);
+
+  useEffect(() => {
+    const sync = (e: globalThis.KeyboardEvent) => setCtrlHeld(e.ctrlKey || e.metaKey);
+    window.addEventListener("keydown", sync);
+    window.addEventListener("keyup", sync);
+    return () => {
+      window.removeEventListener("keydown", sync);
+      window.removeEventListener("keyup", sync);
+    };
+  }, []);
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(href, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  return (
+    <span style={{ position: "relative", display: "inline-block" }}>
+      {/* Tooltip */}
+      {hovered && (
+        <span
+          style={{
+            position: "absolute",
+            bottom: "calc(100% + 5px)",
+            left: 0,
+            whiteSpace: "nowrap",
+            background: "#1e1e1e",
+            border: "1px solid #3a3a3a",
+            borderRadius: 4,
+            padding: "3px 8px",
+            fontSize: 11,
+            fontFamily: "inherit",
+            color: ctrlHeld ? "#1eff00" : "#9e9e9e",
+            pointerEvents: "none",
+            zIndex: 50,
+            lineHeight: 1.4,
+          }}
+        >
+          {ctrlHeld ? "↗ open link" : "Ctrl+click to open link"}
+        </span>
+      )}
+      {/* Link text */}
+      <span
+        onClick={handleClick}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          color: hovered && ctrlHeld ? "#79c0ff" : "#58a6ff",
+          textDecoration: hovered ? "underline" : "none",
+          textDecorationColor: "#58a6ff",
+          textUnderlineOffset: "3px",
+          cursor: ctrlHeld ? "pointer" : "text",
+          transition: "color 0.1s ease",
+        }}
+      >
+        {href}
+      </span>
+    </span>
+  );
+}
+
+/** Parse plain text, wrapping http(s) URLs in <TerminalLink> */
+function renderContent(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  URL_REGEX.lastIndex = 0;
+
+  while ((match = URL_REGEX.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    parts.push(<TerminalLink key={match.index} href={match[0]} />);
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return <>{parts}</>;
+}
 
 /* ─── Prompt component ─── */
 function Prompt() {
@@ -333,7 +426,7 @@ export default function CliAssistant() {
                   {line.type === "error" && (
                     <span style={{ color: "#ff5555" }}></span>
                   )}
-                  {line.content}
+                  {renderContent(line.content)}
                 </pre>
               )}
 
