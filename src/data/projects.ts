@@ -81,7 +81,7 @@ export const projects: Project[] = [
     id: "reducate-university",
     title: "Reducate University — Landing Page",
     description: "A modern and sleek college landing page built with Next.js & Tailwind CSS, optimised for minimalism, cleanliness, readability and orthogonality.",
-    longDescription: "Reducate University is a premium college landing page built with Next.js and Tailwind CSS. Features a hero section with animated typography, course catalogue, faculty showcase, testimonials, and a contact section — all optimised for minimalism, readability, and conversion.",
+    longDescription: "A clean, modern landing page built for a university to help prospective students learn about the college at a glance. Visitors can explore available courses, meet the faculty, read student testimonials, and get in touch — all through a fast, beautifully designed page that works perfectly on any device.",
     image: "/images/ReducateAI.webp",
     technologies: ["Next.js", "Tailwind CSS", "React"],
     link: "https://college-landing-page-lemon.vercel.app/",
@@ -99,8 +99,7 @@ export const projects: Project[] = [
     title: "QuickStay",
     description:
       "Full-stack hotel booking platform connecting travelers and hotel owners with room search, Stripe payments, and owner dashboards.",
-    longDescription:
-      "Built QuickStay with React + Vite frontend and Node.js/Express/MongoDB backend. Features Clerk authentication with role-based access (user & owner), room search and filtering, date-based availability, booking management, Stripe payments, Cloudinary image uploads, automated email confirmations, and owner dashboards with booking and revenue insights.",
+    longDescription: "QuickStay is a hotel booking platform where travellers can search for available rooms, pick their check-in and check-out dates, and pay securely online. Hotel owners get their own dashboard to list rooms, upload photos, and track bookings and earnings — all in one place.",
     image: "/images/quickstay.webp",
     technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Clerk", "Stripe", "Cloudinary"],
     link: "https://quick-stay-chi-two.vercel.app",
@@ -116,8 +115,7 @@ export const projects: Project[] = [
     title: "YelpCamp",
     description:
       "Production-style full-stack campground review app with authentication, image uploads, interactive maps, and secure middleware.",
-    longDescription:
-      "YelpCamp features complete CRUD with MVC architecture, Passport.js authentication, role-based authorization, Joi validation, Cloudinary media handling, MapTiler geolocation/maps, session management with connect-mongo, and HTTP security headers. Built to practice secure, scalable web products end to end.",
+    longDescription: "YelpCamp is a platform where outdoor enthusiasts can discover, review, and share campgrounds. Users can create an account, post new campgrounds with photos and a location on the map, leave reviews, and browse spots shared by the community — think Yelp, but for camping.",
     image: "/images/yelp.webp",
     technologies: ["Node.js", "Express", "MongoDB", "Mongoose", "Passport.js", "Cloudinary", "MapTiler"],
     link: "https://yelpcamp-1-wcof.onrender.com/",
@@ -147,7 +145,7 @@ export const projects: Project[] = [
     id: "mayank-developer",
     title: "Portfolio Website",
     description: "Personal portfolio website built with Next.js",
-    longDescription: "A fully responsive, high-performance developer portfolio built with Next.js, featuring smooth GSAP/Framer Motion animations, a premium dark-themed technical aesthetic, and a custom terminal boot sequence.",
+    longDescription: "The site you're on right now. Built to showcase my work, skills, and story as a developer. It features an AI assistant you can chat with to learn more about me, a live GitHub activity graph, blog posts, certifications, and a projects gallery — all wrapped in a clean, fast interface.",
     image: "/images/Portfolio.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
     link: "https://mayankcodes.dev",
@@ -162,8 +160,7 @@ export const projects: Project[] = [
     title: "Note Keeper",
     description:
       "Full-stack note management app with Firebase Auth, REST APIs, Docker containerization, and a clean responsive UI.",
-    longDescription:
-      "React + Vite frontend with Node.js/Express + MongoDB backend. Firebase Authentication token verification for protected routes. Complete CRUD for notes, REST APIs, and end-to-end client-server integration. Containerized with Docker and configured for production deployment.",
+    longDescription: "Note Keeper is a simple, secure app for saving and managing your notes. Sign in with your account, create new notes, edit existing ones, or delete what you no longer need. Your notes are stored safely in the cloud and only you can see them after logging in.",
     image: "/images/NoteKeeper.webp",
     technologies: ["React", "Vite", "Node.js", "Express", "MongoDB", "Firebase Auth", "Docker"],
     link: "https://note-keeper-2-yvyt.onrender.com/",
