@@ -589,19 +589,19 @@ button, [role="button"] {
   height: auto !important;
 }
 
-/* ── Level-1 outline: distinguishes "very few commits" from "none" ── */
-/* GitHub — border matches darkest block (#1a6326) */
+/* ── Level-1 outline: colour = level-2 of each theme (one step up) ── */
+/* GitHub level-2 = #74c47a */
 .github-calendar-wrapper .react-activity-calendar rect[data-level="1"] {
-  stroke: #1a6326 !important;
-  stroke-width: 2.5 !important;
+  stroke: #74c47a !important;
+  stroke-width: 1.8 !important;
   stroke-opacity: 1 !important;
   paint-order: stroke fill;
 }
 
-/* LeetCode — border matches darkest block (#cc7a00) */
+/* LeetCode level-2 = #ffc080 */
 .leetcode-calendar-wrapper .react-activity-calendar rect[data-level="1"] {
-  stroke: #cc7a00 !important;
-  stroke-width: 2.5 !important;
+  stroke: #ffc080 !important;
+  stroke-width: 1.8 !important;
   stroke-opacity: 1 !important;
   paint-order: stroke fill;
 }
