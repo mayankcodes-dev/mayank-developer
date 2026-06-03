@@ -181,14 +181,6 @@ export default function ProjectsSection() {
 
               {/* ── Content panel ── */}
               <div className="flex flex-col justify-center gap-4 flex-1 min-w-0">
-                {/* Type badge + period */}
-                <div className="flex items-center gap-2.5">
-                  <TypeBadge type={project.type} />
-                  {project.period && (
-                    <span className="text-[11px] font-mono text-neutral-400">{project.period}</span>
-                  )}
-                </div>
-
                 {/* Title */}
                 <h3 className="text-2xl md:text-[1.65rem] font-bold tracking-tight text-[#0a0a0a] leading-tight">
                   {project.title}
