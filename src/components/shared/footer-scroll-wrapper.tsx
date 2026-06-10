@@ -19,7 +19,7 @@ export default function FooterScrollWrapper({ children, footer, className = "" }
     <div className="w-full bg-black overflow-x-hidden">
       {/* White content — scales via CSS scroll-driven animation */}
       <div
-        className={`relative w-full bg-white text-[#0a0a0a] overflow-hidden footer-scale-wrapper ${className}`}
+        className={`relative w-full bg-[#F5F3F0] text-[#0a0a0a] overflow-hidden footer-scale-wrapper ${className}`}
         style={{ transformOrigin: "bottom center" }}
       >
         {children}

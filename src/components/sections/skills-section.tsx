@@ -39,7 +39,7 @@ export default function SkillsSection() {
                 "px-3.5 py-2 text-[13px] font-medium rounded-lg border transition-all",
                 i === active
                   ? "bg-[#0a0a0a] text-white border-[#0a0a0a] shadow-sm"
-                  : "bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
+                  : "bg-[#F5F3F0] text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
               ].join(" ")}
             >
               <span className="mr-1.5">{c.icon}</span>
@@ -64,7 +64,7 @@ export default function SkillsSection() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
-                className="skill-card group/card relative flex flex-col items-center gap-3 p-5 rounded-xl border border-neutral-200 bg-white cursor-default overflow-visible"
+                className="skill-card group/card relative flex flex-col items-center gap-3 p-5 rounded-xl border border-neutral-200 bg-[#F5F3F0] cursor-default overflow-visible"
                 style={{ transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}
                 whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
                 whileTap={{ scale: 0.97 }}

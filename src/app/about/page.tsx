@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
@@ -13,7 +13,7 @@ import { Footer } from "@/components/sections/footer";
 import FooterScrollWrapper from "@/components/shared/footer-scroll-wrapper";
 import { certificates } from "@/data/certificates";
 
-/* GitHub Calendar loaded only on client (no SSR) — avoids window errors */
+/* GitHub Calendar loaded only on client (no SSR) � avoids window errors */
 const GitHubCalendar = dynamic(
   () => import("./github-calendar-wrapper"),
   {
@@ -22,14 +22,14 @@ const GitHubCalendar = dynamic(
   }
 );
 
-/* ─── Static data ───────────────────────────────────────────────── */
+/* --- Static data ------------------------------------------------- */
 const timeline = [
   {
-    year: "2024–Present",
+    year: "2024�Present",
     title: "Full-Stack Developer",
     icon: Code2,
     description:
-      "Building production-grade MERN applications for clients — from landing pages to full SaaS platforms. Specialising in Next.js, TypeScript, and API integration.",
+      "Building production-grade MERN applications for clients � from landing pages to full SaaS platforms. Specialising in Next.js, TypeScript, and API integration.",
   },
   {
     year: "2023",
@@ -51,7 +51,7 @@ const values = [
   {
     icon: Code2,
     title: "Craft over speed",
-    desc: "I care about the details — typography, spacing, animation timing. Good enough isn't good enough.",
+    desc: "I care about the details � typography, spacing, animation timing. Good enough isn't good enough.",
   },
   {
     icon: Zap,
@@ -85,11 +85,11 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
   );
 }
 
-/* ─── LeetCode Stats Card ───────────────────────────────────────── */
+/* --- LeetCode Stats Card ----------------------------------------- */
 function LeetCodeStats() {
   return (
     <div className="mt-6 grid gap-4 sm:grid-cols-2">
-      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-[#F5F3F0]">
         <img
           src="https://leetcard.jacoblin.cool/mayankcodes-dev?theme=light&font=Inter&ext=activity"
           alt="LeetCode stats for mayankcodes-dev"
@@ -97,7 +97,7 @@ function LeetCodeStats() {
           loading="lazy"
         />
       </div>
-      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-[#F5F3F0]">
         <img
           src="https://leetcard.jacoblin.cool/mayankcodes-dev?theme=light&font=Inter&ext=heatmap"
           alt="LeetCode heatmap for mayankcodes-dev"
@@ -109,16 +109,16 @@ function LeetCodeStats() {
   );
 }
 
-/* ─── Page ──────────────────────────────────────────────────────── */
+/* --- Page -------------------------------------------------------- */
 export default function About() {
   return (
     <>
       <SiteNav />
       <FooterScrollWrapper footer={<Footer />}>
-        <main className="min-h-screen bg-white text-[#0a0a0a]">
+        <main className="min-h-screen bg-[#F5F3F0] text-[#0a0a0a]">
 
-        {/* ════ HERO ════ */}
-        <section className="relative bg-[#fafafa]">
+        {/* ---- HERO ---- */}
+        <section className="relative bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 pb-12 pt-8 md:pt-16">
             <motion.div
@@ -148,7 +148,7 @@ export default function About() {
               variants={fadeUp(0.1)}
               className="mt-5 max-w-2xl text-pretty text-base md:text-lg leading-relaxed text-neutral-500"
             >
-              Hi, I&apos;m <strong className="text-[#0a0a0a] font-semibold">Mayank</strong> — a MERN stack
+              Hi, I&apos;m <strong className="text-[#0a0a0a] font-semibold">Mayank</strong> � a MERN stack
               developer passionate about building polished, production-ready web
               applications. Currently pursuing my CS degree and actively seeking
               software engineering internships.
@@ -173,7 +173,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* ════ VALUES ════ */}
+        {/* ---- VALUES ---- */}
         <AnimatedSection className="border-t border-neutral-100">
           <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-8">
@@ -197,8 +197,8 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* ════ TIMELINE ════ */}
-        <AnimatedSection className="relative border-t border-neutral-100 bg-[#fafafa]">
+        {/* ---- TIMELINE ---- */}
+        <AnimatedSection className="relative border-t border-neutral-100 bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-8">
@@ -208,7 +208,7 @@ export default function About() {
             <div className="relative space-y-10 before:absolute before:left-[5px] before:top-2 before:h-full before:w-px before:bg-neutral-200">
               {timeline.map(({ year, title, icon: Icon, description }, i) => (
                 <motion.div key={year} variants={fadeUp(i * 0.12)} className="relative pl-9">
-                  <span className="absolute left-0 top-1.5 flex size-3 items-center justify-center rounded-full border-2 border-[#0a0a0a] bg-white" />
+                  <span className="absolute left-0 top-1.5 flex size-3 items-center justify-center rounded-full border-2 border-[#0a0a0a] bg-[#F5F3F0]" />
                   <div className="flex items-center gap-2">
                     <Icon className="size-4 text-neutral-400" />
                     <p className="font-mono text-[11px] uppercase tracking-wider text-neutral-400">{year}</p>
@@ -221,7 +221,7 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* ════ GITHUB CONTRIBUTION GRAPH ════ */}
+        {/* ---- GITHUB CONTRIBUTION GRAPH ---- */}
         <AnimatedSection className="border-t border-neutral-100">
           <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-2">
@@ -254,8 +254,8 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* ════ LEETCODE STATS ════ */}
-        <AnimatedSection className="relative border-t border-neutral-100 bg-[#fafafa]">
+        {/* ---- LEETCODE STATS ---- */}
+        <AnimatedSection className="relative border-t border-neutral-100 bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-2">
@@ -278,7 +278,7 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* ════ CERTIFICATIONS TEASER ════ */}
+        {/* ---- CERTIFICATIONS TEASER ---- */}
         <AnimatedSection className="border-t border-neutral-100">
           <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-8">
@@ -299,7 +299,7 @@ export default function About() {
                       {cert.title}
                     </p>
                     <p className="mt-1 text-xs text-neutral-500 font-mono">
-                      {cert.issuer} · {cert.date}
+                      {cert.issuer} � {cert.date}
                     </p>
                   </div>
                 </motion.div>
@@ -316,7 +316,7 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* ════ SOCIAL LINKS ════ */}
+        {/* ---- SOCIAL LINKS ---- */}
         <AnimatedSection className="border-t border-neutral-100">
           <div className="mx-auto max-w-4xl px-6 md:px-8 py-16 md:py-20">
             <motion.p variants={fadeUp(0)} className="eyebrow mb-6">

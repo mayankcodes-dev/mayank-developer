@@ -97,7 +97,7 @@ export default function PageLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#F5F3F0] transition-opacity duration-500 ${
         exiting ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-label="Loading"
@@ -158,7 +158,7 @@ export default function PageLoader() {
                     )}
                     {/* Blinking cursor on the last visible line */}
                     {isLast && (
-                      <span className="inline-block h-3.5 w-[7px] animate-[blink_0.9s_step-end_infinite] bg-white/80" />
+                      <span className="inline-block h-3.5 w-[7px] animate-[blink_0.9s_step-end_infinite] bg-[#F5F3F0]/80" />
                     )}
                   </div>
                 </div>

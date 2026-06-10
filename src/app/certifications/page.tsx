@@ -53,7 +53,7 @@ function CertCard({ cert }: { cert: CertItem }) {
       {/* Header — icon + issuer */}
       <div className="relative flex h-36 w-full items-center justify-center bg-neutral-50 border-b border-neutral-100">
         {cert.issuerLogo ? (
-          <div className="flex size-14 items-center justify-center rounded-xl bg-white border border-neutral-200 p-2.5 shadow-sm">
+          <div className="flex size-14 items-center justify-center rounded-xl bg-[#F5F3F0] border border-neutral-200 p-2.5 shadow-sm">
             <Image
               src={cert.issuerLogo}
               alt={cert.issuer}
@@ -64,7 +64,7 @@ function CertCard({ cert }: { cert: CertItem }) {
             />
           </div>
         ) : (
-          <div className="flex size-12 items-center justify-center rounded-xl bg-white border border-neutral-200 shadow-sm">
+          <div className="flex size-12 items-center justify-center rounded-xl bg-[#F5F3F0] border border-neutral-200 shadow-sm">
             <Award className="size-6 text-neutral-400" />
           </div>
         )}
@@ -77,7 +77,7 @@ function CertCard({ cert }: { cert: CertItem }) {
             rel="noopener noreferrer"
             id={`cert-link-${cert.id}`}
             aria-label={`View ${cert.title} credential`}
-            className="absolute right-3 top-3 z-10 flex size-7 items-center justify-center rounded-md bg-white border border-neutral-200 text-neutral-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-[#0a0a0a] hover:border-neutral-400"
+            className="absolute right-3 top-3 z-10 flex size-7 items-center justify-center rounded-md bg-[#F5F3F0] border border-neutral-200 text-neutral-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-[#0a0a0a] hover:border-neutral-400"
           >
             <ExternalLink className="size-3.5" />
           </a>
@@ -170,10 +170,10 @@ export default function CertificationsPage() {
     <>
       <SiteNav />
       <FooterScrollWrapper footer={<Footer />}>
-        <main className="min-h-screen bg-white text-[#0a0a0a]">
+        <main className="min-h-screen bg-[#F5F3F0] text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="relative border-b border-neutral-100 px-6 md:px-8 pb-12 pt-8 md:pt-14 bg-[#fafafa]">
+        <section className="relative border-b border-neutral-100 px-6 md:px-8 pb-12 pt-8 md:pt-14 bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto max-w-5xl">
 
@@ -221,7 +221,7 @@ export default function CertificationsPage() {
                     "px-3.5 py-2 text-[13px] font-medium rounded-lg border transition-all",
                     activeCategory === cat
                       ? "bg-[#0a0a0a] text-white border-[#0a0a0a] shadow-sm"
-                      : "bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
+                      : "bg-[#F5F3F0] text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
                   ].join(" ")}
                 >
                   {cat}

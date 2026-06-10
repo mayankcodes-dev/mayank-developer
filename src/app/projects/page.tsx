@@ -68,10 +68,10 @@ export default function ProjectsPage() {
     <>
       <SiteNav />
       <FooterScrollWrapper footer={<Footer />}>
-        <main className="min-h-screen bg-white text-[#0a0a0a]">
+        <main className="min-h-screen bg-[#F5F3F0] text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="relative border-b border-neutral-100 pb-12 pt-8 md:pt-14 bg-[#fafafa]">
+        <section className="relative border-b border-neutral-100 pb-12 pt-8 md:pt-14 bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
             <motion.div
@@ -124,7 +124,7 @@ export default function ProjectsPage() {
                         "px-3.5 py-2 text-[13px] font-medium rounded-lg border transition-all",
                         tab === value
                           ? "bg-[#0a0a0a] text-white border-[#0a0a0a] shadow-sm"
-                          : "bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
+                          : "bg-[#F5F3F0] text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-[#0a0a0a]",
                       ].join(" ")}
                     >
                       {label}
@@ -145,7 +145,7 @@ export default function ProjectsPage() {
 
           {tab === "mobile-app" ? (
             <div className="flex flex-col items-center justify-center py-20 text-center border border-dashed border-neutral-200 rounded-2xl bg-neutral-50/50 max-w-2xl mx-auto px-6">
-              <div className="relative flex items-center justify-center size-16 rounded-2xl bg-white border border-neutral-100 shadow-sm mb-6">
+              <div className="relative flex items-center justify-center size-16 rounded-2xl bg-[#F5F3F0] border border-neutral-100 shadow-sm mb-6">
                 <Code2 className="size-8 text-[#0a0a0a]" />
                 <span className="absolute -top-1 -right-1 flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>

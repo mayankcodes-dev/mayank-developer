@@ -39,7 +39,7 @@ function ToastCard({ id, message, type, onClose }: ToastProps) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 8, scale: 0.95 }}
       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-      className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 shadow-lg min-w-[200px] max-w-xs"
+      className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-[#F5F3F0] px-4 py-3 shadow-lg min-w-[200px] max-w-xs"
     >
       <Icon className={`size-4 shrink-0 ${iconColor}`} />
       <p className="text-sm font-medium text-[#0a0a0a] flex-1">{message}</p>

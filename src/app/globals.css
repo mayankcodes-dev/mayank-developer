@@ -65,13 +65,13 @@
    ════════════════════════════════════════════════════════════ */
 :root {
   /* ── Surfaces ── */
-  --background:          #ffffff;
+  --background:          #F5F3F0;
   --foreground:          #0a0a0a;
 
-  --card:                #ffffff;
+  --card:                #F5F3F0;
   --card-foreground:     #0a0a0a;
 
-  --popover:             #ffffff;
+  --popover:             #F5F3F0;
   --popover-foreground:  #0a0a0a;
 
   /* ── Primary = black ── */
@@ -79,7 +79,7 @@
   --primary-foreground:  #ffffff;
 
   /* ── Secondary = near-white ── */
-  --secondary:           #f5f5f5;
+  --secondary:           #EFECE7;
   --secondary-foreground: #0a0a0a;
 
   /* ── Muted ── */
@@ -87,7 +87,7 @@
   --muted-foreground:    #737373;
 
   /* ── Accent ── */
-  --accent:              #f5f5f5;
+  --accent:              #EFECE7;
   --accent-foreground:   #0a0a0a;
 
   /* ── Destructive = red accent ── */
@@ -95,7 +95,7 @@
 
   /* ── Borders / Inputs ── */
   --border:              #e5e5e5;
-  --input:               #f5f5f5;
+  --input:               #EFECE7;
   --ring:                #0a0a0a;
 
   /* ── Charts ── */
@@ -108,7 +108,7 @@
   --radius: 0.5rem;
 
   /* ── Sidebar ── */
-  --sidebar:                  #fafafa;
+  --sidebar:                  #EFECE7;
   --sidebar-foreground:       #0a0a0a;
   --sidebar-primary:          #0a0a0a;
   --sidebar-primary-foreground: #ffffff;
@@ -309,7 +309,7 @@ button, [role="button"] {
   border-color: #e5e5e5;
 }
 .btn-outline:hover {
-  background: #f5f5f5;
+  background: #EFECE7;
   border-color: #d4d4d4;
 }
 
@@ -327,7 +327,7 @@ button, [role="button"] {
    CARDS — Clean, borderline elegant
    ════════════════════════════════════════════════════════════ */
 .card-eng {
-  background: #ffffff;
+  background: #F5F3F0;
   border: 1.5px solid #e5e5e5;
   border-radius: 0.75rem;
   transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -355,7 +355,7 @@ button, [role="button"] {
 }
 
 .badge-neutral {
-  background: #f5f5f5;
+  background: #EFECE7;
   border-color: #e5e5e5;
   color: #404040;
 }
@@ -476,7 +476,7 @@ button, [role="button"] {
   padding: 0.3125rem 0.75rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  background: #f5f5f5;
+  background: #EFECE7;
   border: 1px solid #e5e5e5;
   border-radius: 99px;
   color: #262626;
@@ -641,14 +641,14 @@ button, [role="button"] {
 
 /* Light scrollbar — portfolio (white bg) */
 html.scrollbar-light {
-  scrollbar-color: #d4d4d4 #ffffff;
+  scrollbar-color: #d4d4d4 #F5F3F0;
   scrollbar-width: thin;
 }
 html.scrollbar-light::-webkit-scrollbar {
   width: 8px;
 }
 html.scrollbar-light::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #F5F3F0;
 }
 html.scrollbar-light::-webkit-scrollbar-thumb {
   background: #d4d4d4;

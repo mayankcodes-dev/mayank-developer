@@ -131,7 +131,7 @@ function TypeBadge({ type }: { type: string }) {
 /* ── Main section ─────────────────────────────────────────────────────────── */
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="relative border-t border-neutral-100 bg-[#fafafa]">
+    <section id="projects" className="relative border-t border-neutral-100 bg-[#EFECE7]">
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
 
       <div className="relative mx-auto max-w-5xl px-6 md:px-8 py-20 md:py-28 z-10">
@@ -196,7 +196,7 @@ export default function ProjectsSection() {
                   {project.technologies.map((t) => (
                     <span
                       key={t}
-                      className="text-[11px] font-mono text-neutral-500 bg-white border border-neutral-200 rounded-md px-2 py-0.5"
+                      className="text-[11px] font-mono text-neutral-500 bg-[#F5F3F0] border border-neutral-200 rounded-md px-2 py-0.5"
                     >
                       {t}
                     </span>

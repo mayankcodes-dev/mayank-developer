@@ -63,7 +63,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 32, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 bottom-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-[101] w-full max-w-2xl bg-white rounded-t-2xl md:rounded-2xl border border-neutral-200 shadow-2xl overflow-hidden flex flex-col max-h-[90dvh]"
+            className="fixed inset-x-4 bottom-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-[101] w-full max-w-2xl bg-[#F5F3F0] rounded-t-2xl md:rounded-2xl border border-neutral-200 shadow-2xl overflow-hidden flex flex-col max-h-[90dvh]"
           >
             {/* Image section */}
             <div className="relative h-52 md:h-60 w-full flex-shrink-0 bg-neutral-50 overflow-hidden">

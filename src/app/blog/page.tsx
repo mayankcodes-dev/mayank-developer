@@ -94,10 +94,10 @@ export default async function BlogPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-white text-[#0a0a0a]">
+      <main className="min-h-screen bg-[#F5F3F0] text-[#0a0a0a]">
 
         {/* ── Hero ── */}
-        <section className="relative border-b border-neutral-100 bg-[#fafafa]">
+        <section className="relative border-b border-neutral-100 bg-[#EFECE7]">
           <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
           <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-8 pb-12 pt-8 md:pt-14">
             <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">

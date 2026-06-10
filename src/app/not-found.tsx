@@ -50,7 +50,7 @@ export default function NotFound() {
   return (
     <>
       <SiteNav />
-      <main className="min-h-screen bg-white text-[#0a0a0a] flex items-center justify-center p-6 relative overflow-hidden">
+      <main className="min-h-screen bg-[#F5F3F0] text-[#0a0a0a] flex items-center justify-center p-6 relative overflow-hidden">
         {/* Subtle background grid */}
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" aria-hidden />
 
@@ -73,8 +73,8 @@ export default function NotFound() {
           </div>
 
           {/* Light Terminal */}
-          <div className="rounded-xl border border-neutral-200 bg-[#fafafa] shadow-sm overflow-hidden mb-8">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 bg-white">
+          <div className="rounded-xl border border-neutral-200 bg-[#EFECE7] shadow-sm overflow-hidden mb-8">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 bg-[#F5F3F0]">
               <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
               <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
               <span className="w-3 h-3 rounded-full bg-[#28c840]" />

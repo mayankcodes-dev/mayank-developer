@@ -49,7 +49,7 @@ export default function Navbar() {
         }`}
       >
         <div
-          className="flex items-center justify-between md:justify-center rounded-full transition-all duration-300 bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-neutral-200 px-4 md:px-6 py-2"
+          className="flex items-center justify-between md:justify-center rounded-full transition-all duration-300 bg-[#F5F3F0]/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-neutral-200 px-4 md:px-6 py-2"
         >
           {/* ── Logo — small screens only ── */}
           <Link href="/" aria-label="Home" className="md:hidden flex items-center gap-2 group">
@@ -124,7 +124,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.97 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="mt-2 rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200 shadow-lg overflow-hidden"
+              className="mt-2 rounded-2xl bg-[#F5F3F0]/95 backdrop-blur-md border border-neutral-200 shadow-lg overflow-hidden"
             >
               <div className="flex flex-col p-2 gap-0.5">
                 {NAV_LINKS.map(({ label, href }) => (
